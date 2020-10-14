@@ -1,0 +1,23 @@
+teacher目录
+	allQuizs.html----习题列表
+	allTests.html----考试列表
+	createQuiz.html----创建习题页面
+	createTest.html----创建考试页面
+student目录
+	quizs.html----单次考试习题列表
+	tests.html----所有考试列表
+	answer.html----答题界面
+admin目录
+	login.html----登录界面
+	
+	map<String(元数据)，list(数据)>
+	比较以上数据结构即可
+	遍历resultset
+	new hashmap()
+	按照列数量初始化map
+	
+	while（rs.next）{
+		for(元数据){
+		map.get(元数据).add(rs.get(元数据))
+		}
+	}

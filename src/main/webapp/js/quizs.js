@@ -2,7 +2,7 @@ $(document).ready(function() {
 })
 
 function randomquizs() {
-			$.get('/sql_cerification/answer/getrandomquizs',function(data){
+			$.get('/Mysql_practice/answer/getrandomquizs',function(data){
 				let message = '';
 				let randomlist = '';
 				$.each(data, function(index,item) {

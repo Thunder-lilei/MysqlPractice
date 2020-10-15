@@ -108,7 +108,7 @@
 //			}
 			function preview()
 			{
-				$.getJSON('/sql_cerification/sql/preview',{sql:$("#inputsql").val()},function(data){
+				$.getJSON('/Mysql_practice/sql/preview',{sql:$("#inputsql").val()},function(data){
 					let message = '';
 					let previewlist = '';
 					$.each(data, function(index,item) {
@@ -145,7 +145,7 @@
 			function compare()
 			{
 				let id = GetQueryString("id");
-				$.getJSON('/sql_cerification/sql/compare_sql',{sqlstring:$("#inputsql").val(),id:id},function(data){
+				$.getJSON('/Mysql_practice/sql/compare_sql',{sqlstring:$("#inputsql").val(),id:id},function(data){
 					let message = '';
 					let result = '';
 					$.each(data, function(index,item) {

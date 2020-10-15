@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		(function(){
 			let id = GetQueryString("id");
-			$.getJSON('/sql_cerification/answer/gettitle',{id:id},function(data){
+			$.getJSON('/Mysql_practice/answer/gettitle',{id:id},function(data){
 				let message = '';
 				let answer = '';
 				$.each(data, function(index,item) {

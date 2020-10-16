@@ -22,7 +22,7 @@ public class ComparasionOfSqlUtils {
 	 * @return
 	 */
 	public static String SQLOfComparasion(String s1, String s2) {
-		String ReturnMessage="Different";
+		String ReturnMessage="111";
 		boolean flag = false;
 
 		Connection connection = DbUtil.getInstance().getConnection();

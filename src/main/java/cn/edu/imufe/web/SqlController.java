@@ -63,10 +63,11 @@ public class SqlController extends BaseController{
 				modelMap.put("previewlist", previewlist);
 			}else 
 			{
-				modelMap.put("message", "sql错误！或查询为空！");
+				modelMap.put("message", "sql错误！或查询为空！");				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			modelMap.put("message", e.getMessage());
 		}
 		return modelMap;
 	}
@@ -87,7 +88,7 @@ public class SqlController extends BaseController{
 			//TODO 由返回的id搜到题目和答案  
 			cn.edu.imufe.entity.Answer a1=answerServiceimpl.selectByPrimaryKey(id);
 			//TODO 由上面的答案 与用户sql进行比较 ，得出String字符串返回的结果 需要调用ComparasionOfSqlUtils
-			result=ComparasionOfSqlUtils.SQLOfComparasion(sqlstring,a1.getSolution());
+			result=ComparasionOfSqlUtils.SQLOfComparasion(a1.getSolution(),sqlstring);
 			modelMap.put("message", "success");
 		}else 
 		{

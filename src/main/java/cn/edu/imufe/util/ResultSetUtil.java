@@ -26,9 +26,8 @@ public class ResultSetUtil {
     private boolean getTableSetFlag = false;
     private boolean getTableSetFlag2 = false;
 
-    public ResultSetUtil(ResultSet resultSet) {
+    public ResultSetUtil(ResultSet resultSet) throws SQLException {
         this.resultSet = resultSet;
-        try {
             ResultSetMetaData rsmd = this.resultSet.getMetaData();
             columnSize = rsmd.getColumnCount();
             ArrayList<Object> arrayListByRow = new ArrayList<>();
@@ -41,17 +40,13 @@ public class ResultSetUtil {
                 TableSetByColumn.add(arrayList);
             }
             TableSetByRow.add(arrayListByRow);
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
     }
 
 
-    public Integer getRowSize() {
+    public Integer getRowSize()throws SQLException {
         getTableSetFlag = true;
         getTableSetFlag2 = true;
         rowSum = 0;
-        try {
             while (resultSet.next()) {
                 long temp = 0;
                 long rowsum = 0;
@@ -76,21 +71,18 @@ public class ResultSetUtil {
                 rowSet.add(rowsum);
                 rowSum++;
             }
-        } catch (Exception e) {
-            System.out.println("e:" + e.getMessage());
-        }
         return rowSum;
     }
 
 
-    public ArrayList<ArrayList<Object>> getTableSetByColumn() {
+    public ArrayList<ArrayList<Object>> getTableSetByColumn() throws SQLException{
         if (!getTableSetFlag) {
             getRowSize();
         }
         return TableSetByColumn;
     }
 
-    public ArrayList<ArrayList<Object>> getTableSetByRow() {
+    public ArrayList<ArrayList<Object>> getTableSetByRow() throws SQLException{
         if (!getTableSetFlag2) {
             getRowSize();
         }
@@ -98,14 +90,14 @@ public class ResultSetUtil {
     }
 
 
-    public long getFirstColumnSum() {
+    public long getFirstColumnSum()throws SQLException {
         if (firstColumnSum == 0) {
             getRowSize();
         }
         return firstColumnSum;
     }
 
-    public long getFirstRowSum() {
+    public long getFirstRowSum() throws SQLException{
         if (firstRowSum == 0) {
             getRowSize();
         }
@@ -113,7 +105,7 @@ public class ResultSetUtil {
     }
 
 
-    public long getAllTableSum() {
+    public long getAllTableSum()throws SQLException {
         if (allTableSum == 0) {
             getRowSize();
         }
@@ -125,21 +117,21 @@ public class ResultSetUtil {
     }
 
 
-    public ArrayList<Long> getFirstRowSet() {
+    public ArrayList<Long> getFirstRowSet() throws SQLException{
         if (firstRowSet.size() == 0) {
             getRowSize();
         }
         return firstRowSet;
     }
 
-    public ArrayList<Long> getFirstColumnSet() {
+    public ArrayList<Long> getFirstColumnSet()throws SQLException {
         if (firstColumnSet.size() == 0) {
             getRowSize();
         }
         return firstColumnSet;
     }
 
-    public ArrayList<Long> getRowSet() {
+    public ArrayList<Long> getRowSet() throws SQLException{
         if (rowSet.size() == 0) {
             getRowSize();
         }

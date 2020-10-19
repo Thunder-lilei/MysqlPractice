@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,6 +102,25 @@ public class AnswerController extends BaseController {
 		}else  
 		{
 			modelMap.put("message", "没有题库！");
+		}
+		return modelMap;
+	}
+	/**
+	 * @功能	创建新的题目
+	 * @参数	Answer
+	 * @返回值 message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/createquiz",method=RequestMethod.GET)
+	private Map<String,Object> createquiz(@RequestBody Answer answer){
+		Map<String,Object> modelMap=new HashMap<>();
+		Integer index = answerdao.insertSelective(answer);
+		if(index.equals(1)) 
+		{
+			modelMap.put("message", "success");
+		}else 
+		{
+			modelMap.put("message", "插入失败！");
 		}
 		return modelMap;
 	}

@@ -10,18 +10,8 @@ import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
-
 	@Autowired
 	AnswerDao answerdao;
-	@Override
-	public List<Answer> RandomProblems() {
-		return null;
-	}
-
-	@Override
-	public List<Answer> SelectProblems() {
-		return null;
-	}
 
 	@Override
 	public Answer selectByPrimaryKey(Integer id) {
@@ -32,6 +22,12 @@ public class AnswerServiceImpl implements AnswerService {
 	public List<Integer> selectAllid() {
 		// TODO Auto-generated method stub
 		return answerdao.selectAllid();
+	}
+
+	@Override
+	public int insertSelective(Answer record) {
+		// TODO Auto-generated method stub
+		return answerdao.insertSelective(record);
 	}
 
 }

@@ -31,6 +31,10 @@ if (getCookie("rlist") != "") {
 				newspan.setAttribute("class", "badge badge-danger");
 				newspan.innerHTML = "错误"
 				break;
+			case "3":
+			    newspan.setAttribute("class", "badge badge-warning");
+				newspan.innerHTML = "语句有误"
+				break;
 			default:
 				newspan.setAttribute("class", "badge badge-secondary");
 			 	newspan.innerHTML = "未开始";

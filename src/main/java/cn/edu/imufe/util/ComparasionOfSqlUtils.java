@@ -56,7 +56,6 @@ public class ComparasionOfSqlUtils {
 		} catch (SQLException e) {
 			flag = false;
 			ReturnMessage = e.getMessage();
-			System.err.println(ReturnMessage);
 		}
 		if (flag == true) {
 			if (table.equals(table2))
@@ -64,11 +63,7 @@ public class ComparasionOfSqlUtils {
 			else {
 				ReturnMessage="Different";
 			}
-			System.out.println(ReturnMessage);
 		}
 		return ReturnMessage;
-	}
-	public static void main(String[] args) {
-		
 	}
 }

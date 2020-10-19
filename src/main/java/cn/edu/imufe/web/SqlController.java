@@ -66,7 +66,8 @@ public class SqlController extends BaseController{
 				modelMap.put("message", "sql错误！或查询为空！");				
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//显示异常到控制台
+			//e.printStackTrace();
 			modelMap.put("message", e.getMessage());
 		}
 		return modelMap;

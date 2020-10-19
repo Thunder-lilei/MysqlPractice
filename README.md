@@ -1,2 +1,2 @@
 # Mysql_practice
-## 一个比较sql的mvc项目
+## onlinejudge for sql in mvc project 

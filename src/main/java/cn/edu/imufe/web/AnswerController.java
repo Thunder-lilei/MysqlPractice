@@ -55,7 +55,7 @@ public class AnswerController extends BaseController {
 		return modelMap;
 	}
 	/**
-	 * @功能	获取五道随机题目
+	 * @功能	发送五道随机题目
 	 * @参数	暂时无参数
 	 * @返回值 返回题目id list
 	 */
@@ -78,6 +78,26 @@ public class AnswerController extends BaseController {
 				modelMap.put("message", "success");
 				modelMap.put("randomlist", randomlist);
 			}
+		}else  
+		{
+			modelMap.put("message", "没有题库！");
+		}
+		return modelMap;
+	}
+	/**
+	 * @功能	发送所有题目id
+	 * @参数	无参数
+	 * @返回值 返回所有题目id list
+	 */
+	@ResponseBody
+	@RequestMapping(value="/getquizs",method=RequestMethod.GET)
+	private Map<String,Object> getquizs(){
+		Map<String,Object> modelMap=new HashMap<>();
+		List<Integer> allid = answerdao.selectAllid();
+		if(allid!=null)
+		{
+			modelMap.put("message", "success");
+			modelMap.put("allidlist", allid);
 		}else  
 		{
 			modelMap.put("message", "没有题库！");

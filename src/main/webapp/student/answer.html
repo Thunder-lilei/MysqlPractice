@@ -113,9 +113,44 @@
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
 		<script type="text/javascript" src="../js/sql-formatter.min.js"></script>
-		<script src="../js/answer.js"></script>
+		<script src= "../js/answer.js"></script>
 		<script>
-			
+		function preview() {
+			reset();
+			$.getJSON('/Mysql_practice/sql/preview', {
+				sql: $("#inputsql").val()
+			}, function(data) {
+				let message = '';
+				let previewlist = '';
+				$.each(data, function(index, item) {
+					if (index == "message") {
+						message = item
+					}
+					if (index == "previewlist") {
+						previewlist = JSON.stringify(item)
+					}
+				});
+				switch (message) {
+					case "success":
+						$.each($.parseJSON(previewlist), function(index, item) {
+							let previewdata = item;
+							let newtr = document.createElement("tr");
+							$.each(previewdata, function(index, item) {
+								let newtd = document.createElement("td");
+								newtd.innerHTML = item;
+								newtr.appendChild(newtd);
+							});
+							tbody.appendChild(newtr);
+						});
+						break;
+					default:
+						//alert(message);
+						$("#error").text("SQL语句有误");
+
+				}
+
+			});
+		}
 		</script>
 	</body>
 </html>

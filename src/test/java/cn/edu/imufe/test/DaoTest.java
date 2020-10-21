@@ -62,4 +62,25 @@ public class DaoTest extends BaseTest{
 			System.out.println(i);
 		}
 	}
+	@Test
+	public void login() 
+	{
+//		Auser auser = new Auser();
+//		auser.setUsername("172101040");
+//		auser.setPassword("lilei");
+		Auser auser = auserDao.selectByUsername("172101040");
+		if(auser!=null) 
+		{
+			if(auser.getPassword().equals("lilei")) 
+			{
+				System.out.println("yes");
+			}else 
+			{
+				System.out.println("错误的密码");
+			}
+		}else 
+		{
+			System.out.println("错误的账号");
+		}
+	}
 }

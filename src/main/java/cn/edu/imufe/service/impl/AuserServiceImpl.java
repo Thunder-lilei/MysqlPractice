@@ -19,4 +19,10 @@ public class AuserServiceImpl implements AuserService {
 		return Auserdao.SelectAllUser();
 	}
 
+	@Override
+	public Auser selectByUsername(String username) {
+		// TODO Auto-generated method stub
+		return Auserdao.selectByUsername(username);
+	}
+
 }

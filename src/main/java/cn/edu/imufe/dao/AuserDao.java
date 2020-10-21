@@ -21,6 +21,8 @@ public interface AuserDao {
     List<Auser> SelectAllUser();
     
     Auser selectByPrimaryKey(Integer id);
+    
+    Auser selectByUsername(String username);
 
     int updateByExampleSelective(@Param("record") Auser record, @Param("example") AuserExample example);
 

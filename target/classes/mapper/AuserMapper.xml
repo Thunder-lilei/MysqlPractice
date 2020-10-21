@@ -93,6 +93,12 @@
     from AUser
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AUser
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from AUser
     where id = #{id,jdbcType=INTEGER}

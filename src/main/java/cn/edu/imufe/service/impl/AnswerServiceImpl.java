@@ -39,7 +39,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public int updateByPrimaryKeySelective(Answer record) {
 		// TODO Auto-generated method stub
-		return answerdao.updateByPrimaryKey(record);
+		return answerdao.updateByPrimaryKeySelective(record);
 	}
 
 }

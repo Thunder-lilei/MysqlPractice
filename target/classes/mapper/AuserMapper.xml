@@ -225,6 +225,15 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updatePasswordByUsernameSelective" parameterType="cn.edu.imufe.entity.Auser" >
+    update AUser
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.imufe.entity.Auser" >
     update AUser
     set username = #{username,jdbcType=VARCHAR},

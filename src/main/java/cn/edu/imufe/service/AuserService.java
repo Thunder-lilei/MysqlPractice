@@ -8,4 +8,6 @@ public interface AuserService {
 	List<Auser> SelectAllUser();
 	
 	Auser selectByUsername(String username);
+	
+	int updatePasswordByUsernameSelective(Auser record);
 }

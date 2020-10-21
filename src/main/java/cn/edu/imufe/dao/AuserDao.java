@@ -29,6 +29,8 @@ public interface AuserDao {
     int updateByExample(@Param("record") Auser record, @Param("example") AuserExample example);
 
     int updateByPrimaryKeySelective(Auser record);
+    
+    int updatePasswordByUsernameSelective(Auser record);
 
     int updateByPrimaryKey(Auser record);
 }

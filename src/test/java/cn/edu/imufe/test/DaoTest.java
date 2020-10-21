@@ -15,6 +15,7 @@ import cn.edu.imufe.dao.SDao;
 import cn.edu.imufe.dao.ScDao;
 import cn.edu.imufe.dao.SpjDao;
 import cn.edu.imufe.dao.StudentDao;
+import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
 
 public class DaoTest extends BaseTest{
@@ -83,4 +84,18 @@ public class DaoTest extends BaseTest{
 			System.out.println("错误的账号");
 		}
 	}
+	@Test
+	public void updatepassword()
+	{
+		Auser auser  = auserDao.selectByUsername("172101040");
+		auser.setPassword("lilei");
+		Integer result = auserDao.updatePasswordByUsernameSelective(auser);
+		if(result.equals(1)) 
+		{
+			System.out.println("yes");
+		}else 
+		{
+			System.out.println("no");
+		}
+	} 
 }

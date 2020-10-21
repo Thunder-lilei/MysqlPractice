@@ -67,6 +67,7 @@ public class AuserController extends BaseController {
 		Auser auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
+			auser.setPassword(newpassword);
 			Integer result = auserService.updatePasswordByUsernameSelective(auser);
 			if(result.equals(1)) 
 			{

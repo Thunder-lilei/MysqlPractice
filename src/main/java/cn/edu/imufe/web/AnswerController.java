@@ -124,4 +124,42 @@ public class AnswerController extends BaseController {
 		}
 		return modelMap;
 	}
+	/**
+	 * @功能	删除指定题目
+	 * @参数	题目id
+	 * @返回值 message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/deletequiz",method=RequestMethod.GET)
+	private Map<String,Object> deletequiz(@RequestParam Integer id){
+		Map<String,Object> modelMap=new HashMap<>();
+		Integer index = answerdao.deleteByPrimaryKey(id);
+		if(index.equals(1)) 
+		{
+			modelMap.put("message", "success");
+		}else 
+		{
+			modelMap.put("message", "删除失败！");
+		}
+		return modelMap;
+	}
+	/**
+	 * @功能	修改题目
+	 * @参数	新的题目信息
+	 * @返回值 message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/updatequiz",method=RequestMethod.GET)
+	private Map<String,Object> updatequiz(@RequestParam Answer answer){
+		Map<String,Object> modelMap=new HashMap<>();
+		Integer index = answerdao.updateByPrimaryKey(answer);
+		if(index.equals(1)) 
+		{
+			modelMap.put("message", "success");
+		}else 
+		{
+			modelMap.put("message", "修改失败！");
+		}
+		return modelMap;
+	}
 }

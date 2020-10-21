@@ -8,4 +8,8 @@ public interface AnswerService {
 	List<Integer> selectAllid();
 	
 	int insertSelective(Answer record);
+	
+	int deleteByPrimaryKey(Integer id);
+	
+	int updateByPrimaryKeySelective(Answer record);
 }

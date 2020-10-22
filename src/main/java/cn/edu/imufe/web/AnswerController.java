@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.entity.Answer;
+import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.util.RandomList;
 
 
@@ -26,7 +27,7 @@ import cn.edu.imufe.util.RandomList;
 @RequestMapping(value="/answer")
 public class AnswerController extends BaseController {
 	@Autowired
-	private AnswerDao answerdao;
+	private AnswerService answerservice;
 	
 	/**
 	 * @功能	根据题目id获取题目信息
@@ -39,7 +40,7 @@ public class AnswerController extends BaseController {
 		Map<String,Object> modelMap=new HashMap<>();
 		if(id!=null && id!="") 
 		{
-			Answer answer = answerdao.selectByPrimaryKey(Integer.parseInt(id));
+			Answer answer = answerservice.selectByPrimaryKey(Integer.parseInt(id));
 			if(answer!=null)
 			{
 				modelMap.put("message", "success");
@@ -64,7 +65,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getrandomquizs",method=RequestMethod.GET)
 	private Map<String,Object> getrandomquizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Integer> allid = answerdao.selectAllid();
+		List<Integer> allid = answerservice.selectAllid();
 		Integer Random = 5;
 		//随机抽取的题目数量
 		if(allid!=null)
@@ -94,7 +95,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getquizs",method=RequestMethod.GET)
 	private Map<String,Object> getquizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Integer> allid = answerdao.selectAllid();
+		List<Integer> allid = answerservice.selectAllid();
 		if(allid!=null)
 		{
 			modelMap.put("message", "success");
@@ -114,13 +115,51 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/createquiz",method=RequestMethod.GET)
 	private Map<String,Object> createquiz(@RequestBody Answer answer){
 		Map<String,Object> modelMap=new HashMap<>();
-		Integer index = answerdao.insertSelective(answer);
+		Integer index = answerservice.insertSelective(answer);
 		if(index.equals(1)) 
 		{
 			modelMap.put("message", "success");
 		}else 
 		{
 			modelMap.put("message", "插入失败！");
+		}
+		return modelMap;
+	}
+	/**
+	 * @功能	删除指定题目
+	 * @参数	题目id
+	 * @返回值 message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/deletequiz",method=RequestMethod.GET)
+	private Map<String,Object> deletequiz(@RequestParam Integer id){
+		Map<String,Object> modelMap=new HashMap<>();
+		Integer index = answerservice.deleteByPrimaryKey(id);
+		if(index.equals(1)) 
+		{
+			modelMap.put("message", "success");
+		}else 
+		{
+			modelMap.put("message", "删除失败！");
+		}
+		return modelMap;
+	}
+	/**
+	 * @功能	修改题目
+	 * @参数	新的题目信息
+	 * @返回值 message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/updatequiz",method=RequestMethod.GET)
+	private Map<String,Object> updatequiz(@RequestParam Answer answer){
+		Map<String,Object> modelMap=new HashMap<>();
+		Integer index = answerservice.updateByPrimaryKeySelective(answer);
+		if(index.equals(1)) 
+		{
+			modelMap.put("message", "success");
+		}else 
+		{
+			modelMap.put("message", "修改失败！");
 		}
 		return modelMap;
 	}

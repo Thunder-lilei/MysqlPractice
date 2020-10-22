@@ -30,4 +30,16 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerdao.insertSelective(record);
 	}
 
+	@Override
+	public int deleteByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return answerdao.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Answer record) {
+		// TODO Auto-generated method stub
+		return answerdao.updateByPrimaryKeySelective(record);
+	}
+
 }

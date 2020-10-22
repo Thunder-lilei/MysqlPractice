@@ -1,33 +1,46 @@
 $(document).ready(function() {
 	(function() {
-		let id = GetQueryString("id");
-		$.getJSON('/Mysql_practice/answer/gettitle', {
-			id: id
-		}, function(data) {
-			let message = '';
-			let answer = '';
-			$.each(data, function(index, item) {
-				if (index == "message") {
-					message = item
+			setCookie('time', 10, 30);
+			let id = GetQueryString("id");
+			$.getJSON('/Mysql_practice/answer/gettitle', {
+				id: id
+			}, function(data) {
+				let message = '';
+				let answer = '';
+				$.each(data, function(index, item) {
+					if (index == "message") {
+						message = item
+					}
+					if (index == "answer") {
+						answer = JSON.stringify(item)
+					}
+				});
+				switch (message) {
+					case "success":
+						break;
+					default:
+						alert(message);
 				}
-				if (index == "answer") {
-					answer = JSON.stringify(item)
-				}
+				$.each($.parseJSON(answer), function(index, item) {
+					if (index === "question") {
+						document.getElementById("question").innerHTML = item;
+					}
+				});
 			});
-			switch (message) {
-				case "success":
-					break;
-				default:
-					alert(message);
-			}
-			$.each($.parseJSON(answer), function(index, item) {
-				if (index === "question") {
-					document.getElementById("question").innerHTML = item;
-				}
-			});
-		});
-	})()
 
+			var countdown = document.getElementById("countdown");
+			var time = getCookie('time'); //30分钟换算成1800秒
+			setInterval(function() {
+				time = time - 1;
+				setCookie('time', time, 30);
+				var minute = parseInt(time / 60);
+				var second = parseInt(time % 60);
+				countdown.innerHTML = '还剩' + minute + '分' + second + '秒';
+			}, 1000);
+
+		}
+
+	)()
 })
 
 function sql_format() {
@@ -122,11 +135,11 @@ function compare() {
 function page(num) {
 	let id = parseInt(GetQueryString("id"));
 	let rlist = JSON.parse(getCookie("rlist"));
-	
-	num = num+ rlist.indexOf(id);
-	
-	if(num>=0 && num<rlist.length){
-		window.location.href='./answer.html?id='+rlist[num];
+
+	num = num + rlist.indexOf(id);
+
+	if (num >= 0 && num < rlist.length) {
+		window.location.href = './answer.html?id=' + rlist[num];
 	}
 }
 

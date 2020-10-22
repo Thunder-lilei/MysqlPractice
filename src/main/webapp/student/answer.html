@@ -7,9 +7,20 @@
 		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
 		<script src="../js/jquery.min.js"></script>
-		
+
 	</head>
 	<style>
+		.disabled {
+			background: #fff;
+			color: #ccc;
+			border: solid 0px;
+		}
+		
+		.disabled:hover {
+			background: none;
+			color: #ccc;
+		}
+		
 		#error{
 			font-size: 20px;
 		    word-break:normal; 
@@ -97,60 +108,26 @@
 							</table>
 						</div>
 					</div>
-					
+					<div id="countdown" ></div>
 				</div>
 			</div>
 
 			<br>
 			<div class="row">
 				<div class="col-12 text-center">
-					<input type="button" class="btn btn-circle" value="上一题" onclick="page(-1)"/>
+					<input type="button" class="btn btn-circle" value="上一题" onclick="page(-1)" />
 					<input type="button" class="btn btn-circle" value="回目录" onclick="javascript:window.location.href='./quizs.html'" />
-					<input type="button" class="btn btn-circle" value="下一题" onclick="page(1)"/>
+					<input type="button" class="btn btn-circle" value="下一题" onclick="page(1)" />
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
 		<script type="text/javascript" src="../js/sql-formatter.min.js"></script>
-		<script src= "../js/answer.js"></script>
+		<script src="../js/answer.js"></script>
 		<script>
-		function preview() {
-			reset();
-			$.getJSON('/Mysql_practice/sql/preview', {
-				sql: $("#inputsql").val()
-			}, function(data) {
-				let message = '';
-				let previewlist = '';
-				$.each(data, function(index, item) {
-					if (index == "message") {
-						message = item
-					}
-					if (index == "previewlist") {
-						previewlist = JSON.stringify(item)
-					}
-				});
-				switch (message) {
-					case "success":
-						$.each($.parseJSON(previewlist), function(index, item) {
-							let previewdata = item;
-							let newtr = document.createElement("tr");
-							$.each(previewdata, function(index, item) {
-								let newtd = document.createElement("td");
-								newtd.innerHTML = item;
-								newtr.appendChild(newtd);
-							});
-							tbody.appendChild(newtr);
-						});
-						break;
-					default:
-						//alert(message);
-						$("#error").text("SQL语句有误");
-
-				}
-
-			});
-		}
+			
+			
 		</script>
 	</body>
 </html>

@@ -28,15 +28,15 @@ $(document).ready(function() {
 				});
 			});
 
-			var countdown = document.getElementById("countdown");
-			var time = getCookie('time'); //30分钟换算成1800秒
-			setInterval(function() {
-				time = time - 1;
-				setCookie('time', time, 30);
-				var minute = parseInt(time / 60);
-				var second = parseInt(time % 60);
-				countdown.innerHTML = '还剩' + minute + '分' + second + '秒';
-			}, 1000);
+			// var countdown = document.getElementById("countdown");
+			// var time = getCookie('time'); //30分钟换算成1800秒
+			// setInterval(function() {
+			// 	time = time - 1;
+			// 	setCookie('time', time, 30);
+			// 	var minute = parseInt(time / 60);
+			// 	var second = parseInt(time % 60);
+			// 	countdown.innerHTML = '还剩' + minute + '分' + second + '秒';
+			// }, 1000);
 
 		}
 

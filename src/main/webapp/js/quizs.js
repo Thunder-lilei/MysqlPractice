@@ -52,13 +52,13 @@ function randomquizs() {
 	clearAllCookie();
 	$.get('/Mysql_practice/answer/getrandomquizs', function(data) {
 		let message = '';
-		let randomlist = getCookie("rlist");
+		//let randomlist = getCookie("rlist");
 		$.each(data, function(index, item) {
 			if (index == "message") {
-				message = item
+				message = item;
 			}
 			if (index == "randomlist") {
-				randomlist = JSON.stringify(item)
+				randomlist = JSON.stringify(item);
 			}
 		});
 		switch (message) {

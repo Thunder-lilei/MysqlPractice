@@ -52,9 +52,10 @@ public class ResultSetUtil {
                 long rowsum = 0;
                 ArrayList<Object> arrayListByRow = new ArrayList<>();
                 for (int i = 0; i < getColumnSize(); i++) {
-                    TableSetByColumn.get(i).add(resultSet.getObject(columnNameSet.get(i)).toString());
-                    arrayListByRow.add(resultSet.getObject(columnNameSet.get(i)).toString());
-
+                	if(resultSet.getObject(columnNameSet.get(i))!=null) {
+                		TableSetByColumn.get(i).add(resultSet.getObject(columnNameSet.get(i)).toString());
+                        arrayListByRow.add(resultSet.getObject(columnNameSet.get(i)).toString());
+                	}
                     if (i == 0) {
                         firstColumnSum += getAscii(resultSet.getObject(columnNameSet.get(0)));
                         firstColumnSet.add(getAscii(resultSet.getObject(columnNameSet.get(0))));

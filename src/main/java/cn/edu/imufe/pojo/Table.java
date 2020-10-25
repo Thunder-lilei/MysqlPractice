@@ -153,9 +153,9 @@ public class Table {
 	    System.out.println("首行首列相同");
 	    //每行和
 	    Collections.sort(erow);
+	    Collections.sort(other.erow);
 	    for(int i=0;i<erow.size();i++) 
 		{
-	    	System.out.println("排序："+erow.get(i).longValue());
 			if(erow.get(i).longValue()!=other.erow.get(i).longValue()) 
 			{
 				return false;

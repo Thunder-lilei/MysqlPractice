@@ -134,31 +134,30 @@
 		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
 		<script>
 			$(document).ready(function() {
-				let allidlist;
+				let alllist;
 				$.get('/Mysql_practice/answer/getquizs', function(data) {
 					$.each(data, function(index, item) {
 
-						if (index == "allidlist") {
-							allidlist = JSON.stringify(item);
+						if (index == "alllist") {
+							alllist = JSON.stringify(item);
 						}
 					});
-
+					
 					let quizstbody = document.getElementById("quizstbody");
 					let quizstbodychildren = quizstbody.childNodes;
 					for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
 						quizstbody.removeChild(quizstbodychildren.item(i));
 					}
 
-					$.each($.parseJSON(allidlist), function(index, item) {
-
+					$.each($.parseJSON(alllist), function(index, item) {
+						
 						let newtr = document.createElement("tr");
 						let newtdid = document.createElement("td");
-						let id = item;
-						newtdid.innerHTML = item;
+						newtdid.innerHTML = item.id;
 						newtr.appendChild(newtdid);
 
 						let newtitle = document.createElement("td");
-						gettitle(id, newtitle);
+						newtitle.innerHTML = item.question;
 						newtr.appendChild(newtitle);
 						quizstbody.appendChild(newtr);
 
@@ -176,26 +175,6 @@
 			})
 
 
-			function gettitle(id, newtitle) {
-				$.getJSON('/Mysql_practice/answer/gettitle', {
-					id: id
-				}, function(data) {
-					let answer = '';
-					$.each(data, function(index, item) {
-						if (index == "answer") {
-							answer = JSON.stringify(item)
-						}
-					});
-
-					$.each($.parseJSON(answer), function(index, item) {
-						if (index === "question") {
-							newtitle.innerHTML = item;
-						}
-					});
-
-				});
-
-			}
 		</script>
 	</body>
 </html>

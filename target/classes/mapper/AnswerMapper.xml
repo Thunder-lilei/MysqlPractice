@@ -90,6 +90,9 @@
   <select id="selectAllid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select id from Answer
   </select>
+  <select id="selectAllIdwithTitle" parameterType="java.lang.Integer" resultType="cn.edu.imufe.pojo.Answer_id_title">
+    select id,question from Answer
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Answer
     where id = #{id,jdbcType=INTEGER}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
+import cn.edu.imufe.pojo.Answer_id_title;
 import cn.edu.imufe.service.*;
 import cn.edu.imufe.util.RandomList;
 
@@ -34,6 +35,16 @@ public class ServicTest extends BaseTest{
 		for(Integer i:list) 
 		{
 			System.out.println(i);
+		}
+	}
+	@Test
+	public void alllist() 
+	{
+		List<Answer_id_title> allidwithtitle = answerdao.selectAllIdwithTitle();
+		for(Answer_id_title i:allidwithtitle) 
+		{
+			System.out.println(i.getId());
+			System.out.println(i.getQuestion());
 		}
 	}
 }

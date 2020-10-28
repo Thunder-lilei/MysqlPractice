@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.entity.Answer;
+import cn.edu.imufe.pojo.Answer_id_title;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -40,6 +41,12 @@ public class AnswerServiceImpl implements AnswerService {
 	public int updateByPrimaryKeySelective(Answer record) {
 		// TODO Auto-generated method stub
 		return answerdao.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public List<Answer_id_title> selectAllIdwithTitle() {
+		// TODO Auto-generated method stub
+		return answerdao.selectAllIdwithTitle();
 	}
 
 }

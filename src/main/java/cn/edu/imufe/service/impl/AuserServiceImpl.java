@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.edu.imufe.dao.AuserDao;
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
 import cn.edu.imufe.service.AuserService;
 @Service

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.imufe.dao.AnswerDao;
-import cn.edu.imufe.pojo.Table;
 import cn.edu.imufe.service.impl.AnswerServiceImpl;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
 import cn.edu.imufe.util.DbUtil;

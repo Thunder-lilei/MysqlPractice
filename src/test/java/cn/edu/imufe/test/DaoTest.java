@@ -8,14 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.dao.AnswerhistoryDao;
 import cn.edu.imufe.dao.AuserDao;
-import cn.edu.imufe.dao.CourseDao;
-import cn.edu.imufe.dao.JDao;
-import cn.edu.imufe.dao.PDao;
-import cn.edu.imufe.dao.SDao;
-import cn.edu.imufe.dao.ScDao;
-import cn.edu.imufe.dao.SpjDao;
-import cn.edu.imufe.dao.StudentDao;
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
 
 public class DaoTest extends BaseTest{
@@ -25,20 +17,6 @@ public class DaoTest extends BaseTest{
 	private AnswerDao answerdao;
 	@Autowired
 	private AnswerhistoryDao AhD;
-	@Autowired
-	private CourseDao CD;
-	@Autowired
-	private JDao JD;
-	@Autowired
-	private PDao PD;
-	@Autowired
-	private ScDao SD;
-	@Autowired
-	private SDao sDA;
-	@Autowired
-	private SpjDao SPJD;
-	@Autowired
-	private StudentDao stuD;
 	@Test
 	public void SelectAllAuser() {
 		List<Auser> auser = auserDao.SelectAllUser();
@@ -51,7 +29,6 @@ public class DaoTest extends BaseTest{
 	}
 	@Test
 	public void SelectAnswerhistoryByPrimarykey() {
-		int id=1;
 		System.out.println(AhD.selectByPrimaryKey(1));
 	}
 	@Test

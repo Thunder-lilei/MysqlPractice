@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.edu.imufe.dao.AuserDao;
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
 import cn.edu.imufe.service.AuserService;
 import cn.edu.imufe.service.impl.AuserServiceImpl;

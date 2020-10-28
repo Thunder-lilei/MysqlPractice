@@ -1,12 +1,10 @@
 package cn.edu.imufe.test;
 
 import java.util.List;
-import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Auser;
 import cn.edu.imufe.pojo.Answer_id_title;
 import cn.edu.imufe.service.*;
@@ -31,6 +29,7 @@ public class ServicTest extends BaseTest{
 	public void randomlist() 
 	{
 		List<Integer> allid = answerdao.selectAllid();
+		@SuppressWarnings("unchecked")
 		List<Integer> list = RandomList.createRandomList(allid, 5);
 		for(Integer i:list) 
 		{

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.pojo.Answer_id_title;
 import cn.edu.imufe.service.AnswerService;
@@ -71,6 +70,7 @@ public class AnswerController extends BaseController {
 		//随机抽取的题目数量
 		if(allid!=null)
 		{
+			@SuppressWarnings("unchecked")
 			List<Integer> randomlist = RandomList.createRandomList(allid, Random);
 			//获取随机题目id allid为题库中全部id Random为随机抽取的数量
 			if(!Random.equals(randomlist.size())) 

@@ -16,7 +16,8 @@ public class RandomList {
      * @Title: createRandomList
      * @Description: TODO
      */
-    public static List createRandomList(List list, int n) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List createRandomList(List list, int n) {
         // TODO Auto-generated method stub
         Map map = new HashMap();
         List listNew = new ArrayList();

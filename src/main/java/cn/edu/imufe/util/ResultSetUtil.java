@@ -18,72 +18,71 @@ public class ResultSetUtil {
     private final ArrayList<String> columnNameSet = new ArrayList<>();
     private final ArrayList<ArrayList<Object>> TableSetByColumn = new ArrayList<>();
     private final ArrayList<ArrayList<Object>> TableSetByRow = new ArrayList<>();
+    private final Integer columnSize;
     private long firstColumnSum = 0;
     private long firstRowSum = 0;
     private long allTableSum = 0;
-    private Integer columnSize = 0;
-    private Integer rowSum = 0;
     private boolean getTableSetFlag = false;
     private boolean getTableSetFlag2 = false;
 
     public ResultSetUtil(ResultSet resultSet) throws SQLException {
         this.resultSet = resultSet;
-            ResultSetMetaData rsmd = this.resultSet.getMetaData();
-            columnSize = rsmd.getColumnCount();
-            ArrayList<Object> arrayListByRow = new ArrayList<>();
-            for (int i = 1; i <= columnSize; i++) {
-                columnTypeSet.add(rsmd.getColumnType(i));
-                columnNameSet.add(rsmd.getColumnName(i));
-                ArrayList<Object> arrayList = new ArrayList<>();
-                arrayList.add(rsmd.getColumnName(i));
-                arrayListByRow.add(rsmd.getColumnName(i));
-                TableSetByColumn.add(arrayList);
-            }
-            TableSetByRow.add(arrayListByRow);
+        ResultSetMetaData resumed = this.resultSet.getMetaData();
+        columnSize = resumed.getColumnCount();
+        ArrayList<Object> arrayListByRow = new ArrayList<>();
+        for (int i = 1; i <= columnSize; i++) {
+            columnTypeSet.add(resumed.getColumnType(i));
+            columnNameSet.add(resumed.getColumnName(i));
+            ArrayList<Object> arrayList = new ArrayList<>();
+            arrayList.add(resumed.getColumnName(i));
+            arrayListByRow.add(resumed.getColumnName(i));
+            TableSetByColumn.add(arrayList);
+        }
+        TableSetByRow.add(arrayListByRow);
     }
 
 
-    public Integer getRowSize()throws SQLException {
+    public Integer getRowSize() throws SQLException {
         getTableSetFlag = true;
         getTableSetFlag2 = true;
-        rowSum = 0;
-            while (resultSet.next()) {
-                long temp = 0;
-                long rowsum = 0;
-                ArrayList<Object> arrayListByRow = new ArrayList<>();
-                for (int i = 0; i < getColumnSize(); i++) {
-                	if(resultSet.getObject(columnNameSet.get(i))!=null) {
-                		TableSetByColumn.get(i).add(resultSet.getObject(columnNameSet.get(i)).toString());
-                        arrayListByRow.add(resultSet.getObject(columnNameSet.get(i)).toString());
-                	}
-                    if (i == 0) {
-                        firstColumnSum += getAscii(resultSet.getObject(columnNameSet.get(0)));
-                        firstColumnSet.add(getAscii(resultSet.getObject(columnNameSet.get(0))));
-                    }
-                    if (rowSum == 0) {
-                        firstRowSum += getAscii(resultSet.getObject(columnNameSet.get(i)));
-                        firstRowSet.add(getAscii(resultSet.getObject(columnNameSet.get(i))));
-                    }
-                    temp = getAscii(resultSet.getObject(columnNameSet.get(i)));
-                    allTableSum += temp;
-                    rowsum += temp;
+        int rowSumTemp = 0;
+        while (resultSet.next()) {
+            long temp;
+            long rowSum = 0;
+            ArrayList<Object> arrayListByRow = new ArrayList<>();
+            for (int i = 0; i < getColumnSize(); i++) {
+                if (resultSet.getObject(columnNameSet.get(i)) != null) {
+                    TableSetByColumn.get(i).add(resultSet.getObject(columnNameSet.get(i)).toString());
+                    arrayListByRow.add(resultSet.getObject(columnNameSet.get(i)).toString());
                 }
-                TableSetByRow.add(arrayListByRow);
-                rowSet.add(rowsum);
-                rowSum++;
+                if (i == 0) {
+                    firstColumnSum += getAscii(resultSet.getObject(columnNameSet.get(0)));
+                    firstColumnSet.add(getAscii(resultSet.getObject(columnNameSet.get(0))));
+                }
+                if (rowSumTemp == 0) {
+                    firstRowSum += getAscii(resultSet.getObject(columnNameSet.get(i)));
+                    firstRowSet.add(getAscii(resultSet.getObject(columnNameSet.get(i))));
+                }
+                temp = getAscii(resultSet.getObject(columnNameSet.get(i)));
+                allTableSum += temp;
+                rowSum += temp;
             }
-        return rowSum;
+            TableSetByRow.add(arrayListByRow);
+            rowSet.add(rowSum);
+            rowSumTemp++;
+        }
+        return rowSumTemp;
     }
 
 
-    public ArrayList<ArrayList<Object>> getTableSetByColumn() throws SQLException{
+    public ArrayList<ArrayList<Object>> getTableSetByColumn() throws SQLException {
         if (!getTableSetFlag) {
             getRowSize();
         }
         return TableSetByColumn;
     }
 
-    public ArrayList<ArrayList<Object>> getTableSetByRow() throws SQLException{
+    public ArrayList<ArrayList<Object>> getTableSetByRow() throws SQLException {
         if (!getTableSetFlag2) {
             getRowSize();
         }
@@ -91,14 +90,14 @@ public class ResultSetUtil {
     }
 
 
-    public long getFirstColumnSum()throws SQLException {
+    public long getFirstColumnSum() throws SQLException {
         if (firstColumnSum == 0) {
             getRowSize();
         }
         return firstColumnSum;
     }
 
-    public long getFirstRowSum() throws SQLException{
+    public long getFirstRowSum() throws SQLException {
         if (firstRowSum == 0) {
             getRowSize();
         }
@@ -106,7 +105,7 @@ public class ResultSetUtil {
     }
 
 
-    public long getAllTableSum()throws SQLException {
+    public long getAllTableSum() throws SQLException {
         if (allTableSum == 0) {
             getRowSize();
         }
@@ -118,21 +117,21 @@ public class ResultSetUtil {
     }
 
 
-    public ArrayList<Long> getFirstRowSet() throws SQLException{
+    public ArrayList<Long> getFirstRowSet() throws SQLException {
         if (firstRowSet.size() == 0) {
             getRowSize();
         }
         return firstRowSet;
     }
 
-    public ArrayList<Long> getFirstColumnSet()throws SQLException {
+    public ArrayList<Long> getFirstColumnSet() throws SQLException {
         if (firstColumnSet.size() == 0) {
             getRowSize();
         }
         return firstColumnSet;
     }
 
-    public ArrayList<Long> getRowSet() throws SQLException{
+    public ArrayList<Long> getRowSet() throws SQLException {
         if (rowSet.size() == 0) {
             getRowSize();
         }
@@ -150,10 +149,10 @@ public class ResultSetUtil {
         -7 BIT
         -6 TINYINT
         -5 BIGINT
-        -4 LONGVARBINARY
+        -4 LONG VARBINARY
         -3 VARBINARY
         -2 BINARY
-        -1 LONGVARCHAR
+        -1 LONG VARCHAR
         0 NULL
         1 CHAR
         2 NUMERIC

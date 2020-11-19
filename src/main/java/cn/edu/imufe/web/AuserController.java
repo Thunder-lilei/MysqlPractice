@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.edu.imufe.entity.Auser;
 import cn.edu.imufe.service.AuserService;
 import cn.edu.imufe.service.impl.AuserServiceImpl;
+import cn.edu.imufe.util.IfLoginUtil;
 @Controller
 @RequestMapping(value="/user")
 public class AuserController extends BaseController {
@@ -35,11 +36,26 @@ public class AuserController extends BaseController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	private ModelAndView login(@RequestParam String username,@RequestParam String password){
 		ModelAndView mv = new ModelAndView("redirect:/index.html");
+		System.out.println(username+"请求登录");
 		Auser auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
 			if(auser.getPassword().equals(password)) 
 			{
+				switch(auser.getRole()) {
+					case "student":
+						System.out.println("是学生");
+						session.setAttribute("student", auser);
+						break;
+					case "teacher":
+						System.out.println("是老师");
+						session.setAttribute("teacher", auser);
+						break;
+					case "admin":
+						System.out.println("是管理员");
+						session.setAttribute("admin", auser);
+						break;
+				}
 				session.setAttribute("user", auser);
 				mv.addObject("message", "success");
 				return mv;
@@ -61,7 +77,7 @@ public class AuserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/updatepassword",method=RequestMethod.POST)
 	private ModelAndView updatepassword(@RequestParam String username,@RequestParam String newpassword){
-		ModelAndView mv = new ModelAndView("redirect:/login.html");
+		ModelAndView mv = new ModelAndView("redirect:/admin/login.html");
 		Auser auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
@@ -78,6 +94,31 @@ public class AuserController extends BaseController {
 		}else 
 		{
 			mv.addObject("message", "错误的用户名！");
+		}
+		return mv;
+	}
+	/**
+	 * @功能	登出 跳转至index.html
+	 * @参数	无参
+	 * @返回值 index.html以及message
+	 */
+	@ResponseBody
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	private ModelAndView logout(){
+		ModelAndView mv = new ModelAndView("redirect:/index.html");
+		//已登录
+		if(IfLoginUtil.IfLogin(session)) 
+		{
+			Auser record = (Auser)session.getAttribute("user");
+			System.out.println(record.getRole()+record.getNickname()+"登出");
+			session.setAttribute(record.getRole(), null);
+			session.setAttribute("user", null);
+			mv.addObject("message", "success");
+			return mv;
+		}else//未登录
+		{
+			mv.addObject("message", "未登录");
+			mv = new ModelAndView("redirect:/admin/login.html");
 		}
 		return mv;
 	}

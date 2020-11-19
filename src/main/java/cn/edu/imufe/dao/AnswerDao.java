@@ -2,7 +2,7 @@ package cn.edu.imufe.dao;
 
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.AnswerExample;
-import cn.edu.imufe.pojo.Answer_id_title;
+import cn.edu.imufe.pojo.AnswerIdTitle;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +24,7 @@ public interface AnswerDao {
     
     List<Integer> selectAllid();
     
-    List<Answer_id_title> selectAllIdwithTitle();
+    List<AnswerIdTitle> selectAllIdwithTitle();
     
     int updateByExampleSelective(@Param("record") Answer record, @Param("example") AnswerExample example);
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.pojo.Answer_id_title;
+import cn.edu.imufe.pojo.AnswerIdTitle;
 import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.util.RandomList;
 
@@ -96,7 +96,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getquizs",method=RequestMethod.GET)
 	private Map<String,Object> getquizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Answer_id_title> allidwithtitle = answerservice.selectAllIdwithTitle();
+		List<AnswerIdTitle> allidwithtitle = answerservice.selectAllIdwithTitle();
 		if(allidwithtitle!=null)
 		{
 			modelMap.put("message", "success");

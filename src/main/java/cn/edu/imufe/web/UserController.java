@@ -10,23 +10,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.edu.imufe.entity.Auser;
-import cn.edu.imufe.service.AuserService;
-import cn.edu.imufe.service.impl.AuserServiceImpl;
-import cn.edu.imufe.util.IfLoginUtil;
+import cn.edu.imufe.entity.User;
+import cn.edu.imufe.service.RoleService;
+import cn.edu.imufe.service.RoleWithUserRoleService;
+import cn.edu.imufe.service.UserRoleService;
+import cn.edu.imufe.service.UserService;
+import cn.edu.imufe.util.UserUtil;
+
+/**
+ * @author lilei
+ *
+ * 2020年11月20日
+ */
 @Controller
 @RequestMapping(value="/user")
-public class AuserController extends BaseController {
+public class UserController extends BaseController {
 	@Autowired
-	private AuserServiceImpl auserServiceImpl;
+	private UserService auserService;
 	@Autowired
-	private AuserService auserService;
-	@ResponseBody
-	@RequestMapping(value="/AllUser",method=RequestMethod.GET)
-	public List<Auser> SelectAllUser() {
-		List<Auser> Auserlist=auserServiceImpl.SelectAllUser();
-		return Auserlist;
-	}
+	private UserRoleService userRoleService;
+	@Autowired
+	private RoleWithUserRoleService roleWithUserRoleService;
+	@Autowired
+	private RoleService roleService;
 	/**
 	 * @功能	管理员登陆 保存登录信息至session 跳转至index.html
 	 * @参数	用户名username 密码password
@@ -37,25 +43,12 @@ public class AuserController extends BaseController {
 	private ModelAndView login(@RequestParam String username,@RequestParam String password){
 		ModelAndView mv = new ModelAndView("redirect:/index.html");
 		System.out.println(username+"请求登录");
-		Auser auser = auserService.selectByUsername(username);
+		User auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
 			if(auser.getPassword().equals(password)) 
 			{
-				switch(auser.getRole()) {
-					case "student":
-						System.out.println("是学生");
-						session.setAttribute("student", auser);
-						break;
-					case "teacher":
-						System.out.println("是老师");
-						session.setAttribute("teacher", auser);
-						break;
-					case "admin":
-						System.out.println("是管理员");
-						session.setAttribute("admin", auser);
-						break;
-				}
+				session.setAttribute(roleWithUserRoleService.getRole(auser.getId()), auser);
 				session.setAttribute("user", auser);
 				mv.addObject("message", "success");
 				return mv;
@@ -78,7 +71,7 @@ public class AuserController extends BaseController {
 	@RequestMapping(value="/updatepassword",method=RequestMethod.POST)
 	private ModelAndView updatepassword(@RequestParam String username,@RequestParam String newpassword){
 		ModelAndView mv = new ModelAndView("redirect:/admin/login.html");
-		Auser auser = auserService.selectByUsername(username);
+		User auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
 			auser.setPassword(newpassword);
@@ -107,11 +100,10 @@ public class AuserController extends BaseController {
 	private ModelAndView logout(){
 		ModelAndView mv = new ModelAndView("redirect:/index.html");
 		//已登录
-		if(IfLoginUtil.IfLogin(session)) 
+		if(UserUtil.IfLogin(session)) 
 		{
-			Auser record = (Auser)session.getAttribute("user");
-			System.out.println(record.getRole()+record.getNickname()+"登出");
-			session.setAttribute(record.getRole(), null);
+			User record = (User)session.getAttribute("user");
+			session.setAttribute(roleService.selectByPrimaryKey(userRoleService.selectByUserId(record.getId()).getRoleId()).getName(), null);
 			session.setAttribute("user", null);
 			mv.addObject("message", "success");
 			return mv;

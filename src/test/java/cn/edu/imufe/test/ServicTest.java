@@ -8,24 +8,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Answerhistory;
-import cn.edu.imufe.entity.Auser;
+import cn.edu.imufe.entity.User;
 import cn.edu.imufe.pojo.AnswerIdTitle;
 import cn.edu.imufe.service.*;
 import cn.edu.imufe.util.RandomList;
 
 public  class ServicTest extends BaseTest{
 	@Autowired
-	private AuserService user;
+	private UserService userService;
+	@Autowired
+	private RoleService roleService;
+	@Autowired
+	private UserRoleService userRoleService;
 	@Autowired
 	private AnswerService answerservice;
 	@Autowired
 	private AnswerHistoryService answerhistoryservice;
 	
-	@Test
-	public void testSelectAllUser() {
-		List<Auser> userlist=user.SelectAllUser();
-		System.out.println(userlist);
-	}
 	@Test 
 	public void testSelectByPrimaryKey() {
 		System.out.println(answerservice.selectByPrimaryKey(1));
@@ -64,5 +63,12 @@ public  class ServicTest extends BaseTest{
 		answerhistory.setQuestionStatus(Integer.parseInt("2"));
 		//插入
 		System.out.println(answerhistoryservice.insert(answerhistory));
+	}
+	@Test
+	public void getRole() {
+		User auser = userService.selectByUsername("172101040");
+		System.out.println("Id"+auser.getId());
+		System.out.println("RoleId"+userRoleService.selectByUserId(auser.getId()).getRoleId());
+		System.out.println("RoleName"+roleService.selectByPrimaryKey(userRoleService.selectByUserId(auser.getId()).getRoleId()).getName());
 	}
 }

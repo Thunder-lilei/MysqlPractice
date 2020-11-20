@@ -7,21 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.dao.AnswerhistoryDao;
-import cn.edu.imufe.dao.AuserDao;
-import cn.edu.imufe.entity.Auser;
+import cn.edu.imufe.dao.UserDao;
+import cn.edu.imufe.entity.User;
 
 public class DaoTest extends BaseTest{
 	@Autowired
-	private AuserDao auserDao;
+	private UserDao auserDao;
 	@Autowired
 	private AnswerDao answerdao;
 	@Autowired
 	private AnswerhistoryDao AhD;
-	@Test
-	public void SelectAllAuser() {
-		List<Auser> auser = auserDao.SelectAllUser();
-		System.out.println(auser);
-	}
 	@Test
 	public void SelectAnswerByPrimarykey() {
 		int id=1;
@@ -43,10 +38,7 @@ public class DaoTest extends BaseTest{
 	@Test
 	public void login() 
 	{
-//		Auser auser = new Auser();
-//		auser.setUsername("172101040");
-//		auser.setPassword("lilei");
-		Auser auser = auserDao.selectByUsername("172101040");
+		User auser = auserDao.selectByUsername("172101040");
 		if(auser!=null) 
 		{
 			if(auser.getPassword().equals("lilei")) 
@@ -64,7 +56,7 @@ public class DaoTest extends BaseTest{
 	@Test
 	public void updatepassword()
 	{
-		Auser auser  = auserDao.selectByUsername("172101040");
+		User auser  = auserDao.selectByUsername("172101040");
 		auser.setPassword("lilei");
 		Integer result = auserDao.updatePasswordByUsernameSelective(auser);
 		if(result.equals(1)) 

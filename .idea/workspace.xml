@@ -28,119 +28,36 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7462daa9-c422-44c9-b007-5284a68e0733" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/sql_verification_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Mysql_practice_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/sql_verification_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Mysql_practice_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sql_verification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mysql_practice.iml" afterDir="false" />
+    <list default="true" id="7462daa9-c422-44c9-b007-5284a68e0733" name="Default Changelist" comment="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerhistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerhistoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AuserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/entity/Auser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/entity/AuserExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/StudentInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/StudentInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/TeacherAdminInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/TeacherAdminInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/AuserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/SqlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/SqlService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/AuserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/util/IfLoginUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/util/UserUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AnswerHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AnswerHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AuserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/DaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/DaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/ServicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/ServicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AnswerMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AnswerhistoryMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/CourseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/JMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ScMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SpjMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/StudentMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerhistoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerhistoryDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AuserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AuserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/CourseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/CourseDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/JDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/JDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/PDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/PDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/SDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/SDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/ScDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/ScDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/SpjDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/SpjDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/StudentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/StudentDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Answer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Answer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Answerhistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Answerhistory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AnswerhistoryExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Auser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Auser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/CourseExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/J.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/J.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/JExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/P.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/P.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/PExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/S.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/S.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Sc.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Sc.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/ScExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Spj.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Spj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/SpjExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/StudentExample.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/pojo/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/pojo/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AnswerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AnswerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AuserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AuserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/SqlService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/SqlService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AnswerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AnswerServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AuserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AuserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/SqlServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/SqlServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ActivitiesServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ActivitiesServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ComparasionOfSqlUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ComparasionOfSqlUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/DbUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/DbUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/RandomList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/RandomList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ResultSetUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/util/ResultSetUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AnswerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AnswerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AuserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/SqlController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/SqlController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring-dao.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring-service.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring-web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AuserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Auser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AuserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AuserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AuserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AuserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.imufe/Mysql_practice/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.imufe/Mysql_practice/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/classes/spring/spring-web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/admin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/admin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/student/answer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/student/answer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/student/quizs.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/student/quizs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/teacher/allQuizs.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/teacher/allQuizs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sql_cerification/teacher/createQuiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/sql_cerification/teacher/createQuiz.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/BaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/BaseTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/DaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/DaoTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/ServicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/ServicTest.class" afterDir="false" />
     </list>
@@ -176,7 +93,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/index.html" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -189,7 +106,26 @@
       <recent name="C:\Users\lilei\eclipse-workspace\sql_verification\src\main\resources\mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.37">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Mysql_practice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Mysql_practice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in sql_verification (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Mysql_practice" />
       <option name="PACKAGE_NAME" value="" />
@@ -216,7 +152,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 8.5.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Mysql_practice_war/" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Mysql_practice/index.html" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Mysql_practice:war">
@@ -374,14 +310,15 @@
       <item itemvalue="JUnit.All in sql_verification (3)" />
       <item itemvalue="JUnit.All in sql_verification" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.37" />
+      <item itemvalue="JUnit.All in Mysql_practice" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html (2)" />
+        <item itemvalue="JUnit.All in Mysql_practice" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JUnit.All in sql_verification" />
-        <item itemvalue="JUnit.All in sql_verification (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -403,7 +340,17 @@
       <workItem from="1600962006000" duration="1034000" />
       <workItem from="1600963253403" duration="1403000" />
       <workItem from="1605749043885" duration="2435000" />
+      <workItem from="1605774311041" duration="1186000" />
+      <workItem from="1605834577275" duration="2017000" />
     </task>
+    <task id="LOCAL-00001" summary="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。">
+      <created>1605774606887</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605774606887</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,16 +366,21 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="99" key="#Project_Structure" timestamp="1600936025733">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1600936025733" />
-    <state x="122" y="112" width="1092" height="938" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605751499843">
+    <state x="122" y="74" width="1092" height="976" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605834887110">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="122" y="112" width="1092" height="938" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605751499843" />
+    <state x="122" y="74" width="1092" height="976" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605834887110" />
     <state x="578" y="203" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1600958296612">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -445,66 +397,78 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="714" y="418" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1600935583322" />
-    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1605751498953">
+    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1605834867933">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605751498953" />
-    <state width="938" height="352" key="GridCell.Tab.0.bottom" timestamp="1605751506195">
+    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605834867933" />
+    <state width="636" height="292" key="GridCell.Tab.0.bottom" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="938" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506195" />
-    <state width="938" height="352" key="GridCell.Tab.0.center" timestamp="1605751506194">
+    <state width="636" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.0.center" timestamp="1605834949127">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="938" height="352" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506194" />
-    <state width="938" height="352" key="GridCell.Tab.0.left" timestamp="1605751506194">
+    <state width="636" height="292" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949127" />
+    <state width="636" height="292" key="GridCell.Tab.0.left" timestamp="1605834949127">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="938" height="352" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506194" />
-    <state width="938" height="352" key="GridCell.Tab.0.right" timestamp="1605751506194">
+    <state width="636" height="292" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949127" />
+    <state width="636" height="292" key="GridCell.Tab.0.right" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="938" height="352" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506194" />
-    <state width="636" height="285" key="GridCell.Tab.1.bottom" timestamp="1605751506187">
+    <state width="636" height="292" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.1.bottom" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506187" />
-    <state width="636" height="285" key="GridCell.Tab.1.center" timestamp="1605751506187">
+    <state width="636" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.1.center" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506187" />
-    <state width="636" height="285" key="GridCell.Tab.1.left" timestamp="1605751506187">
+    <state width="636" height="292" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.1.left" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506187" />
-    <state width="636" height="285" key="GridCell.Tab.1.right" timestamp="1605751506187">
+    <state width="636" height="292" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.1.right" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506187" />
-    <state width="636" height="285" key="GridCell.Tab.2.bottom" timestamp="1605751506188">
+    <state width="636" height="292" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.2.bottom" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506188" />
-    <state width="636" height="285" key="GridCell.Tab.2.center" timestamp="1605751506188">
+    <state width="636" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.2.center" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506188" />
-    <state width="636" height="285" key="GridCell.Tab.2.left" timestamp="1605751506188">
+    <state width="636" height="292" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.2.left" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506188" />
-    <state width="636" height="285" key="GridCell.Tab.2.right" timestamp="1605751506188">
+    <state width="636" height="292" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
+    <state width="636" height="292" key="GridCell.Tab.2.right" timestamp="1605834949128">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="285" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605751506188" />
+    <state width="636" height="292" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
     <state x="251" y="169" key="SettingsEditor" timestamp="1605751337300">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="251" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1605751337300" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1605774760609">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1605774760609" />
+    <state x="763" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605834758159">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="763" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1605834758159" />
     <state x="182" y="83" width="596" height="891" key="find.popup" timestamp="1600935795742">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="182" y="83" width="596" height="891" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1600935795742" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1605774394915">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1605774394915" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sql_verification$All_in_sql_verification__2_.ic" NAME="All in sql_verification (2) Coverage Results" MODIFIED="1600936075056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

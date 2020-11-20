@@ -2,9 +2,18 @@ package cn.edu.imufe.util;
 
 import javax.servlet.http.HttpSession;
 
-import cn.edu.imufe.entity.Auser;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class IfLoginUtil {
+import cn.edu.imufe.entity.User;
+import cn.edu.imufe.entity.UserRole;
+import cn.edu.imufe.service.UserRoleService;
+
+/**
+ * @author lilei
+ *
+ * 2020年11月20日
+ */
+public class UserUtil {
 	public static Boolean IfLogin(HttpSession session) {
 		if(session.getAttribute("user")!=null && session.getAttribute("user")!="") {
 			return true;
@@ -16,12 +25,5 @@ public class IfLoginUtil {
 			return true;
 		}
 		return false;
-	}
-	public static String GetRole(HttpSession session) {
-		if(IfLogin(session)) {
-			Auser record = (Auser)session.getAttribute("user");
-			return record.getRole();
-		}
-		return "未登录";
 	}
 }

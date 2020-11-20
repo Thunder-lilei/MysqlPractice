@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Answerhistory;
-import cn.edu.imufe.entity.Auser;
+import cn.edu.imufe.entity.User;
 import cn.edu.imufe.service.AnswerHistoryService;
 import cn.edu.imufe.service.AnswerService;
 
@@ -34,9 +34,9 @@ public class AnswerHistoryController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/addAnswerHistory",method=RequestMethod.POST)
-	private ModelAndView login(@RequestParam String id,@RequestParam String status){
+	private ModelAndView addAnswerHistory(@RequestParam String id,@RequestParam String status){
 		ModelAndView mv = new ModelAndView("redirect:/student/quiz.html");
-		Auser record = (Auser) session.getAttribute("user");
+		User record = (User) session.getAttribute("user");
 		Answerhistory answerhistory = new Answerhistory();
 		//查找对应问题
 		Answer answer = answerservice.selectByPrimaryKey(Integer.parseInt(id));

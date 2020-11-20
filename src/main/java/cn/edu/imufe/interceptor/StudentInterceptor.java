@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.edu.imufe.util.IfLoginUtil;
+import cn.edu.imufe.util.UserUtil;
 
 
 /**
@@ -33,13 +33,12 @@ public class StudentInterceptor implements HandlerInterceptor {
 		//在拦截点执行前拦截，如果返回true则不执行拦截点后的操作（拦截成功）
 		//返回false则不执行拦截
 		//登录访问
-		if(!IfLoginUtil.IfLogin(request.getSession())) {
+		if(!UserUtil.IfLogin(request.getSession())) {
 			System.out.println("拦截执行"+request.getServletPath());
 			response.sendRedirect(request.getContextPath()+"/admin/login.html");
 			return false;
 		}else{
 			//已登录
-			System.out.println(IfLoginUtil.GetRole(request.getSession())+"访问");
 			return true;
 		}
 	}

@@ -97,7 +97,7 @@ function preview() {
 function compare() {
 	reset();
 	let id = GetQueryString("id");
-	$.getJSON('/Mysql_practice/sql/compare_sql', {
+	$.getJSON('/Mysql_practice/sql/CompareSqlAddHistory', {
 		sqlstring: $("#inputsql").val(),
 		id: id
 	}, function(data) {

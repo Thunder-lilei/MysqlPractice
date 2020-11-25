@@ -3,7 +3,7 @@ package cn.edu.imufe.entity;
 public class Answerhistory {
     private Integer id;
 
-    private String username;
+    private Integer userId;
 
     private Integer answerId;
 
@@ -19,12 +19,12 @@ public class Answerhistory {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getAnswerId() {

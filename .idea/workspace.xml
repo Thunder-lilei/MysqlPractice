@@ -28,35 +28,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7462daa9-c422-44c9-b007-5284a68e0733" name="Default Changelist" comment="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。">
+    <list default="true" id="7462daa9-c422-44c9-b007-5284a68e0733" name="Default Changelist" comment="修改用户登录角色判断逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerhistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerhistoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AuserDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/entity/Auser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/entity/AuserExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/StudentInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/StudentInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerhistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/dao/AnswerHistoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/StudentInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/LoginInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/TeacherAdminInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/interceptor/TeacherAdminInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/AuserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/SqlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/SqlService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/AuserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/util/IfLoginUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/util/UserUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AnswerHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AnswerHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/AuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/web/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AuserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/AnswerHistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/imufe/service/impl/AnswerHistoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/DaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/DaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/ServicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/imufe/test/ServicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AuserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/Auser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/entity/AuserExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/AuserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/service/impl/AuserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/web/AuserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AuserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerhistoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/imufe/dao/AnswerhistoryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.imufe/Mysql_practice/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.imufe/Mysql_practice/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/DaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/DaoTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/ServicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/imufe/test/ServicTest.class" afterDir="false" />
@@ -93,11 +77,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/index.html" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="E:/IDEA-workspace/Test_data" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -107,34 +91,23 @@
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html (2)">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="All in Mysql_practice (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Mysql_practice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Mysql_practice (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Mysql_practice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="All in Mysql_practice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Mysql_practice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in sql_verification (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Mysql_practice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in sql_verification" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Mysql_practice" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
@@ -153,6 +126,7 @@
     </configuration>
     <configuration name="Tomcat 8.5.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Mysql_practice/index.html" />
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Mysql_practice:war">
@@ -307,18 +281,18 @@
     <list>
       <item itemvalue="JavaScript Debug.index.html" />
       <item itemvalue="JavaScript Debug.index.html (2)" />
-      <item itemvalue="JUnit.All in sql_verification (3)" />
-      <item itemvalue="JUnit.All in sql_verification" />
-      <item itemvalue="Tomcat Server.Tomcat 8.5.37" />
       <item itemvalue="JUnit.All in Mysql_practice" />
+      <item itemvalue="JUnit.All in Mysql_practice (1)" />
+      <item itemvalue="JUnit.All in Mysql_practice (2)" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.37" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html (2)" />
+        <item itemvalue="JUnit.All in Mysql_practice (2)" />
+        <item itemvalue="JUnit.All in Mysql_practice (1)" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JUnit.All in Mysql_practice" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JUnit.All in sql_verification" />
       </list>
     </recent_temporary>
   </component>
@@ -341,7 +315,9 @@
       <workItem from="1600963253403" duration="1403000" />
       <workItem from="1605749043885" duration="2435000" />
       <workItem from="1605774311041" duration="1186000" />
-      <workItem from="1605834577275" duration="2017000" />
+      <workItem from="1605834577275" duration="7716000" />
+      <workItem from="1605885339493" duration="88000" />
+      <workItem from="1606042771985" duration="206000" />
     </task>
     <task id="LOCAL-00001" summary="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。">
       <created>1605774606887</created>
@@ -350,7 +326,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605774606887</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改用户登录角色判断逻辑">
+      <created>1605841841069</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605841841069</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改用户登录角色判断逻辑">
+      <created>1605842720282</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605842720282</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,17 +360,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成权限验证，除了主页的所有访问都需要登录，所有admin、teacher目录下的页面访问都需要teacher或admin权限。新增的answerHistory的添加函数，请求地址为addAnswerHistory，请求参数为id，status，新增成功后后得到提示信息message并跳转回quizs.html。" />
+    <MESSAGE value="修改用户登录角色判断逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改用户登录角色判断逻辑" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="99" key="#Project_Structure" timestamp="1600936025733">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1600936025733" />
-    <state x="122" y="74" width="1092" height="976" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605834887110">
+    <state x="122" y="36" width="1092" height="1014" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606042815141">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="122" y="74" width="1092" height="976" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605834887110" />
+    <state x="122" y="36" width="1092" height="1014" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606042815141" />
     <state x="578" y="203" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1600958296612">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -389,74 +380,78 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="268" y="185" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1920.1050@0.0.1920.1050" timestamp="1600936261282" />
-    <state x="711" y="349" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1600958394086">
+    <state x="560" y="501" key="#com.intellij.javaee.module.view.web.EditWebRootDialog" timestamp="1605843252482">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="711" y="349" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1600958394086" />
+    <state x="560" y="501" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605843252482" />
+    <state x="274" y="453" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1605843732773">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="274" y="453" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605843732773" />
     <state x="714" y="418" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1600935583322">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="714" y="418" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1600935583322" />
-    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1605834867933">
+    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1606042980163">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605834867933" />
-    <state width="636" height="292" key="GridCell.Tab.0.bottom" timestamp="1605834949128">
+    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606042980163" />
+    <state width="636" height="292" key="GridCell.Tab.0.bottom" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.0.center" timestamp="1605834949127">
+    <state width="636" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.0.center" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949127" />
-    <state width="636" height="292" key="GridCell.Tab.0.left" timestamp="1605834949127">
+    <state width="636" height="292" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.0.left" timestamp="1606042982104">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949127" />
-    <state width="636" height="292" key="GridCell.Tab.0.right" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982104" />
+    <state width="636" height="292" key="GridCell.Tab.0.right" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.1.bottom" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.1.bottom" timestamp="1606042982106">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.1.center" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982106" />
+    <state width="636" height="292" key="GridCell.Tab.1.center" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.1.left" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.1.left" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.1.right" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.1.right" timestamp="1606042982105">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.2.bottom" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982105" />
+    <state width="636" height="292" key="GridCell.Tab.2.bottom" timestamp="1606042982106">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.2.center" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982106" />
+    <state width="636" height="292" key="GridCell.Tab.2.center" timestamp="1606042982106">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.2.left" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982106" />
+    <state width="636" height="292" key="GridCell.Tab.2.left" timestamp="1606042982106">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state width="636" height="292" key="GridCell.Tab.2.right" timestamp="1605834949128">
+    <state width="636" height="292" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982106" />
+    <state width="636" height="292" key="GridCell.Tab.2.right" timestamp="1606042982106">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="636" height="292" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605834949128" />
-    <state x="251" y="169" key="SettingsEditor" timestamp="1605751337300">
+    <state width="636" height="292" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606042982106" />
+    <state x="463" y="154" key="SettingsEditor" timestamp="1606042799332">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="251" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1605751337300" />
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1605774760609">
+    <state x="463" y="154" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1606042799332" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1605842724165">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1605774760609" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1605842724165" />
     <state x="763" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605834758159">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -465,6 +460,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="182" y="83" width="596" height="891" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1600935795742" />
+    <state x="551" y="164" key="new project wizard" timestamp="1605856806665">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="551" y="164" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1605856806665" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1605774394915">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

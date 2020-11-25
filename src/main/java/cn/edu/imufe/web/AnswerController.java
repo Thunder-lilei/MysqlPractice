@@ -29,29 +29,41 @@ public class AnswerController extends BaseController {
 	@Autowired
 	private AnswerService answerservice;
 	
+	private static final String MESSAGE = "message";
+	private static final String MESSAGE_SUCCESS = "success";
+	private static final String MESSAGE_LOSE_DELETE = "删除失败";
+	private static final String MESSAGE_LOSE_UPDATE = "修改失败";
+	private static final String MESSAGE_LOSE_INSERT = "插入失败";
+	private static final String MESSAGE_LOSE_SELECTEMPTY = "查询为空";
+	private static final String MESSAGE_LOSE_SELECTTITLE = "请选择题目";
+	private static final String MESSAGE_LOSE_LESSTITLE = "随机题目数量不足";
+	private static final String MESSAGE_LOSS_LESSANSWER = "题库不足";
+	private static final String REQUEST_RANDOMLIST = "randomList";
+	private static final String REQUEST_ALLLIST = "allList";
+	
 	/**
 	 * @功能	根据题目id获取题目信息
 	 * @参数	id
 	 * @返回值 返回完整的参数信息
 	 */
 	@ResponseBody
-	@RequestMapping(value="/gettitle",method=RequestMethod.GET)
-	private Map<String,Object> preview(@RequestParam String id){
+	@RequestMapping(value="/getTitle",method=RequestMethod.GET)
+	private Map<String,Object> getTitle(@RequestParam String id){
 		Map<String,Object> modelMap=new HashMap<>();
 		if(id!=null && id!="") 
 		{
 			Answer answer = answerservice.selectByPrimaryKey(Integer.parseInt(id));
 			if(answer!=null)
 			{
-				modelMap.put("message", "success");
+				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 				modelMap.put("answer", answer);
 			}else  
 			{
-				modelMap.put("message", "查询为空！");
+				modelMap.put(MESSAGE, MESSAGE_LOSE_SELECTEMPTY);
 			}
 		}else 
 		{
-			modelMap.put("message", "请选择题目！");
+			modelMap.put(MESSAGE, MESSAGE_LOSE_SELECTTITLE);
 		}
 		
 		return modelMap;
@@ -62,8 +74,8 @@ public class AnswerController extends BaseController {
 	 * @返回值 返回题目id list
 	 */
 	@ResponseBody
-	@RequestMapping(value="/getrandomquizs",method=RequestMethod.GET)
-	private Map<String,Object> getrandomquizs(){
+	@RequestMapping(value="/getRandomQuizs",method=RequestMethod.GET)
+	private Map<String,Object> getRandomQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
 		List<Integer> allid = answerservice.selectAllid();
 		Integer Random = 5;
@@ -75,15 +87,15 @@ public class AnswerController extends BaseController {
 			//获取随机题目id allid为题库中全部id Random为随机抽取的数量
 			if(!Random.equals(randomlist.size())) 
 			{
-				modelMap.put("message", "随机题目数量不足！");
+				modelMap.put(MESSAGE, MESSAGE_LOSE_LESSTITLE);
 			}else
 			{
-				modelMap.put("message", "success");
-				modelMap.put("randomlist", randomlist);
+				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+				modelMap.put(REQUEST_RANDOMLIST, randomlist);
 			}
 		}else  
 		{
-			modelMap.put("message", "没有题库！");
+			modelMap.put(MESSAGE, MESSAGE_LOSS_LESSANSWER);
 		}
 		return modelMap;
 	}
@@ -93,17 +105,17 @@ public class AnswerController extends BaseController {
 	 * @返回值 返回所有题目id list
 	 */
 	@ResponseBody
-	@RequestMapping(value="/getquizs",method=RequestMethod.GET)
-	private Map<String,Object> getquizs(){
+	@RequestMapping(value="/getQuizs",method=RequestMethod.GET)
+	private Map<String,Object> getQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
 		List<AnswerIdTitle> allidwithtitle = answerservice.selectAllIdwithTitle();
 		if(allidwithtitle!=null)
 		{
-			modelMap.put("message", "success");
-			modelMap.put("alllist", allidwithtitle);
+			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put(REQUEST_ALLLIST, allidwithtitle);
 		}else  
 		{
-			modelMap.put("message", "没有题库！");
+			modelMap.put(MESSAGE, MESSAGE_LOSS_LESSANSWER);
 		}
 		return modelMap;
 	}
@@ -113,16 +125,16 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/createquiz",method=RequestMethod.GET)
-	private Map<String,Object> createquiz(@RequestBody Answer answer){
+	@RequestMapping(value="/createQuiz",method=RequestMethod.GET)
+	private Map<String,Object> createQuiz(@RequestBody Answer answer){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerservice.insertSelective(answer);
 		if(index.equals(1)) 
 		{
-			modelMap.put("message", "success");
+			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put("message", "插入失败！");
+			modelMap.put(MESSAGE, MESSAGE_LOSE_INSERT);
 		}
 		return modelMap;
 	}
@@ -132,16 +144,16 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/deletequiz",method=RequestMethod.GET)
-	private Map<String,Object> deletequiz(@RequestParam Integer id){
+	@RequestMapping(value="/deleteQuiz",method=RequestMethod.GET)
+	private Map<String,Object> deleteQuiz(@RequestParam Integer id){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerservice.deleteByPrimaryKey(id);
 		if(index.equals(1)) 
 		{
-			modelMap.put("message", "success");
+			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put("message", "删除失败！");
+			modelMap.put(MESSAGE, MESSAGE_LOSE_DELETE);
 		}
 		return modelMap;
 	}
@@ -151,16 +163,16 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/updatequiz",method=RequestMethod.GET)
-	private Map<String,Object> updatequiz(@RequestParam Answer answer){
+	@RequestMapping(value="/updateQuiz",method=RequestMethod.GET)
+	private Map<String,Object> updateQuiz(@RequestParam Answer answer){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerservice.updateByPrimaryKeySelective(answer);
 		if(index.equals(1)) 
 		{
-			modelMap.put("message", "success");
+			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put("message", "修改失败！");
+			modelMap.put(MESSAGE, MESSAGE_LOSE_UPDATE);
 		}
 		return modelMap;
 	}

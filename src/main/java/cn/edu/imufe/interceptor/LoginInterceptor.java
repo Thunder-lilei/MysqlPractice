@@ -11,10 +11,12 @@ import cn.edu.imufe.util.UserUtil;
 
 /**
  * @author lilei
- *
- * 2020年11月19日
+ * @function 登录拦截器
+ * @param 
+ * @return 
+ * 2020年11月19日上午11:57:21
  */
-public class StudentInterceptor implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)

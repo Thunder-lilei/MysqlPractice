@@ -9,10 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.edu.imufe.util.UserUtil;
 
 
+
 /**
  * @author lilei
- *
- * 2020年11月19日
+ * @function 教师管理员拦截器
+ * @param
+ * @return 
+ * 通过工具类对登录用户的角色进行判断
+ * 2020年11月19日上午11:59:22
  */
 public class TeacherAdminInterceptor implements HandlerInterceptor {
 

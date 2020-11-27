@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Mysql_practice">
+    <output-path>$PROJECT_DIR$/out/artifacts/Mysql_practice</output-path>
+    <root id="archive" name="Mysql_practice.war">
+      <element id="artifact" artifact-name="Mysql_practice:war exploded" />
+    </root>
+  </artifact>
+</component>

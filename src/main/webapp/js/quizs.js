@@ -1,13 +1,13 @@
 $(document).ready(function() {})
 
 if (getCookie("rlist") != "") {
-	let randomlist = getCookie("rlist");
+	let randomList = getCookie("rlist");
 	let quizstbody = document.getElementById("quizstbody");
 	let quizstbodychildren = quizstbody.childNodes;
 	for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
 		quizstbody.removeChild(quizstbodychildren.item(i));
 	}
-	$.each($.parseJSON(randomlist), function(index, item) {
+	$.each($.parseJSON(randomList), function(index, item) {
 		let newtr = document.createElement("tr");
 		let newtdid = document.createElement("td");
 		newtdid.innerHTML = item;
@@ -50,15 +50,15 @@ if (getCookie("rlist") != "") {
 
 function randomquizs() {
 	clearAllCookie();
-	$.get('/Mysql_practice/answer/getrandomquizs', function(data) {
+	$.get('/Mysql_practice/answer/getRandomQuizs', function(data) {
 		let message = '';
-		//let randomlist = getCookie("rlist");
+		let randomList = getCookie("rlist");
 		$.each(data, function(index, item) {
 			if (index == "message") {
 				message = item;
 			}
-			if (index == "randomlist") {
-				randomlist = JSON.stringify(item);
+			if (index == "randomList") {
+				randomList = JSON.stringify(item);
 			}
 		});
 		switch (message) {
@@ -68,10 +68,10 @@ function randomquizs() {
 				alert(message);
 		}
 
-		console.log(randomlist);
-		setCookie("rlist", randomlist, 30);
+		console.log(randomList);
+		setCookie("rlist", randomList, 30);
 		location.reload();
-		$.each($.parseJSON(randomlist), function(index, item) {
+		$.each($.parseJSON(randomList), function(index, item) {
 			setCookie(item, 0, 30);
 		})
 

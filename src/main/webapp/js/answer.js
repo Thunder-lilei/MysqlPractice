@@ -2,7 +2,7 @@ $(document).ready(function() {
 	(function() {
 			setCookie('time', 10, 30);
 			let id = GetQueryString("id");
-			$.getJSON('/Mysql_practice/answer/gettitle', {
+			$.getJSON('/Mysql_practice/answer/getTitle', {
 				id: id
 			}, function(data) {
 				let message = '';
@@ -97,8 +97,8 @@ function preview() {
 function compare() {
 	reset();
 	let id = GetQueryString("id");
-	$.getJSON('/Mysql_practice/sql/CompareSqlAddHistory', {
-		sqlstring: $("#inputsql").val(),
+	$.getJSON('/Mysql_practice/sql/compareSqlAddHistory', {
+		sqlString: $("#inputsql").val(),
 		id: id
 	}, function(data) {
 		let message = '';

@@ -2,13 +2,13 @@ package cn.edu.imufe.service;
 import java.util.List;
 
 import cn.edu.imufe.entity.*;
-import cn.edu.imufe.pojo.AnswerIdTitle;
+import cn.edu.imufe.pojo.AnswerPojo;
 public interface AnswerService {
 	Answer selectByPrimaryKey(Integer id);
 	
 	List<Integer> selectAllid();
 	
-	List<AnswerIdTitle> selectAllIdwithTitle();
+	List<AnswerPojo> selectAllIdwithTitle();
 	
 	int insertSelective(Answer record);
 	

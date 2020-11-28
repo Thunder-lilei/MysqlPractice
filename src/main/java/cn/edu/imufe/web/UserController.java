@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.imufe.entity.Role;
 import cn.edu.imufe.entity.User;
+import cn.edu.imufe.entity.UserRole;
 import cn.edu.imufe.service.RoleService;
 import cn.edu.imufe.service.RoleWithUserRoleService;
 import cn.edu.imufe.service.UserRoleService;
@@ -43,8 +45,14 @@ public class UserController extends BaseController {
 	private static final String MESSAGE_LOSE_ERROEACCOUNT = "错误的账号";
 	private static final String MESSAGE_LOSE_ERROEUSERNAME = "错误的用户名";
 	private static final String MESSAGE_LOSE_UPDATE = "修改失败";
+	private static final String MESSAGE_LOSE_ERROR_ROLE = "错误的用户角色";
+	private static final String ADMIN = "admin";
+	private static final String STUDENT = "student";
+	private static final String TEACHER = "teacher";
 	private static final String REQUEST_PAGE_INDEX = "redirect:/index.html";
 	private static final String REQUEST_PAGE_LOGIN = "redirect:/admin/login.html";
+	private static final String REQUEST_PAGE_STUDENT_INDEX = "redirect:/student/studentIndex.html";
+	private static final String REQUEST_PAGE_TEACHER_ADMIN_INDEX = "redirect:/teacher/teacherIndex.html";
 	private static final String SESSION_USER = "user";
 	
 	/**
@@ -64,6 +72,22 @@ public class UserController extends BaseController {
 				session.setAttribute(roleWithUserRoleService.getRole(auser.getId()), auser);
 				session.setAttribute(SESSION_USER, auser);
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
+				UserRole userRole = userRoleService.selectByUserId(auser.getId());
+				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
+				switch(role.getName()) {
+					case ADMIN:
+						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
+						break;
+					case STUDENT:
+						mv = new ModelAndView(REQUEST_PAGE_STUDENT_INDEX);
+						break;
+					case TEACHER:
+						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
+						break;
+					default:
+						mv.addObject(MESSAGE, MESSAGE_LOSE_ERROR_ROLE);
+						break;
+				}
 				return mv;
 			}else 
 			{

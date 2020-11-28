@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.pojo.AnswerIdTitle;
+import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -44,7 +44,7 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<AnswerIdTitle> selectAllIdwithTitle() {
+	public List<AnswerPojo> selectAllIdwithTitle() {
 		// TODO Auto-generated method stub
 		return answerdao.selectAllIdwithTitle();
 	}

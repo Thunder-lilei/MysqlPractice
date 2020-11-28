@@ -1,6 +1,6 @@
 package cn.edu.imufe.pojo;
 
-public class AnswerIdTitle {
+public class AnswerPojo {
     private Integer id;
 
     private String question;

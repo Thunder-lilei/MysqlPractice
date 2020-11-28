@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Answerhistory;
 import cn.edu.imufe.entity.User;
-import cn.edu.imufe.pojo.AnswerIdTitle;
+import cn.edu.imufe.pojo.AnswerHistoryPojo;
+import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.*;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
 import cn.edu.imufe.util.RandomList;
@@ -55,8 +56,8 @@ public  class ServicTest extends BaseTest{
 	@Test
 	public void alllist() 
 	{
-		List<AnswerIdTitle> allidwithtitle = answerService.selectAllIdwithTitle();
-		for(AnswerIdTitle i:allidwithtitle) 
+		List<AnswerPojo> allidwithtitle = answerService.selectAllIdwithTitle();
+		for(AnswerPojo i:allidwithtitle) 
 		{
 			System.out.println(i.getId());
 			System.out.println(i.getQuestion());
@@ -101,5 +102,15 @@ public  class ServicTest extends BaseTest{
 		System.out.println("Id"+auser.getId());
 		System.out.println("RoleId"+userRoleService.selectByUserId(auser.getId()).getRoleId());
 		System.out.println("RoleName"+roleService.selectByPrimaryKey(userRoleService.selectByUserId(auser.getId()).getRoleId()).getName());
+	}
+	
+	@Test
+	public void getAnswerHistory() {
+		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6);
+		for(AnswerHistoryPojo a : list) {
+			System.out.println(a.getAnswerId());
+			System.out.println(a.getTitle());
+			System.out.println(a.getStatus());
+		}
 	}
 }

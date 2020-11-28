@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.edu.imufe.entity.Answerhistory;
 import cn.edu.imufe.entity.AnswerhistoryExample;
+import cn.edu.imufe.pojo.AnswerHistoryPojo;
 
 public interface AnswerhistoryDao {
     int countByExample(AnswerhistoryExample example);
@@ -22,6 +23,8 @@ public interface AnswerhistoryDao {
     Answerhistory selectByPrimaryKey(Integer id);
     
     Answerhistory selectByUserIdAndAnswerId(@Param("userId")Integer userId,@Param("answerId")Integer answerId);
+    
+    List<Answerhistory> selectUserAnswerHistory(@Param("id")Integer id);
 
     int updateByExampleSelective(@Param("record") Answerhistory record, @Param("example") AnswerhistoryExample example);
 

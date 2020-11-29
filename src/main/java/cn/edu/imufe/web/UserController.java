@@ -74,6 +74,7 @@ public class UserController extends BaseController {
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
 				UserRole userRole = userRoleService.selectByUserId(auser.getId());
 				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
+				System.out.println(role.getName());
 				switch(role.getName()) {
 					case ADMIN:
 						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);

@@ -1,0 +1,48 @@
+html,body{
+	background-color: rgba(241, 242, 246,1.0);
+}
+
+.login_group{
+	position: absolute;
+	right: 50px;
+}
+
+.login_group > a{
+	margin-right: 10px;
+}
+
+/*设置container居中*/
+.container{
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	width: 600px;
+	height: 270px;
+	/*background-color: rgba(241, 242, 246,1.0);*/
+}
+
+/*设置.container里面div的大小*/
+.container > a{
+	display: inline-block;
+	box-sizing: border-box;
+	width: 115px;
+	height: 115px;
+	margin-bottom: 6px;
+	border: 2px solid rgba(30, 144, 255,0.6);
+	border-radius: 3px;
+	text-align: center;
+	line-height: 115px;
+	transition: color 0.5s ease,background-color 0.5s ease-in-out;
+}
+
+/*设置动画效果*/
+.container > a:hover{
+	background-color: rgba(30, 144, 255,0.6);
+	color: rgba(241, 242, 246,1.0);
+}
+
+

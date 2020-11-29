@@ -120,26 +120,6 @@ public class AnswerController extends BaseController {
 		return modelMap;
 	}
 	/**
-	 * @功能	发送所有题目id
-	 * @参数	无参数
-	 * @返回值 返回所有题目id list
-	 */
-	@ResponseBody
-	@RequestMapping(value="/getQuizs",method=RequestMethod.GET)
-	private Map<String,Object> getQuizsByUserId(){
-		Map<String,Object> modelMap=new HashMap<>();
-		List<AnswerPojo> allidwithtitle = answerservice.selectAllIdwithTitle();
-		if(allidwithtitle!=null)
-		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-			modelMap.put(REQUEST_ALLLIST, allidwithtitle);
-		}else  
-		{
-			modelMap.put(MESSAGE, MESSAGE_LOSS_LESSANSWER);
-		}
-		return modelMap;
-	}
-	/**
 	 * @功能	创建新的题目
 	 * @参数	Answer
 	 * @返回值 message

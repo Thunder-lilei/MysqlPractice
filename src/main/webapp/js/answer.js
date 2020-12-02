@@ -23,7 +23,7 @@ $(document).ready(function() {
 				}
 				$.each($.parseJSON(answer), function(index, item) {
 					if (index === "question") {
-						document.getElementById("question").innerHTML = item;
+						$("#question").html(item);
 					}
 				});
 			});
@@ -44,14 +44,14 @@ $(document).ready(function() {
 })
 
 function sql_format() {
-	let btn = document.getElementById('btnformat')
-	let input = document.getElementById('inputsql');
-	let output = document.getElementById('inputsql');
-	input.addEventListener('btn', format);
+	let btn = $('#btnformat');
+	let inputEle = $('#inputsql');
+	let output = $('#inputsql');
+	inputEle.on('btn', format);
 
 	function format() {
 		console.time('formatting');
-		output.value = sqlFormatter.format(input.value, "SQL");
+		output.val(sqlFormatter.format(inputEle.val(), "SQL"));
 		console.timeEnd('formatting');
 	}
 	format();
@@ -63,26 +63,26 @@ function preview() {
 		sql: $("#inputsql").val()
 	}, function(data) {
 		let message = '';
-		let previewlist = '';
+		let previewlist = [];
 		$.each(data, function(index, item) {
 			if (index == "message") {
 				message = item
 			}
 			if (index == "previewlist") {
-				previewlist = JSON.stringify(item)
+				previewlist = item
 			}
 		});
 		switch (message) {
 			case "success":
-				$.each($.parseJSON(previewlist), function(index, item) {
+				$.each(previewlist, function(index, item) {
 					let previewdata = item;
-					let newtr = document.createElement("tr");
-					$.each(previewdata, function(index, item) {
-						let newtd = document.createElement("td");
-						newtd.innerHTML = item;
-						newtr.appendChild(newtd);
+					let newtr = $("<tr></tr>");
+					$.each(previewdata, function(indexTwo, itemTwo) {
+						let newtd = $("<td></td>");
+						newtd.html(itemTwo);
+						newtr.append(newtd);
 					});
-					tbody.appendChild(newtr);
+					$("#tbody").append(newtr);
 				});
 				break;
 			default:
@@ -145,11 +145,9 @@ function page(num) {
 
 function reset() {
 	$("#error").text("");
-	let tbody = document.getElementById("tbody")
-	let tbodychildren = tbody.childNodes;
-	for (var i = tbodychildren.length - 1; i >= 0; i--) {
-		tbody.removeChild(tbodychildren.item(i));
-	}
+	let tbody = $("#tbody");
+	let tbodychildren = tbody.children();
+	tbodychildren.filter("tr").remove();
 }
 
 function GetQueryString(name) {

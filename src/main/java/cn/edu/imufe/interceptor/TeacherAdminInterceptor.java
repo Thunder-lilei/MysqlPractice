@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.imufe.constant.UserConstant;
 import cn.edu.imufe.util.UserUtil;
 
 
@@ -37,7 +38,7 @@ public class TeacherAdminInterceptor implements HandlerInterceptor {
 		//在拦截点执行前拦截，如果返回true则不执行拦截点后的操作（拦截成功）
 		//返回false则不执行拦截
 		//管理员和老师可以全部访问
-		if(!UserUtil.TheRole("teacher", request.getSession()) && !UserUtil.TheRole("admin", request.getSession())) {
+		if(!UserUtil.TheRole(UserConstant.TEACHER, request.getSession()) && !UserUtil.TheRole(UserConstant.ADMIN, request.getSession())) {
 			//角色认证失败，且未登录
 			if(!UserUtil.IfLogin(request.getSession())) {
 				System.out.println("拦截执行"+request.getServletPath());

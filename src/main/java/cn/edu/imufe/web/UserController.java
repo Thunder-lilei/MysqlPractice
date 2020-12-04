@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.imufe.constant.PageUrlConstant;
+import cn.edu.imufe.constant.UserConstant;
 import cn.edu.imufe.entity.Role;
 import cn.edu.imufe.entity.User;
 import cn.edu.imufe.entity.UserRole;
@@ -38,10 +40,6 @@ public class UserController extends BaseController {
 	
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success";
-	private final String REQUEST_PAGE_INDEX = "redirect:/index.html";
-	private final String REQUEST_PAGE_LOGIN = "redirect:/admin/login.html";
-	private final String REQUEST_PAGE_STUDENT_INDEX = "redirect:/student/studentIndex.html";
-	private final String REQUEST_PAGE_TEACHER_ADMIN_INDEX = "redirect:/teacher/teacherIndex.html";
 	
 	/**
 	 * @功能	管理员登陆 保存登录信息至session 跳转至index.html
@@ -51,7 +49,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	private ModelAndView login(@RequestParam String username,@RequestParam String password){
-		ModelAndView mv = new ModelAndView(REQUEST_PAGE_INDEX);
+		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
 		User auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
@@ -64,14 +62,14 @@ public class UserController extends BaseController {
 				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
 				System.out.println(role.getName());
 				switch(role.getName()) {
-					case "admin":
-						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
+					case UserConstant.ADMIN:
+						mv = new ModelAndView(PageUrlConstant.TEACHER_ADMIN_INDEX);
 						break;
-					case "student":
-						mv = new ModelAndView(REQUEST_PAGE_STUDENT_INDEX);
+					case UserConstant.STUDENT:
+						mv = new ModelAndView(PageUrlConstant.STUDENT_INDEX);
 						break;
-					case "teacher":
-						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
+					case UserConstant.TEACHER:
+						mv = new ModelAndView(PageUrlConstant.TEACHER_ADMIN_INDEX);
 						break;
 					default:
 						mv.addObject(MESSAGE, "错误的用户角色");
@@ -96,7 +94,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/updatePassword",method=RequestMethod.POST)
 	private ModelAndView updatePassword(@RequestParam String username,@RequestParam String newPassword){
-		ModelAndView mv = new ModelAndView(REQUEST_PAGE_LOGIN);
+		ModelAndView mv = new ModelAndView(PageUrlConstant.LOGIN);
 		User auser = auserService.selectByUsername(username);
 		if(auser!=null) 
 		{
@@ -124,7 +122,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	private ModelAndView logout(){
-		ModelAndView mv = new ModelAndView(REQUEST_PAGE_INDEX);
+		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
 		//已登录
 		if(UserUtil.IfLogin(session)) 
 		{
@@ -137,7 +135,7 @@ public class UserController extends BaseController {
 		}else
 		{
 			mv.addObject(MESSAGE, "未登录");
-			mv = new ModelAndView(REQUEST_PAGE_LOGIN);
+			mv = new ModelAndView(PageUrlConstant.LOGIN);
 		}
 		return mv;
 	}

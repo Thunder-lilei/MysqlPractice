@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.edu.imufe.entity.Answerhistory;
 import cn.edu.imufe.entity.AnswerhistoryExample;
-import cn.edu.imufe.pojo.AnswerHistoryPojo;
 
 public interface AnswerhistoryDao {
     int countByExample(AnswerhistoryExample example);

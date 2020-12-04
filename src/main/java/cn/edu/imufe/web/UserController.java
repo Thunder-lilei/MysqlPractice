@@ -1,7 +1,5 @@
 package cn.edu.imufe.web;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,22 +36,12 @@ public class UserController extends BaseController {
 	@Autowired
 	private RoleService roleService;
 	
-	private static final String MESSAGE = "message";
-	private static final String MESSAGE_SUCCESS = "success";
-	private static final String MESSAGE_LOSE_NOLOGIN = "未登录";
-	private static final String MESSAGE_LOSE_ERROEPASSWORD = "错误的密码";
-	private static final String MESSAGE_LOSE_ERROEACCOUNT = "错误的账号";
-	private static final String MESSAGE_LOSE_ERROEUSERNAME = "错误的用户名";
-	private static final String MESSAGE_LOSE_UPDATE = "修改失败";
-	private static final String MESSAGE_LOSE_ERROR_ROLE = "错误的用户角色";
-	private static final String ADMIN = "admin";
-	private static final String STUDENT = "student";
-	private static final String TEACHER = "teacher";
-	private static final String REQUEST_PAGE_INDEX = "redirect:/index.html";
-	private static final String REQUEST_PAGE_LOGIN = "redirect:/admin/login.html";
-	private static final String REQUEST_PAGE_STUDENT_INDEX = "redirect:/student/studentIndex.html";
-	private static final String REQUEST_PAGE_TEACHER_ADMIN_INDEX = "redirect:/teacher/teacherIndex.html";
-	private static final String SESSION_USER = "user";
+	private final String MESSAGE = "message";
+	private final String MESSAGE_SUCCESS = "success";
+	private final String REQUEST_PAGE_INDEX = "redirect:/index.html";
+	private final String REQUEST_PAGE_LOGIN = "redirect:/admin/login.html";
+	private final String REQUEST_PAGE_STUDENT_INDEX = "redirect:/student/studentIndex.html";
+	private final String REQUEST_PAGE_TEACHER_ADMIN_INDEX = "redirect:/teacher/teacherIndex.html";
 	
 	/**
 	 * @功能	管理员登陆 保存登录信息至session 跳转至index.html
@@ -70,33 +58,33 @@ public class UserController extends BaseController {
 			if(auser.getPassword().equals(password)) 
 			{
 				session.setAttribute(roleWithUserRoleService.getRole(auser.getId()), auser);
-				session.setAttribute(SESSION_USER, auser);
+				session.setAttribute("user", auser);
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
 				UserRole userRole = userRoleService.selectByUserId(auser.getId());
 				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
 				System.out.println(role.getName());
 				switch(role.getName()) {
-					case ADMIN:
+					case "admin":
 						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
 						break;
-					case STUDENT:
+					case "student":
 						mv = new ModelAndView(REQUEST_PAGE_STUDENT_INDEX);
 						break;
-					case TEACHER:
+					case "teacher":
 						mv = new ModelAndView(REQUEST_PAGE_TEACHER_ADMIN_INDEX);
 						break;
 					default:
-						mv.addObject(MESSAGE, MESSAGE_LOSE_ERROR_ROLE);
+						mv.addObject(MESSAGE, "错误的用户角色");
 						break;
 				}
 				return mv;
 			}else 
 			{
-				mv.addObject(MESSAGE, MESSAGE_LOSE_ERROEPASSWORD);
+				mv.addObject(MESSAGE, "错误的密码");
 			}
 		}else 
 		{
-			mv.addObject(MESSAGE, MESSAGE_LOSE_ERROEACCOUNT);
+			mv.addObject(MESSAGE, "错误的账号");
 		}
 		return mv;
 	}
@@ -120,11 +108,11 @@ public class UserController extends BaseController {
 				return mv;
 			}else 
 			{
-				mv.addObject(MESSAGE, MESSAGE_LOSE_UPDATE);
+				mv.addObject(MESSAGE, "修改失败");
 			}
 		}else 
 		{
-			mv.addObject(MESSAGE, MESSAGE_LOSE_ERROEUSERNAME);
+			mv.addObject(MESSAGE, "错误的用户名");
 		}
 		return mv;
 	}
@@ -140,14 +128,15 @@ public class UserController extends BaseController {
 		//已登录
 		if(UserUtil.IfLogin(session)) 
 		{
-			User record = (User)session.getAttribute(SESSION_USER);
+			User record = (User)session.getAttribute("user");
 			session.setAttribute(roleService.selectByPrimaryKey(userRoleService.selectByUserId(record.getId()).getRoleId()).getName(), null);
-			session.setAttribute(SESSION_USER, null);
+			//清空session
+			session.invalidate();
 			mv.addObject(MESSAGE, MESSAGE_SUCCESS);
 			return mv;
-		}else//未登录
+		}else
 		{
-			mv.addObject(MESSAGE, MESSAGE_LOSE_NOLOGIN);
+			mv.addObject(MESSAGE, "未登录");
 			mv = new ModelAndView(REQUEST_PAGE_LOGIN);
 		}
 		return mv;

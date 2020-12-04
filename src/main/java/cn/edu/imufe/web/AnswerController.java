@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,17 +28,8 @@ public class AnswerController extends BaseController {
 	@Autowired
 	private AnswerService answerservice;
 	
-	private static final String MESSAGE = "message";
-	private static final String MESSAGE_SUCCESS = "success";
-	private static final String MESSAGE_LOSE_DELETE = "删除失败";
-	private static final String MESSAGE_LOSE_UPDATE = "修改失败";
-	private static final String MESSAGE_LOSE_INSERT = "插入失败";
-	private static final String MESSAGE_LOSE_SELECTEMPTY = "查询为空";
-	private static final String MESSAGE_LOSE_SELECTTITLE = "请选择题目";
-	private static final String MESSAGE_LOSE_LESSTITLE = "随机题目数量不足";
-	private static final String MESSAGE_LOSS_LESSANSWER = "题库不足";
-	private static final String REQUEST_RANDOMLIST = "randomList";
-	private static final String REQUEST_ALLLIST = "allList";
+	private final String MESSAGE = "message";
+	private final String MESSAGE_SUCCESS = "success";
 	
 	/**
 	 * @功能	根据题目id获取题目信息
@@ -59,11 +49,11 @@ public class AnswerController extends BaseController {
 				modelMap.put("answer", answer);
 			}else  
 			{
-				modelMap.put(MESSAGE, MESSAGE_LOSE_SELECTEMPTY);
+				modelMap.put(MESSAGE, "查询为空");
 			}
 		}else 
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSE_SELECTTITLE);
+			modelMap.put(MESSAGE, "请选择题目");
 		}
 		
 		return modelMap;
@@ -87,15 +77,15 @@ public class AnswerController extends BaseController {
 			//获取随机题目id allid为题库中全部id Random为随机抽取的数量
 			if(!Random.equals(randomlist.size())) 
 			{
-				modelMap.put(MESSAGE, MESSAGE_LOSE_LESSTITLE);
+				modelMap.put(MESSAGE, "随机题目数量不足");
 			}else
 			{
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-				modelMap.put(REQUEST_RANDOMLIST, randomlist);
+				modelMap.put("randomList", randomlist);
 			}
 		}else  
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSS_LESSANSWER);
+			modelMap.put(MESSAGE, "题库不足");
 		}
 		return modelMap;
 	}
@@ -112,10 +102,10 @@ public class AnswerController extends BaseController {
 		if(allidwithtitle!=null)
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-			modelMap.put(REQUEST_ALLLIST, allidwithtitle);
+			modelMap.put("allList", allidwithtitle);
 		}else  
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSS_LESSANSWER);
+			modelMap.put(MESSAGE, "题库不足");
 		}
 		return modelMap;
 	}
@@ -137,7 +127,7 @@ public class AnswerController extends BaseController {
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSE_INSERT);
+			modelMap.put(MESSAGE, "插入失败");
 		}
 		return modelMap;
 	}
@@ -156,7 +146,7 @@ public class AnswerController extends BaseController {
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSE_DELETE);
+			modelMap.put(MESSAGE, "删除失败");
 		}
 		return modelMap;
 	}
@@ -175,7 +165,7 @@ public class AnswerController extends BaseController {
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSE_UPDATE);
+			modelMap.put(MESSAGE, "修改失败");
 		}
 		return modelMap;
 	}

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.imufe.entity.User;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
-import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.AnswerHistoryService;
 
 /**
@@ -26,10 +25,8 @@ public class AnswerHistoryController extends BaseController {
 	@Autowired
 	AnswerHistoryService answerHistoryService;
 	
-	private static final String MESSAGE = "message";
-	private static final String MESSAGE_SUCCESS = "success";
-	private static final String MESSAGE_LOSE_EMPTY = "没有答题历史";
-	private static final String REQUEST_LIST = "List";
+	private final String MESSAGE = "message";
+	private final String MESSAGE_SUCCESS = "success";
 	
 	/**
 	 * @功能	发送发送用户答题历史
@@ -45,10 +42,10 @@ public class AnswerHistoryController extends BaseController {
 		if(list!=null)
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-			modelMap.put(REQUEST_LIST, list);
+			modelMap.put("List", list);
 		}else  
 		{
-			modelMap.put(MESSAGE, MESSAGE_LOSE_EMPTY);
+			modelMap.put(MESSAGE, "没有答题历史");
 		}
 		return modelMap;
 	}

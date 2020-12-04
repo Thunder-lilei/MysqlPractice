@@ -22,7 +22,6 @@ import cn.edu.imufe.entity.Answerhistory;
 import cn.edu.imufe.entity.User;
 import cn.edu.imufe.service.AnswerHistoryService;
 import cn.edu.imufe.service.AnswerService;
-import cn.edu.imufe.service.impl.AnswerServiceImpl;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
 import cn.edu.imufe.util.DbUtil;
 import cn.edu.imufe.util.ResultSetUtil;
@@ -42,15 +41,10 @@ public class SqlController extends BaseController{
 	@Autowired
 	AnswerHistoryService answerHistoryService;
 	
-	private static final String RESULT = "result";
-	private static final String MESSAGE = "message";
-	private static final String MESSAGE_SUCCESS = "success";
-	private static final String MESSAGE_NOANSWER = "请填写答案！";
-	private static final String RESULT_MESSAGE_SAME = "Same";
-	private static final String RESULT_MESSAGE_DIFFERENT = "Different";
-	private static final Integer STATUS_0 = 0;
-	private static final Integer STATUS_1 = 1;
-	private static final Integer STATUS_2 = 2;
+	private final String MESSAGE = "message";
+	private final String MESSAGE_SUCCESS = "success";
+	private final String RESULT_MESSAGE_SAME = "Same";
+	private final String RESULT_MESSAGE_DIFFERENT = "Different";
 	
 	/**
 	 * @功能	预览
@@ -129,16 +123,16 @@ public class SqlController extends BaseController{
 		{
 			Answer answer = answerService.selectByPrimaryKey(Integer.parseInt(id));
 			String result = ComparasionOfSqlUtils.SQLOfComparasion(answer.getSolution(),sqlString);
-			Integer status = STATUS_0;
+			Integer status = 0;
 			switch(result) {
 				case RESULT_MESSAGE_SAME:
-					status = STATUS_1;
+					status = 1;
 					break;
 				case RESULT_MESSAGE_DIFFERENT:
-					status = STATUS_0;
+					status = 0;
 					break;
 				default:
-					status = STATUS_2;
+					status = 2;
 					
 			}
 			User record = (User) session.getAttribute("user");
@@ -158,11 +152,11 @@ public class SqlController extends BaseController{
 				answerHistoryService.updateByPrimaryKey(answerhistory);
 			}
 			
-			modelMap.put(RESULT, result);
+			modelMap.put("result", result);
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 		}else 
 		{
-			modelMap.put(MESSAGE, MESSAGE_NOANSWER);
+			modelMap.put(MESSAGE, "请填写答案！");
 		}
 		return modelMap;
 	}

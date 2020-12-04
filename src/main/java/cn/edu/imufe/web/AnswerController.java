@@ -126,7 +126,10 @@ public class AnswerController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/createQuiz",method=RequestMethod.GET)
-	private Map<String,Object> createQuiz(@RequestBody Answer answer){
+	private Map<String,Object> createQuiz(@RequestParam String question,@RequestParam String solution){
+		Answer answer = new Answer();
+		answer.setQuestion(question);
+		answer.setSolution(solution);
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerservice.insertSelective(answer);
 		if(index.equals(1)) 

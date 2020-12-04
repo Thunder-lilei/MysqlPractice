@@ -7,9 +7,10 @@ if (getCookie("rlist") != "") {
 	let randomList = getCookie("rlist");
 	let quizstbody = $("#quizstbody");
 	let quizstbodychildren = quizstbody.children();
-	for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
+	quizstbodychildren.filter("tr").remove();
+	/*for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
 		quizstbody.remove(quizstbodychildren.item(i));
-	}
+	}*/
 	$.each($.parseJSON(randomList), function(index, item) {
 		let newtr = $("<tr></tr>");
 		let newtdid = $("<td></td>");

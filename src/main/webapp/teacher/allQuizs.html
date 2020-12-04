@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
-		<script src="../js/jquery.min.js"></script>
 	</head>
 	<body>
 
@@ -130,6 +129,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
 		<script>
@@ -142,14 +142,18 @@
 					for (let i in data) {
 						if (data[i] instanceof Array) {
 							alllist = data[i]
+							break
 						}
 					}
 
-					let quizstbodychildren = quizstbody.childNodes;
-					for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
-						quizstbody.removeChild(quizstbodychildren.item(i));
+					let quizstbodychildren = $("#quizstbody").children();
+					quizstbodychildren.filter("tr").remove();
+					
+					//如果list列表的长度小于pagesize，则将pagesize重新复制为list的长度
+					if(pagesize>=alllist.length){
+						pagesize = alllist.length
 					}
-
+					
 					nowPage(page, page + pagesize, alllist)
 
 				});
@@ -162,22 +166,23 @@
 
 				for (let i = page; i < number; i++) {
 
-					let newtr = document.createElement("tr");
-					let newtdid = document.createElement("td");
-					newtdid.innerHTML = alllist[i].id;
-					newtr.appendChild(newtdid);
+					let newtr = $("<tr></tr>");
+					let newtdid = $("<td></td>");
+					newtdid.html(alllist[i].id);
+					newtr.append(newtdid);
 
-					let newtitle = document.createElement("td");
-					newtitle.innerHTML = alllist[i].question;
-					newtr.appendChild(newtitle);
-					quizstbody.appendChild(newtr);
+					let newtitle = $("<td></td>");
+					newtitle.html(alllist[i].question);
+					newtr.append(newtitle);
 
-					let newtddo = document.createElement("td");
-					let newa = document.createElement("a");
-					newa.href = "answer.html?id=" + alllist[i].id;
-					newa.innerHTML = "修改";
-					newtddo.appendChild(newa);
-					newtr.appendChild(newtddo);
+					let newtddo = $("<td></td>");
+					let newa = $("<a></a>");
+					newa.attr('href',"answer.html?id=" + alllist[i].id);
+					newa.html("修改");
+					newtddo.append(newa);
+					newtr.append(newtddo);
+					
+					$("#quizstbody").append(newtr);
 
 				}
 			}
@@ -195,10 +200,8 @@
 				}
 
 				// 先清空当前页面的所有表格节点
-				let quizstbodychildren = quizstbody.childNodes;
-				for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
-					quizstbody.removeChild(quizstbodychildren.item(i));
-				}
+				let quizstbodychildren = $("#quizstbody").children();
+				quizstbodychildren.filter("tr").remove();
 
 				//当前情况为加载最后一页(page小于列表长度并且列表长度-page小于5)
 				if (page <= alllist.length && alllist.length - page <= pagesize && (alllist.length - page) / pagesize < 1) {
@@ -227,11 +230,9 @@
 					return
 				}
 				// 先清空当前页面的所有表格节点
-				let quizstbodychildren = quizstbody.childNodes;
-				for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
-					quizstbody.removeChild(quizstbodychildren.item(i));
-				}
-
+				let quizstbodychildren = $("#quizstbody").children();
+				quizstbodychildren.filter("tr").remove();
+				
 				// 将上一页内容渲染到页面上
 				nowPage(page, page + pagesize, alllist)
 

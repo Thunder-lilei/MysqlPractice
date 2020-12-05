@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.edu.imufe.dao.AnswerDao;
 import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.entity.Answerhistory;
 import cn.edu.imufe.entity.User;
@@ -34,8 +33,6 @@ import cn.edu.imufe.util.ResultSetUtil;
 @Controller
 @RequestMapping("/sql")
 public class SqlController extends BaseController{
-	@Autowired
-	AnswerDao answerdao;
 	@Autowired
 	AnswerService answerService;
 	@Autowired
@@ -55,7 +52,6 @@ public class SqlController extends BaseController{
 	@ResponseBody
 	private Map<String,Object> preview(@RequestParam String sql){
 		Map<String,Object> modelMap=new HashMap<>();
-		System.out.println(sql);
 		Connection connection = DbUtil.getInstance().getConnection();
 		try {
 			PreparedStatement pstat = connection.prepareStatement(sql);
@@ -65,16 +61,16 @@ public class SqlController extends BaseController{
 			
 			if(previewlist!=null)
 			{
-				modelMap.put("message", "success");
+				modelMap.put(MESSAGE, "success");
 				modelMap.put("previewlist", previewlist);
 			}else 
 			{
-				modelMap.put("message", "sql错误！或查询为空！");				
+				modelMap.put(MESSAGE, "sql错误！或查询为空！");				
 			}
 		} catch (SQLException e) {
 			//显示异常到控制台
 			//e.printStackTrace();
-			modelMap.put("message", e.getMessage());
+			modelMap.put(MESSAGE, e.getMessage());
 		}
 		return modelMap;
 	}

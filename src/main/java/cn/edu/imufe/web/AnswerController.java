@@ -115,7 +115,7 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/createQuiz",method=RequestMethod.GET)
+	@RequestMapping(value="/createQuiz",method=RequestMethod.POST)
 	private Map<String,Object> createQuiz(@RequestParam String question,@RequestParam String solution){
 		Answer answer = new Answer();
 		answer.setQuestion(question);
@@ -137,7 +137,7 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/deleteQuiz",method=RequestMethod.GET)
+	@RequestMapping(value="/deleteQuiz",method=RequestMethod.POST)
 	private Map<String,Object> deleteQuiz(@RequestParam Integer id){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerservice.deleteByPrimaryKey(id);
@@ -156,9 +156,13 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/updateQuiz",method=RequestMethod.GET)
-	private Map<String,Object> updateQuiz(@RequestParam Answer answer){
+	@RequestMapping(value="/updateQuiz",method=RequestMethod.POST)
+	private Map<String,Object> updateQuiz(@RequestParam Integer id,@RequestParam String question,@RequestParam String solution){
 		Map<String,Object> modelMap=new HashMap<>();
+		Answer answer = new Answer();
+		answer.setId(id);
+		answer.setQuestion(question);
+		answer.setSolution(solution);
 		Integer index = answerservice.updateByPrimaryKeySelective(answer);
 		if(index.equals(1)) 
 		{

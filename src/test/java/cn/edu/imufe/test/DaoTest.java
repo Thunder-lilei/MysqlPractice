@@ -12,7 +12,7 @@ import cn.edu.imufe.entity.User;
 
 public class DaoTest extends BaseTest{
 	@Autowired
-	private UserDao auserDao;
+	private UserDao userDao;
 	@Autowired
 	private AnswerDao answerdao;
 	@Autowired
@@ -38,10 +38,10 @@ public class DaoTest extends BaseTest{
 	@Test
 	public void login() 
 	{
-		User auser = auserDao.selectByUsername("172101040");
-		if(auser!=null) 
+		User user = userDao.selectByUsername("172101040");
+		if(user!=null)
 		{
-			if(auser.getPassword().equals("lilei")) 
+			if(user.getPassword().equals("lilei"))
 			{
 				System.out.println("yes");
 			}else 
@@ -56,9 +56,9 @@ public class DaoTest extends BaseTest{
 	@Test
 	public void updatepassword()
 	{
-		User auser  = auserDao.selectByUsername("172101040");
-		auser.setPassword("lilei");
-		Integer result = auserDao.updatePasswordByUsernameSelective(auser);
+		User user  = userDao.selectByUsername("172101040");
+		user.setPassword("lilei");
+		Integer result = userDao.updatePasswordByUsernameSelective(user);
 		if(result.equals(1)) 
 		{
 			System.out.println("yes");

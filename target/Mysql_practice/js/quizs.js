@@ -1,48 +1,52 @@
 $(document).ready(function() {})
 
+/*
+ 	如果此时cookie里不为空
+ * */
 if (getCookie("rlist") != "") {
-	let randomlist = getCookie("rlist");
-	let quizstbody = document.getElementById("quizstbody");
-	let quizstbodychildren = quizstbody.childNodes;
-	for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
-		quizstbody.removeChild(quizstbodychildren.item(i));
-	}
-	$.each($.parseJSON(randomlist), function(index, item) {
-		let newtr = document.createElement("tr");
-		let newtdid = document.createElement("td");
-		newtdid.innerHTML = item;
-		newtr.appendChild(newtdid);
-		let newtddo = document.createElement("td");
-		let newa = document.createElement("a");
-		newa.href = "answer.html?id=" + item;
-		newa.innerHTML = "答题";
-		newtddo.appendChild(newa);
-		newtr.appendChild(newtddo);
-		let newtdstatus = document.createElement("td");
-		let newh5 = document.createElement("h5");
-		let newspan = document.createElement("span");
+	let randomList = getCookie("rlist");
+	let quizstbody = $("#quizstbody");
+	let quizstbodychildren = quizstbody.children();
+	quizstbodychildren.filter("tr").remove();
+	/*for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
+		quizstbody.remove(quizstbodychildren.item(i));
+	}*/
+	$.each($.parseJSON(randomList), function(index, item) {
+		let newtr = $("<tr></tr>");
+		let newtdid = $("<td></td>");
+		newtdid.html(item);
+		newtr.append(newtdid);
+		let newtddo = $("<td></td>");
+		let newa = $("<a></a>");
+		newa.attr('href',"answer.html?id=" + item);
+		newa.html("答题");
+		newtddo.append(newa);
+		newtr.append(newtddo);
+		let newtdstatus = $("<td></td>");
+		let newh5 = $("<h5></h5>");
+		let newspan = $("<span></span>");
 
 		switch (getCookie(item)) {
 			case "1":
-				newspan.setAttribute("class", "badge badge-success");
-				newspan.innerHTML = "正确"
+				newspan.attr("class", "badge badge-success");
+				newspan.html("正确"); 
 				break;
 			case "2":
-				newspan.setAttribute("class", "badge badge-danger");
-				newspan.innerHTML = "错误"
+				newspan.attr("class", "badge badge-danger");
+				newspan.html("错误"); 
 				break;
 			case "3":
-			    newspan.setAttribute("class", "badge badge-warning");
-				newspan.innerHTML = "语句有误"
+			    newspan.attr("class", "badge badge-warning");
+				newspan.html("语句有误"); 
 				break;
 			default:
-				newspan.setAttribute("class", "badge badge-secondary");
-			 	newspan.innerHTML = "未开始";
+				newspan.attr("class", "badge badge-secondary");
+			 	newspan.html("未开始");
 		}
-		newh5.appendChild(newspan);
-		newtdstatus.appendChild(newh5);
-		newtr.appendChild(newtdstatus);
-		quizstbody.appendChild(newtr);
+		newh5.append(newspan);
+		newtdstatus.append(newh5);
+		newtr.append(newtdstatus);
+		quizstbody.append(newtr);
 	});
 
 
@@ -50,15 +54,15 @@ if (getCookie("rlist") != "") {
 
 function randomquizs() {
 	clearAllCookie();
-	$.get('/Mysql_practice/answer/getrandomquizs', function(data) {
+	$.get('/Mysql_practice/answer/getRandomQuizs', function(data) {
 		let message = '';
-		//let randomlist = getCookie("rlist");
+		let randomList = getCookie("rlist");
 		$.each(data, function(index, item) {
 			if (index == "message") {
 				message = item;
 			}
-			if (index == "randomlist") {
-				randomlist = JSON.stringify(item);
+			if (index == "randomList") {
+				randomList = JSON.stringify(item);
 			}
 		});
 		switch (message) {
@@ -68,10 +72,10 @@ function randomquizs() {
 				alert(message);
 		}
 
-		console.log(randomlist);
-		setCookie("rlist", randomlist, 30);
+		console.log(randomList);
+		setCookie("rlist", randomList, 30);
 		location.reload();
-		$.each($.parseJSON(randomlist), function(index, item) {
+		$.each($.parseJSON(randomList), function(index, item) {
 			setCookie(item, 0, 30);
 		})
 

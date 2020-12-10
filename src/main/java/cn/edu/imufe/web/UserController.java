@@ -23,14 +23,14 @@ import cn.edu.imufe.util.UserUtil;
  * @author lilei
  * @function
  * @param
- * @return 
+ * @return
  * 2020年11月25日下午5:07:35
  */
 @Controller
 @RequestMapping(value="/user")
 public class UserController extends BaseController {
 	@Autowired
-	private UserService auserService;
+	private UserService userService;
 	@Autowired
 	private UserRoleService userRoleService;
 	@Autowired
@@ -47,18 +47,18 @@ public class UserController extends BaseController {
 	 * @返回值 index.html以及message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	private ModelAndView login(@RequestParam String username,@RequestParam String password){
+	@RequestMapping(value="/toLogin",method=RequestMethod.POST)
+	private ModelAndView toLogin(@RequestParam String username,@RequestParam String password){
 		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
-		User auser = auserService.selectByUsername(username);
-		if(auser!=null) 
+		User user = userService.selectByUsername(username);
+		if(user!=null)
 		{
-			if(auser.getPassword().equals(password)) 
+			if(user.getPassword().equals(password))
 			{
-				session.setAttribute(roleWithUserRoleService.getRole(auser.getId()), auser);
-				session.setAttribute("user", auser);
+				session.setAttribute(roleWithUserRoleService.getRole(user.getId()), user);
+				session.setAttribute("user", user);
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
-				UserRole userRole = userRoleService.selectByUserId(auser.getId());
+				UserRole userRole = userRoleService.selectByUserId(user.getId());
 				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
 				System.out.println(role.getName());
 				switch(role.getName()) {
@@ -76,11 +76,11 @@ public class UserController extends BaseController {
 						break;
 				}
 				return mv;
-			}else 
+			}else
 			{
 				mv.addObject(MESSAGE, "错误的密码");
 			}
-		}else 
+		}else
 		{
 			mv.addObject(MESSAGE, "错误的账号");
 		}
@@ -95,11 +95,11 @@ public class UserController extends BaseController {
 	@RequestMapping(value="/updatePassword",method=RequestMethod.POST)
 	private ModelAndView updatePassword(@RequestParam String username,@RequestParam String newPassword){
 		ModelAndView mv = new ModelAndView(PageUrlConstant.LOGIN);
-		User auser = auserService.selectByUsername(username);
-		if(auser!=null) 
+		User user = userService.selectByUsername(username);
+		if(user!=null)
 		{
-			auser.setPassword(newPassword);
-			Integer result = auserService.updatePasswordByUsernameSelective(auser);
+			user.setPassword(newPassword);
+			Integer result = userService.updatePasswordByUsernameSelective(user);
 			if(result.equals(1)) 
 			{
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);

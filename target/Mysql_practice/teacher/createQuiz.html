@@ -6,7 +6,35 @@
 		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
-		
+		<style>
+			.disabled {
+				background: #fff;
+				color: #ccc;
+				border: solid 0px;
+			}
+			
+			.disabled:hover {
+				background: none;
+				color: #ccc;
+			}
+			
+			#error{
+				font-size: 20px;
+			    word-break:normal; 
+			    width:auto; 
+			    display:block; 
+			    white-space:pre-wrap;
+			    word-wrap : break-word ;
+			    overflow: hidden ;
+			    font-weight: 700;
+			    line-height: 1;
+			    color: #fff;
+			    background-color: #f00;
+			    text-align: center;
+			    vertical-align: baseline;
+			    border-radius: .25em;
+			}
+		</style>
 	</head>
 	<body>
 
@@ -38,7 +66,7 @@
 							题目
 						</div>
 						<div class="card-body">
-							<form class="form-horizontal" method="post" action="/Mysql_practice/answer/createquiz">
+							<!--<form class="form-horizontal">-->
 								<div class="form-group">
 									<label for="email">难度:</label>
 									<select class="form-control">
@@ -56,15 +84,15 @@
 								<div class="control-group">
 									<label for="email">解答:</label>				
 									<div class="controls">
-										<textarea name="solution" style="width: 100%; height: 400px ;overflow: auto;word-break: break-all; resize: none;" id="inputEmail"></textarea>
+										<textarea name="solution" style="width: 100%; height: 400px ;overflow: auto;word-break: break-all; resize: none;" id="inputsql"></textarea>
 									</div>
 								</div>
 								<div class="control-group">
-									<button type="submit" class="btn btn-success">提交</button>
-									<button type="button" class="btn btn-primary">确认答案</button>
+									<button type="button" class="btn btn-primary" onclick="preview()">运行</button>
+									<button type="submit" class="btn btn-success" onclick="submitQuiz()">提交</button>
 								</div>
 						</div>
-						</form>
+						<!--</form>-->
 					</div>
 		
 				</div>
@@ -75,8 +103,9 @@
 						结果预览
 					</div>
 					<div class="card-body">
+						<span id="error"></span>
 						<table class="table">
-							<thead>
+							<!--<thead>
 								<thead>
 									<tr>
 										<th>
@@ -91,8 +120,8 @@
 								
 									</tr>
 								</thead>
-							</thead>
-							<tbody id="quizstbody">
+							</thead>-->
+							<tbody id="tbody">
 								<!-- <tr>
 									<td>
 										1
@@ -173,7 +202,7 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<input type="button" class="btn btn-circle" value="上一题" />
-				<input type="button" class="btn btn-circle" value="回目录" />
+				<input type="button" class="btn btn-circle" value="回目录" onclick="javascript:window.location.href='/Mysql_practice/teacher/teacherIndex.html'"/>
 				<input type="button" class="btn btn-circle" value="下一题" />
 			</div>
 		</div>
@@ -181,69 +210,62 @@
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
 		<script src="../js/jquery.min.js"></script>
+		<script src="../js/inputCache.js" type="text/javascript" charset="utf-8"></script>
 		<script>
-			$(document).ready(function() {
-				let allidlist;
-				$.get('/Mysql_practice/answer/getquizs', function(data) {
-					$.each(data, function(index, item) {
-		
-						if (index == "allidlist") {
-							allidlist = JSON.stringify(item);
-						}
-					});
-		
-					let quizstbody = document.getElementById("quizstbody");
-					let quizstbodychildren = quizstbody.childNodes;
-					for (var i = quizstbodychildren.length - 1; i >= 0; i--) {
-						quizstbody.removeChild(quizstbodychildren.item(i));
-					}
-		
-					$.each($.parseJSON(allidlist), function(index, item) {
-		
-						let newtr = document.createElement("tr");
-						let newtdid = document.createElement("td");
-						let id = item;
-						newtdid.innerHTML = item;
-						newtr.appendChild(newtdid);
-		
-						let newtitle = document.createElement("td");
-						gettitle(id, newtitle);
-						newtr.appendChild(newtitle);
-						quizstbody.appendChild(newtr);
-		
-						let newtddo = document.createElement("td");
-						let newa = document.createElement("a");
-						newa.href = "answer.html?id=" + item;
-						newa.innerHTML = "修改";
-						newtddo.appendChild(newa);
-						newtr.appendChild(newtddo);
-		
-		
-					});
-				});
-		
-			})
-		
-		
-			function gettitle(id, newtitle) {
-				$.getJSON('/Mysql_practice/answer/gettitle', {
-					id: id
+			//运行按钮函数
+			function preview() {
+				reset();
+				$.getJSON('/Mysql_practice/sql/preview', {
+					sql: $("#inputsql").val()
 				}, function(data) {
-					let answer = '';
+					let message = '';
+					let previewlist = [];
 					$.each(data, function(index, item) {
-						if (index == "answer") {
-							answer = JSON.stringify(item)
+						if (index == "message") {
+							message = item
+						}
+						if (index == "previewlist") {
+							previewlist = item
 						}
 					});
-		
-					$.each($.parseJSON(answer), function(index, item) {
-						if (index === "question") {
-							newtitle.innerHTML = item;
-						}
-					});
-		
+					switch (message) {
+						case "success":
+							$.each(previewlist, function(index, item) {
+								let previewdata = item;
+								let newtr = $("<tr></tr>");
+								$.each(previewdata, function(indexTwo, itemTwo) {
+									let newtd = $("<td></td>");
+									newtd.html(itemTwo);
+									newtr.append(newtd);
+								});
+								$("#tbody").append(newtr);
+							});
+							break;
+						default:
+							//alert(message);
+							$("#error").text("SQL语句有误");
+			
+					}
+			
 				});
-		
+			}
+			
+			function reset() {
+				$("#error").text("");
+				let tbody = $("#tbody");
+				let tbodychildren = tbody.children();
+				tbodychildren.filter("tr").remove();
+			}
+			
+			//提交按钮函数
+			function submitQuiz() {
+//				console.log($("#inputEmail").val(),$("#inputsql").val())
+				$.get('/Mysql_practice/answer/createQuiz',{
+					question: $("#inputEmail").val(),
+					solution: $("#inputsql").val()
+				},function (data) {
+					console.log(data)
+				})
 			}
 		</script>
 	</body>

@@ -29,7 +29,7 @@ public class DaoTest extends BaseTest{
 	@Test
 	public void selectAllid() 
 	{
-		List<Integer> allid = answerdao.selectAllid();
+		List<Integer> allid = answerdao.selectAllId();
 		for(Integer i:allid) 
 		{
 			System.out.println(i);

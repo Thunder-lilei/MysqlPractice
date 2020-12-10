@@ -6,9 +6,9 @@ import cn.edu.imufe.pojo.AnswerPojo;
 public interface AnswerService {
 	Answer selectByPrimaryKey(Integer id);
 	
-	List<Integer> selectAllid();
+	List<Integer> selectAllId();
 	
-	List<AnswerPojo> selectAllIdwithTitle();
+	List<AnswerPojo> selectAllIdWithTitle();
 	
 	int insertSelective(Answer record);
 	

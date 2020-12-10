@@ -22,12 +22,13 @@ import cn.edu.imufe.service.AnswerHistoryService;
 @Controller
 @RequestMapping(value="/answerhistory")
 public class AnswerHistoryController extends BaseController {
+	private final AnswerHistoryService answerHistoryService;
 	@Autowired
-	AnswerHistoryService answerHistoryService;
+	public AnswerHistoryController(AnswerHistoryService answerHistoryService) {
+		this.answerHistoryService = answerHistoryService;
+	}
 	
-	private final String MESSAGE = "message";
-	private final String MESSAGE_SUCCESS = "success";
-	
+
 	/**
 	 * @功能	发送发送用户答题历史
 	 * @参数	无参数
@@ -41,11 +42,11 @@ public class AnswerHistoryController extends BaseController {
 		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(user.getId());
 		if(list!=null)
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put("message", "success");
 			modelMap.put("List", list);
 		}else  
 		{
-			modelMap.put(MESSAGE, "没有答题历史");
+			modelMap.put("message", "没有答题历史");
 		}
 		return modelMap;
 	}

@@ -45,7 +45,7 @@ public  class ServicTest extends BaseTest{
 	@Test
 	public void randomlist() 
 	{
-		List<Integer> allid = answerService.selectAllid();
+		List<Integer> allid = answerService.selectAllId();
 		@SuppressWarnings("unchecked")
 		List<Integer> list = RandomList.createRandomList(allid, 5);
 		for(Integer i:list) 
@@ -56,7 +56,7 @@ public  class ServicTest extends BaseTest{
 	@Test
 	public void alllist() 
 	{
-		List<AnswerPojo> allidwithtitle = answerService.selectAllIdwithTitle();
+		List<AnswerPojo> allidwithtitle = answerService.selectAllIdWithTitle();
 		for(AnswerPojo i:allidwithtitle) 
 		{
 			System.out.println(i.getId());

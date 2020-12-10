@@ -20,9 +20,9 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<Integer> selectAllid() {
+	public List<Integer> selectAllId() {
 		// TODO Auto-generated method stub
-		return answerdao.selectAllid();
+		return answerdao.selectAllId();
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<AnswerPojo> selectAllIdwithTitle() {
+	public List<AnswerPojo> selectAllIdWithTitle() {
 		// TODO Auto-generated method stub
-		return answerdao.selectAllIdwithTitle();
+		return answerdao.selectAllIdWithTitle();
 	}
 
 }

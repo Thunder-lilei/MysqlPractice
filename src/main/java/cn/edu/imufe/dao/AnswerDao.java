@@ -22,9 +22,9 @@ public interface AnswerDao {
 
     Answer selectByPrimaryKey(Integer id);
     
-    List<Integer> selectAllid();
+    List<Integer> selectAllId();
     
-    List<AnswerPojo> selectAllIdwithTitle();
+    List<AnswerPojo> selectAllIdWithTitle();
     
     int updateByExampleSelective(@Param("record") Answer record, @Param("example") AnswerExample example);
 

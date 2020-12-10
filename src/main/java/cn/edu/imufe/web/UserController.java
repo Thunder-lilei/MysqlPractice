@@ -21,23 +21,24 @@ import cn.edu.imufe.util.UserUtil;
 
 /**
  * @author lilei
- * @function
- * @param
- * @return
  * 2020年11月25日下午5:07:35
  */
 @Controller
 @RequestMapping(value="/user")
 public class UserController extends BaseController {
+	private final UserService userService;
+	private final UserRoleService userRoleService;
+	private final RoleWithUserRoleService roleWithUserRoleService;
+	private final RoleService roleService;
 	@Autowired
-	private UserService userService;
-	@Autowired
-	private UserRoleService userRoleService;
-	@Autowired
-	private RoleWithUserRoleService roleWithUserRoleService;
-	@Autowired
-	private RoleService roleService;
-	
+	public UserController(UserService userService, UserRoleService userRoleService,
+						  RoleWithUserRoleService roleWithUserRoleService, RoleService roleService) {
+	this.userService = userService;
+	this.userRoleService = userRoleService;
+	this.roleWithUserRoleService = roleWithUserRoleService;
+	this.roleService = roleService;
+	}
+
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success"	;
 	
@@ -63,13 +64,11 @@ public class UserController extends BaseController {
 				System.out.println(role.getName());
 				switch(role.getName()) {
 					case UserConstant.ADMIN:
+					case UserConstant.TEACHER:
 						mv = new ModelAndView(PageUrlConstant.TEACHER_ADMIN_INDEX);
 						break;
 					case UserConstant.STUDENT:
 						mv = new ModelAndView(PageUrlConstant.STUDENT_INDEX);
-						break;
-					case UserConstant.TEACHER:
-						mv = new ModelAndView(PageUrlConstant.TEACHER_ADMIN_INDEX);
 						break;
 					default:
 						mv.addObject(MESSAGE, "错误的用户角色");

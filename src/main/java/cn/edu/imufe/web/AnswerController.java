@@ -25,9 +25,12 @@ import cn.edu.imufe.util.RandomList;
 @Controller
 @RequestMapping(value="/answer")
 public class AnswerController extends BaseController {
+	private final AnswerService answerservice;
 	@Autowired
-	private AnswerService answerservice;
-	
+	public AnswerController(AnswerService answerservice) {
+		this.answerservice = answerservice;
+	}
+
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success";
 	
@@ -40,7 +43,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getTitle",method=RequestMethod.GET)
 	private Map<String,Object> getTitle(@RequestParam String id){
 		Map<String,Object> modelMap=new HashMap<>();
-		if(id!=null && id!="") 
+		if(id!=null && !id.equals(""))
 		{
 			Answer answer = answerservice.selectByPrimaryKey(Integer.parseInt(id));
 			if(answer!=null)
@@ -67,7 +70,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getRandomQuizs",method=RequestMethod.GET)
 	private Map<String,Object> getRandomQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Integer> allid = answerservice.selectAllid();
+		List<Integer> allid = answerservice.selectAllId();
 		Integer Random = 5;
 		//随机抽取的题目数量
 		if(allid!=null)
@@ -98,7 +101,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getQuizs",method=RequestMethod.GET)
 	private Map<String,Object> getQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<AnswerPojo> allidwithtitle = answerservice.selectAllIdwithTitle();
+		List<AnswerPojo> allidwithtitle = answerservice.selectAllIdWithTitle();
 		if(allidwithtitle!=null)
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);

@@ -1,5 +1,6 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.util.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +59,7 @@ public class UserController extends BaseController {
 		User user = userService.selectByUsername(username);
 		if(user!=null)
 		{
-			if(user.getPassword().equals(password))
+			if(BCrypt.checkpw(password,user.getPassword()))
 			{
 				session.setAttribute(roleWithUserRoleService.getRole(user.getId()), user);
 				session.setAttribute("user", user);

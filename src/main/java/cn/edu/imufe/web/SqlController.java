@@ -43,12 +43,16 @@ public class SqlController extends BaseController{
 	
 	private final String MESSAGE = "message";
 
-	/**
-	 * @功能	预览
-	 * @参数	SQL语句
-	 * @返回值
-	 */
-	@RequestMapping(value="/preview",method = RequestMethod.GET)
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 预览 获取sql 返回结果list
+	 * @CreateDate
+	 * @UpdateDate 14:18 2020/12/10
+	 * @Param [sql]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@RequestMapping(value="/preview",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String,Object> preview(@RequestParam String sql){
 		Map<String,Object> modelMap=new HashMap<>();
@@ -104,12 +108,14 @@ public class SqlController extends BaseController{
 	}
 	/*
 	 * @Author 李雷
-	 * @Description //答案对比并添加答题历史，已有的答题历史进行覆盖 lilei
-	 * @Date 2020年11月25日下午2:46:38
+	 * @Description
+	 * 答案对比并添加答题历史，已有的答题历史进行覆盖
+	 * @CreateDate 2020年11月25日下午2:46:38
+	 * @UpdateDate 14:21 2020/12/10
 	 * @Param [sqlString, id]
-	 * @return java.util.Map<java.lang.String,java.lang.Object> message是否进行比对， result比对结果
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
-	@RequestMapping(value="compareSqlAddHistory",method = RequestMethod.GET)
+	@RequestMapping(value="compareSqlAddHistory",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> compareSqlAddHistory(@RequestParam String sqlString,@RequestParam String id) {
 		Map<String,Object> modelMap=new HashMap<>();
@@ -130,15 +136,12 @@ public class SqlController extends BaseController{
 					
 			}
 			User record = (User) session.getAttribute("user");
-			Answerhistory answerhistory = new Answerhistory();
 			Answerhistory replace;
 			replace = answerHistoryService.selectByUserIdAndAnswerId(record.getId(),Integer.parseInt(id));
-			
-			answerhistory.setUserId(record.getId());
-			answerhistory.setAnswerId(Integer.parseInt(id));
-			answerhistory.setUserAnswers(sqlString);
-			answerhistory.setQuestionStatus(status);
-			
+
+			Answerhistory answerhistory = new Answerhistory(null,record.getId(),Integer.parseInt(id),
+					sqlString,status);
+
 			if(replace == null) {
 				answerHistoryService.insert(answerhistory);
 			}else {

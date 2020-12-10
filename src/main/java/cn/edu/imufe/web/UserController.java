@@ -42,11 +42,15 @@ public class UserController extends BaseController {
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success"	;
 	
-	/**
-	 * @功能	管理员登陆 保存登录信息至session 跳转至index.html
-	 * @参数	用户名username 密码password
-	 * @返回值 index.html以及message
-	 */
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 管理员登陆 保存登录信息至session 跳转至主页
+	 * @CreateDate
+	 * @UpdateDate 14:15 2020/12/10
+	 * @Param [username, password]
+	 * @return org.springframework.web.servlet.ModelAndView
+	 **/
 	@ResponseBody
 	@RequestMapping(value="/toLogin",method=RequestMethod.POST)
 	private ModelAndView toLogin(@RequestParam String username,@RequestParam String password){
@@ -85,11 +89,15 @@ public class UserController extends BaseController {
 		}
 		return mv;
 	}
-	/**
-	 * @功能	修改密码 跳转至login.html
-	 * @参数	用户名username 新密码newpassword
-	 * @返回值 login.html以及message
-	 */
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 修改密码 跳转至登录页面
+	 * @CreateDate 14:16 2020/12/10
+	 * @UpdateDate 14:16 2020/12/10
+	 * @Param [username, newPassword]
+	 * @return org.springframework.web.servlet.ModelAndView
+	 **/
 	@ResponseBody
 	@RequestMapping(value="/updatePassword",method=RequestMethod.POST)
 	private ModelAndView updatePassword(@RequestParam String username,@RequestParam String newPassword){
@@ -113,13 +121,17 @@ public class UserController extends BaseController {
 		}
 		return mv;
 	}
-	/**
-	 * @功能	登出 跳转至index.html
-	 * @参数	无参
-	 * @返回值 index.html以及message
-	 */
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 登出 跳转至主页
+	 * @CreateDate 14:17 2020/12/10
+	 * @UpdateDate 14:17 2020/12/10
+	 * @Param []
+	 * @return org.springframework.web.servlet.ModelAndView
+	 **/
 	@ResponseBody
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	@RequestMapping(value="/logout",method=RequestMethod.POST)
 	private ModelAndView logout(){
 		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
 		//已登录

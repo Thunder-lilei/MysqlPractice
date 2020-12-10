@@ -11,6 +11,16 @@ public class Answerhistory {
 
     private Integer questionStatus;
 
+    public Answerhistory() {}
+
+    public Answerhistory(Integer id, Integer userId, Integer answerId, String userAnswers, Integer questionStatus) {
+        this.id = id;
+        this.userId = userId;
+        this.answerId = answerId;
+        this.userAnswers = userAnswers;
+        this.questionStatus = questionStatus;
+    }
+
     public Integer getId() {
         return id;
     }

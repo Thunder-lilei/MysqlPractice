@@ -20,7 +20,7 @@ import cn.edu.imufe.service.AnswerHistoryService;
  * 2020年11月19日
  */
 @Controller
-@RequestMapping(value="/answerhistory")
+@RequestMapping(value="/answerHistory")
 public class AnswerHistoryController extends BaseController {
 	private final AnswerHistoryService answerHistoryService;
 	@Autowired
@@ -29,13 +29,17 @@ public class AnswerHistoryController extends BaseController {
 	}
 	
 
-	/**
-	 * @功能	发送发送用户答题历史
-	 * @参数	无参数
-	 * @返回值 返回所有答题历史 list
-	 */
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 查询用户答题历史
+	 * @CreateDate
+	 * @UpdateDate 14:25 2020/12/10
+	 * @Param []
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
 	@ResponseBody
-	@RequestMapping(value="/getUserAnswerHistory",method=RequestMethod.GET)
+	@RequestMapping(value="/getUserAnswerHistory",method=RequestMethod.POST)
 	private Map<String,Object> getUserAnswerHistory(){
 		Map<String,Object> modelMap=new HashMap<>();
 		User user = (User) session.getAttribute("user");

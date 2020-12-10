@@ -39,7 +39,7 @@ public class UserController extends BaseController {
 	private RoleService roleService;
 	
 	private final String MESSAGE = "message";
-	private final String MESSAGE_SUCCESS = "success";
+	private final String MESSAGE_SUCCESS = "success"	;
 	
 	/**
 	 * @功能	管理员登陆 保存登录信息至session 跳转至index.html

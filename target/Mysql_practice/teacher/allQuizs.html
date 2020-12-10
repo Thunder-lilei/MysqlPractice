@@ -8,16 +8,36 @@
 		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
 	</head>
 	<body>
+		
+		<!--删除后触发模态框-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			         	<span aria-hidden="true">&times;</span>
+			        </button>
+			    </div>
+			    <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" id="sureDelete">确认删除</button>
+	            </div>
+		    </div>
+		  </div>
+		</div>
+		<!--===========-->
+		
 
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom:30px">
-			<a class="navbar-brand" href="#">SQL在线测试</a>
+			<a class="navbar-brand" href="/teacher/teacherIndex.html">SQL在线测试</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#">首页</a>
+						<a class="nav-link" href="/teacher/teacherIndex.html">首页</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">功能</a>
@@ -138,7 +158,7 @@
 			let alllist;
 			let pagesize = 5;
 			$(document).ready(function() {
-				$.get('/Mysql_practice/answer/getQuizs', function(data) {
+				$.get('/answer/getQuizs', function(data) {
 					for (let i in data) {
 						if (data[i] instanceof Array) {
 							alllist = data[i]
@@ -166,7 +186,7 @@
 
 				for (let i = page; i < number; i++) {
 
-					let newtr = $("<tr></tr>");
+					let newtr = $("<tr id=tr"+ alllist[i].id +"></tr>");
 					let newtdid = $("<td></td>");
 					newtdid.html(alllist[i].id);
 					newtr.append(newtdid);
@@ -176,17 +196,58 @@
 					newtr.append(newtitle);
 
 					let newtddo = $("<td></td>");
-					let newa = $("<a></a>");
-					newa.attr('href',"answer.html?id=" + alllist[i].id);
-					newa.html("修改");
+					
+					let newa = $("<a>修改</a>");
+					newa.attr("href","updateQuiz.html?id=" + alllist[i].id);
+					
+					let newspan = $("<span> - </span>");
+					
+					let newda = $("<a href='#'>删除</a>");
+//					newda.attr("onclick","deleteQuestion("+alllist[i].id+")")
+					
+					//定义删除题目函数
+					newda.on('click',{id: alllist[i].id},function (e) {
+						e.preventDefault();
+						//模态框显示
+						$('.modal-footer').show();
+						$('#exampleModalLabel').html("是否确认删除");
+						$('#exampleModal').modal('show');
+						
+						$('#sureDelete').on('click',{id: e.data.id},function (e) {
+							$('.modal-footer').hide();
+							$.post('/answer/deleteQuiz',{
+								id: e.data.id
+							},function (data) {
+								if(data.message == 'success') {
+									$('#exampleModalLabel').html("删除成功");
+									$('#exampleModal').modal('show');
+									$("#tr"+e.data.id).remove();
+									//删除完成后，需要将后续一个元素往前移
+									//需要判断此时是否为最后一个元素
+									if(e.data.id < alllist.length-1) {
+										//将后续元素前移
+			//							$("#quizstbody").append($("#tr"+e.data.id+1))
+									}
+								} else{
+									$('#exampleModalLabel').html("网络错误！请稍后重试");
+									$('#exampleModal').modal('show');
+								}
+							})
+						})
+						
+					})
+					
+					
 					newtddo.append(newa);
+					newtddo.append(newspan);
+					newtddo.append(newda)
 					newtr.append(newtddo);
 					
 					$("#quizstbody").append(newtr);
 
 				}
 			}
-
+			
 			// 定义下一页按钮点击事件
 			nextBtn.onclick = function() {
 
@@ -237,6 +298,7 @@
 				nowPage(page, page + pagesize, alllist)
 
 			}
+			
 		</script>
 	</body>
 </html>

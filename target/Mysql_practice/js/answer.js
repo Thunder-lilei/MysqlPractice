@@ -1,46 +1,32 @@
 $(document).ready(function() {
-	(function() {
-			setCookie('time', 10, 30);
-			let id = GetQueryString("id");
-			$.getJSON('/Mysql_practice/answer/getTitle', {
-				id: id
-			}, function(data) {
-				let message = '';
-				let answer = '';
-				$.each(data, function(index, item) {
-					if (index == "message") {
-						message = item
-					}
-					if (index == "answer") {
-						answer = JSON.stringify(item)
-					}
-				});
-				switch (message) {
-					case "success":
-						break;
-					default:
-						alert(message);
-				}
-				$.each($.parseJSON(answer), function(index, item) {
-					if (index === "question") {
-						$("#question").html(item);
-					}
-				});
-			});
-
-			// var countdown = document.getElementById("countdown");
-			// var time = getCookie('time'); //30分钟换算成1800秒
-			// setInterval(function() {
-			// 	time = time - 1;
-			// 	setCookie('time', time, 30);
-			// 	var minute = parseInt(time / 60);
-			// 	var second = parseInt(time % 60);
-			// 	countdown.innerHTML = '还剩' + minute + '分' + second + '秒';
-			// }, 1000);
-
+	
+	let id = GetQueryString("id");
+	$.getJSON('/answer/getTitle', {
+		id: id
+	}, function(data) {
+		let message = '';
+		let answer;
+		$.each(data, function(index, item) {
+			if (index == "message") {
+				message = item
+			}
+			if (index == "answer") {
+				answer = item
+			}
+		});
+		switch (message) {
+			case "success":
+				break;
+			default:
+				alert(message);
 		}
+		$.each(answer, function(index, item) {
+			if (index === "question") {
+				$("#question").html(item);
+			}
+		});
+	});
 
-	)()
 })
 
 function sql_format() {
@@ -59,7 +45,7 @@ function sql_format() {
 
 function preview() {
 	reset();
-	$.getJSON('/Mysql_practice/sql/preview', {
+	$.getJSON('/sql/preview', {
 		sql: $("#inputsql").val()
 	}, function(data) {
 		let message = '';
@@ -97,7 +83,7 @@ function preview() {
 function compare() {
 	reset();
 	let id = GetQueryString("id");
-	$.getJSON('/Mysql_practice/sql/compareSqlAddHistory', {
+	$.getJSON('/sql/compareSqlAddHistory', {
 		sqlString: $("#inputsql").val(),
 		id: id
 	}, function(data) {
@@ -120,15 +106,15 @@ function compare() {
 
 		if (result == "\"Different\"") {
 			setCookie(id, 2, 30);
-			window.location.href = './quizs.html';
 		} else if (result == "\"Same\"") {
 			setCookie(id, 1, 30);
-			window.location.href = './quizs.html';
 		} else {
 			setCookie(id, 3, 30);
-			window.location.href = './quizs.html';
 			//$("#error").text("SQL语句有误");
 		}
+		
+		window.location.href = './answerHistory.html';
+		
 	});
 }
 

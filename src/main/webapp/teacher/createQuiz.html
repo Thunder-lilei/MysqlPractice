@@ -54,14 +54,14 @@
 		<!--===========-->
 		
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom:30px">
-			<a class="navbar-brand" href="/Mysql_practice/teacher/teacherIndex.html">SQL在线测试</a>
+			<a class="navbar-brand" href="/teacher/teacherIndex.html">SQL在线测试</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="/Mysql_practice/teacher/teacherIndex.html">首页</a>
+						<a class="nav-link" href="/teacher/teacherIndex.html">首页</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">功能</a>
@@ -217,7 +217,7 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<input type="button" class="btn btn-circle" value="上一题" />
-				<input type="button" class="btn btn-circle" value="回目录" onclick="javascript:window.location.href='/Mysql_practice/teacher/teacherIndex.html'"/>
+				<input type="button" class="btn btn-circle" value="回目录" onclick="javascript:window.location.href='/teacher/teacherIndex.html'"/>
 				<input type="button" class="btn btn-circle" value="下一题" />
 			</div>
 		</div>
@@ -230,7 +230,7 @@
 			//运行按钮函数
 			function preview() {
 				reset();
-				$.getJSON('/Mysql_practice/sql/preview', {
+				$.getJSON('/sql/preview', {
 					sql: $("#inputsql").val()
 				}, function(data) {
 					let message = '';
@@ -274,7 +274,7 @@
 			
 			//提交按钮函数
 			function submitQuiz() {
-				$.post('/Mysql_practice/answer/createQuiz',{
+				$.post('/answer/createQuiz',{
 					question: $("#inputEmail").val(),
 					solution: $("#inputsql").val()
 				},function (data) {

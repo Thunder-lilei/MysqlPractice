@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>出题</title>
+		<title>改题</title>
 		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
 		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
@@ -83,12 +83,12 @@
 						<div class="card-body">
 							<!--<form class="form-horizontal">-->
 								<div class="form-group">
-									<label for="email">难度:</label>
-									<select class="form-control">
+									<label for="email" id="questionId"></label>
+									<!--<select class="form-control">
 										<option>简单</option>
 										<option>普通</option>
 										<option>难</option>
-									</select>
+									</select>-->
 								</div>
 								<div class="control-group">
 									<label for="email">题干:</label>
@@ -104,7 +104,7 @@
 								</div>
 								<div class="control-group">
 									<button type="button" class="btn btn-primary" onclick="preview()">运行</button>
-									<button type="submit" class="btn btn-success" onclick="submitQuiz()">提交</button>
+									<button type="submit" class="btn btn-success" onclick="submitQuiz()">修改</button>
 								</div>
 						</div>
 						<!--</form>-->
@@ -227,6 +227,51 @@
 		<script type="text/javascript" src="../js/bootstrap.js"></script>
 		<script src="../js/inputCache.js" type="text/javascript" charset="utf-8"></script>
 		<script>
+			//页面加载时需要将对应的题加入对应input框
+			$(document).ready(function() {
+				
+				let id = GetQueryString("id");
+				$.getJSON('/Mysql_practice/answer/getTitle', {
+					id: id
+				}, function(data) {
+					let message = '';
+					let answer = '';
+					$.each(data, function(index, item) {
+						if (index == "message") {
+							message = item
+						}
+						if (index == "answer") {
+							answer = item
+						}
+					});
+					switch (message) {
+						case "success":
+							break;
+						default:
+							$('#exampleModalLabel').html("网络错误！请刷新页面后重试");
+							$('#exampleModal').modal('show');
+					}
+					$.each(answer, function(index, item) {
+						if (index === "id") {
+							$("#questionId").html("题号："+item);
+						} else if(index === "question") {
+							$("#inputEmail").html(item);
+						} else{
+							$("#inputsql").html(item);
+						}
+					});
+				});
+			
+			})
+			
+			//创建获取当前页面id的函数
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return decodeURI(r[2]);
+				return null;
+			}
+			
 			//运行按钮函数
 			function preview() {
 				reset();
@@ -272,14 +317,16 @@
 				tbodychildren.filter("tr").remove();
 			}
 			
-			//提交按钮函数
+			//修改按钮函数
 			function submitQuiz() {
-				$.post('/Mysql_practice/answer/createQuiz',{
+				let id = GetQueryString("id");
+				$.post('/Mysql_practice/answer/updateQuiz',{
+					id: id,
 					question: $("#inputEmail").val(),
 					solution: $("#inputsql").val()
 				},function (data) {
 					if(data.message == 'success') {
-						$('#exampleModalLabel').html("添加成功");
+						$('#exampleModalLabel').html("修改成功");
 						$('#exampleModal').modal('show');
 					} else{
 						$('#exampleModalLabel').html("网络错误！请稍后重试");

@@ -26,7 +26,7 @@ import cn.edu.imufe.util.RandomList;
 @RequestMapping(value="/answer")
 public class AnswerController extends BaseController {
 	@Autowired
-	private AnswerService answerService;
+	private AnswerService answerservice;
 	
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success";
@@ -42,7 +42,7 @@ public class AnswerController extends BaseController {
 		Map<String,Object> modelMap=new HashMap<>();
 		if(id!=null && id!="") 
 		{
-			Answer answer = answerService.selectByPrimaryKey(Integer.parseInt(id));
+			Answer answer = answerservice.selectByPrimaryKey(Integer.parseInt(id));
 			if(answer!=null)
 			{
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
@@ -67,21 +67,21 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getRandomQuizs",method=RequestMethod.GET)
 	private Map<String,Object> getRandomQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Integer> allId = answerService.selectAllid();
+		List<Integer> allid = answerservice.selectAllid();
 		Integer Random = 5;
 		//随机抽取的题目数量
-		if(allId!=null)
+		if(allid!=null)
 		{
 			@SuppressWarnings("unchecked")
-			List<Integer> randomList = RandomList.createRandomList(allId, Random);
+			List<Integer> randomlist = RandomList.createRandomList(allid, Random);
 			//获取随机题目id allid为题库中全部id Random为随机抽取的数量
-			if(!Random.equals(randomList.size())) 
+			if(!Random.equals(randomlist.size())) 
 			{
 				modelMap.put(MESSAGE, "随机题目数量不足");
 			}else
 			{
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-				modelMap.put("randomList", randomList);
+				modelMap.put("randomList", randomlist);
 			}
 		}else  
 		{
@@ -98,11 +98,11 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getQuizs",method=RequestMethod.GET)
 	private Map<String,Object> getQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<AnswerPojo> answerPojoList = answerService.selectAllIdwithTitle();
-		if(answerPojoList!=null)
+		List<AnswerPojo> allidwithtitle = answerservice.selectAllIdwithTitle();
+		if(allidwithtitle!=null)
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-			modelMap.put("allList", answerPojoList);
+			modelMap.put("allList", allidwithtitle);
 		}else  
 		{
 			modelMap.put(MESSAGE, "题库不足");
@@ -115,13 +115,13 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/createQuiz",method=RequestMethod.GET)
+	@RequestMapping(value="/createQuiz",method=RequestMethod.POST)
 	private Map<String,Object> createQuiz(@RequestParam String question,@RequestParam String solution){
 		Answer answer = new Answer();
 		answer.setQuestion(question);
 		answer.setSolution(solution);
 		Map<String,Object> modelMap=new HashMap<>();
-		Integer index = answerService.insertSelective(answer);
+		Integer index = answerservice.insertSelective(answer);
 		if(index.equals(1)) 
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
@@ -137,10 +137,10 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/deleteQuiz",method=RequestMethod.GET)
+	@RequestMapping(value="/deleteQuiz",method=RequestMethod.POST)
 	private Map<String,Object> deleteQuiz(@RequestParam Integer id){
 		Map<String,Object> modelMap=new HashMap<>();
-		Integer index = answerService.deleteByPrimaryKey(id);
+		Integer index = answerservice.deleteByPrimaryKey(id);
 		if(index.equals(1)) 
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
@@ -156,10 +156,14 @@ public class AnswerController extends BaseController {
 	 * @返回值 message
 	 */
 	@ResponseBody
-	@RequestMapping(value="/updateQuiz",method=RequestMethod.GET)
-	private Map<String,Object> updateQuiz(@RequestParam Answer answer){
+	@RequestMapping(value="/updateQuiz",method=RequestMethod.POST)
+	private Map<String,Object> updateQuiz(@RequestParam Integer id,@RequestParam String question,@RequestParam String solution){
 		Map<String,Object> modelMap=new HashMap<>();
-		Integer index = answerService.updateByPrimaryKeySelective(answer);
+		Answer answer = new Answer();
+		answer.setId(id);
+		answer.setQuestion(question);
+		answer.setSolution(solution);
+		Integer index = answerservice.updateByPrimaryKeySelective(answer);
 		if(index.equals(1)) 
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.entity.Answerhistory;
+import cn.edu.imufe.entity.AnswerHistory;
 import cn.edu.imufe.entity.User;
 import cn.edu.imufe.service.AnswerHistoryService;
 import cn.edu.imufe.service.AnswerService;
@@ -136,10 +136,10 @@ public class SqlController extends BaseController{
 					
 			}
 			User record = (User) session.getAttribute("user");
-			Answerhistory replace;
+			AnswerHistory replace;
 			replace = answerHistoryService.selectByUserIdAndAnswerId(record.getId(),Integer.parseInt(id));
 
-			Answerhistory answerhistory = new Answerhistory(null,record.getId(),Integer.parseInt(id),
+			AnswerHistory answerhistory = new AnswerHistory(null,record.getId(),Integer.parseInt(id),
 					sqlString,status);
 
 			if(replace == null) {

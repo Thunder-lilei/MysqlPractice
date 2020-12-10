@@ -1,6 +1,6 @@
 package cn.edu.imufe.entity;
 
-public class Answerhistory {
+public class AnswerHistory {
     private Integer id;
 
     private Integer userId;
@@ -11,9 +11,9 @@ public class Answerhistory {
 
     private Integer questionStatus;
 
-    public Answerhistory() {}
+    public AnswerHistory() {}
 
-    public Answerhistory(Integer id, Integer userId, Integer answerId, String userAnswers, Integer questionStatus) {
+    public AnswerHistory(Integer id, Integer userId, Integer answerId, String userAnswers, Integer questionStatus) {
         this.id = id;
         this.userId = userId;
         this.answerId = answerId;

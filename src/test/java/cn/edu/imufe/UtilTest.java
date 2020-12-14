@@ -13,7 +13,7 @@ import org.junit.Test;
 public class UtilTest {
     @Test
     public void BCryptTest() {
-        String pwd = "lilei";
+        String pwd = "admin";
         String pwdB = BCrypt.hashpw(pwd,BCrypt.gensalt());
         System.out.println(pwdB);
         System.out.println(BCrypt.checkpw(pwd,pwdB));

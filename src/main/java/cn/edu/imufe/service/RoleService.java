@@ -1,7 +1,7 @@
 package cn.edu.imufe.service;
 
-import cn.edu.imufe.entity.Role;
+import cn.edu.imufe.po.Role;
 
 public interface RoleService {
-	Role selectByPrimaryKey(Integer id);
+	Role selectByPrimaryKey(Long id);
 }

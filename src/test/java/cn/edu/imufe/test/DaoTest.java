@@ -2,35 +2,34 @@ package cn.edu.imufe.test;
 
 import java.util.List;
 
+import cn.edu.imufe.dao.AnswerHistoryMapper;
+import cn.edu.imufe.dao.AnswerMapper;
+import cn.edu.imufe.dao.UserMapper;
+import cn.edu.imufe.po.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.edu.imufe.dao.AnswerDao;
-import cn.edu.imufe.dao.AnswerhistoryDao;
-import cn.edu.imufe.dao.UserDao;
-import cn.edu.imufe.entity.User;
-
 public class DaoTest extends BaseTest{
 	@Autowired
-	private UserDao userDao;
+	private UserMapper userDao;
 	@Autowired
-	private AnswerDao answerdao;
+	private AnswerMapper answerDao;
 	@Autowired
-	private AnswerhistoryDao AhD;
+	private AnswerHistoryMapper AhD;
 	@Test
 	public void SelectAnswerByPrimarykey() {
-		int id=1;
-		System.out.println(answerdao.selectByPrimaryKey(id));
+		Long id=1L;
+		System.out.println(answerDao.selectByPrimaryKey(id));
 	}
 	@Test
 	public void SelectAnswerhistoryByPrimarykey() {
-		System.out.println(AhD.selectByPrimaryKey(1));
+		System.out.println(AhD.selectByPrimaryKey(1L));
 	}
 	@Test
 	public void selectAllid() 
 	{
-		List<Integer> allid = answerdao.selectAllId();
-		for(Integer i:allid) 
+		List<Long> allid = answerDao.selectAllId();
+		for(Long i:allid)
 		{
 			System.out.println(i);
 		}

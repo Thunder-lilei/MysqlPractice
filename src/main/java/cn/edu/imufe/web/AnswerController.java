@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.edu.imufe.po.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.util.RandomList;
@@ -49,7 +49,7 @@ public class AnswerController extends BaseController {
 		Map<String,Object> modelMap=new HashMap<>();
 		if(id!=null && !id.equals(""))
 		{
-			Answer answer = answerService.selectByPrimaryKey(Integer.parseInt(id));
+			Answer answer = answerService.selectByPrimaryKey(Long.parseLong(id));
 			if(answer!=null)
 			{
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
@@ -78,7 +78,7 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getRandomQuizs",method=RequestMethod.POST)
 	private Map<String,Object> getRandomQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<Integer> allid = answerService.selectAllId();
+		List<Long> allid = answerService.selectAllId();
 		Integer randomSize = 5;
 		//随机抽取的题目数量
 		if(allid!=null)
@@ -161,7 +161,7 @@ public class AnswerController extends BaseController {
 	 **/
 	@ResponseBody
 	@RequestMapping(value="/deleteQuiz",method=RequestMethod.POST)
-	private Map<String,Object> deleteQuiz(@RequestParam Integer id){
+	private Map<String,Object> deleteQuiz(@RequestParam Long id){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerService.deleteByPrimaryKey(id);
 		if(index.equals(1)) 
@@ -184,7 +184,7 @@ public class AnswerController extends BaseController {
 	 **/
 	@ResponseBody
 	@RequestMapping(value="/updateQuiz",method=RequestMethod.POST)
-	private Map<String,Object> updateQuiz(@RequestParam Integer id,@RequestParam String question,@RequestParam String solution){
+	private Map<String,Object> updateQuiz(@RequestParam Long id,@RequestParam String question,@RequestParam String solution){
 		Map<String,Object> modelMap=new HashMap<>();
 		Answer answer = new Answer();
 		answer.setId(id);

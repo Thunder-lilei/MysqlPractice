@@ -4,21 +4,21 @@ package cn.edu.imufe.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.imufe.dao.AnswerHistoryMapper;
+import cn.edu.imufe.dao.AnswerMapper;
+import cn.edu.imufe.po.Answer;
+import cn.edu.imufe.po.AnswerHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.edu.imufe.dao.AnswerDao;
-import cn.edu.imufe.dao.AnswerhistoryDao;
-import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.entity.AnswerHistory;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
 import cn.edu.imufe.service.AnswerHistoryService;
 @Service
 public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 	@Autowired
-	AnswerhistoryDao answerHistoryDao;
+	AnswerHistoryMapper answerHistoryDao;
 	@Autowired
-	AnswerDao answerDao;
+	AnswerMapper answerDao;
 
 	@Override
 	public int insert(AnswerHistory record) {
@@ -27,13 +27,13 @@ public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 	}
 
 	@Override
-	public AnswerHistory selectByPrimaryKey(Integer id) {
+	public AnswerHistory selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
 		return answerHistoryDao.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public AnswerHistory selectByUserIdAndAnswerId(Integer userId, Integer answerId) {
+	public AnswerHistory selectByUserIdAndAnswerId(Long userId, Long answerId) {
 		// TODO Auto-generated method stub
 		return answerHistoryDao.selectByUserIdAndAnswerId(userId,answerId);
 	}
@@ -46,7 +46,7 @@ public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 
 	@SuppressWarnings("null")
 	@Override
-	public List<AnswerHistoryPojo> selectUserAnswerHistory(Integer id) {
+	public List<AnswerHistoryPojo> selectUserAnswerHistory(Long id) {
 		// TODO Auto-generated method stub
 		List<AnswerHistory> answerHistoryList = answerHistoryDao.selectUserAnswerHistory(id);
 		List<AnswerHistoryPojo> answerHistoryPojoList = new ArrayList<AnswerHistoryPojo>();

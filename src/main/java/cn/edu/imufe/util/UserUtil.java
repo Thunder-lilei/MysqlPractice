@@ -2,12 +2,6 @@ package cn.edu.imufe.util;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import cn.edu.imufe.entity.User;
-import cn.edu.imufe.entity.UserRole;
-import cn.edu.imufe.service.UserRoleService;
-
 /**
  * @author lilei
  *

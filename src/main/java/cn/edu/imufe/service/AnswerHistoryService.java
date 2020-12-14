@@ -2,16 +2,16 @@ package cn.edu.imufe.service;
 
 import java.util.List;
 
-import cn.edu.imufe.entity.*;
+import cn.edu.imufe.po.*;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
 public interface AnswerHistoryService {
 	int insert(AnswerHistory record);
 	
-	AnswerHistory selectByPrimaryKey(Integer id);
+	AnswerHistory selectByPrimaryKey(Long id);
 	
-	AnswerHistory selectByUserIdAndAnswerId(Integer UserId, Integer AnswerId);
+	AnswerHistory selectByUserIdAndAnswerId(Long UserId, Long AnswerId);
 	
 	int updateByPrimaryKey(AnswerHistory record);
 	
-	List<AnswerHistoryPojo> selectUserAnswerHistory(Integer id);
+	List<AnswerHistoryPojo> selectUserAnswerHistory(Long id);
 }

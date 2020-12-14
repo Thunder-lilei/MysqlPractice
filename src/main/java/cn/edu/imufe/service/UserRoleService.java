@@ -1,7 +1,9 @@
 package cn.edu.imufe.service;
 
-import cn.edu.imufe.entity.UserRole;
+import cn.edu.imufe.po.UserRole;
 
 public interface UserRoleService {
-	UserRole selectByUserId(Integer id);
+	UserRole selectByUserId(Long id);
+
+	String getRole(Long id);
 }

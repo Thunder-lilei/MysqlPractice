@@ -1,5 +1,8 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.po.Role;
+import cn.edu.imufe.po.User;
+import cn.edu.imufe.po.UserRole;
 import cn.edu.imufe.util.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.imufe.constant.PageUrlConstant;
 import cn.edu.imufe.constant.UserConstant;
-import cn.edu.imufe.entity.Role;
-import cn.edu.imufe.entity.User;
-import cn.edu.imufe.entity.UserRole;
 import cn.edu.imufe.service.RoleService;
-import cn.edu.imufe.service.RoleWithUserRoleService;
 import cn.edu.imufe.service.UserRoleService;
 import cn.edu.imufe.service.UserService;
 import cn.edu.imufe.util.UserUtil;
@@ -29,14 +28,12 @@ import cn.edu.imufe.util.UserUtil;
 public class UserController extends BaseController {
 	private final UserService userService;
 	private final UserRoleService userRoleService;
-	private final RoleWithUserRoleService roleWithUserRoleService;
 	private final RoleService roleService;
 	@Autowired
 	public UserController(UserService userService, UserRoleService userRoleService,
-						  RoleWithUserRoleService roleWithUserRoleService, RoleService roleService) {
+						  RoleService roleService) {
 	this.userService = userService;
 	this.userRoleService = userRoleService;
-	this.roleWithUserRoleService = roleWithUserRoleService;
 	this.roleService = roleService;
 	}
 
@@ -61,7 +58,7 @@ public class UserController extends BaseController {
 		{
 			if(BCrypt.checkpw(password,user.getPassword()))
 			{
-				session.setAttribute(roleWithUserRoleService.getRole(user.getId()), user);
+				session.setAttribute(userRoleService.getRole(user.getId()), user);
 				session.setAttribute("user", user);
 				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
 				UserRole userRole = userRoleService.selectByUserId(user.getId());

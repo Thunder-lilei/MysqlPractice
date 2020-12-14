@@ -1,13 +1,13 @@
 package cn.edu.imufe.pojo;
 
 public class AnswerHistoryPojo {
-	private Integer answerId;
+	private Long answerId;
 	private String title;
 	private Integer status;
-	public Integer getAnswerId() {
+	public Long getAnswerId() {
 		return answerId;
 	}
-	public void setAnswerId(Integer answerId) {
+	public void setAnswerId(Long answerId) {
 		this.answerId = answerId;
 	}
 	public String getTitle() {

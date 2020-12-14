@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.edu.imufe.po.Answer;
+import cn.edu.imufe.po.AnswerHistory;
+import cn.edu.imufe.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.entity.AnswerHistory;
-import cn.edu.imufe.entity.User;
 import cn.edu.imufe.service.AnswerHistoryService;
 import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
@@ -88,14 +88,14 @@ public class SqlController extends BaseController{
 	 */
 	@RequestMapping(value="compare_sql",method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> CompareSql(@RequestParam String sqlstring,@RequestParam int id) {
+	public Map<String,Object> CompareSql(@RequestParam String sqlstring,@RequestParam Long id) {
 		Map<String,Object> modelMap=new HashMap<>();
 		String result="Different";
 		if(sqlstring!=null && !sqlstring.equals(""))
 		{
 			//从题目列表点进去 会把某道题的id存起来  然后比较函数会把 id+string一起返回给后台
 			//TODO 由返回的id搜到题目和答案  
-			cn.edu.imufe.entity.Answer a1=answerService.selectByPrimaryKey(id);
+			cn.edu.imufe.po.Answer a1=answerService.selectByPrimaryKey(id);
 			//TODO 由上面的答案 与用户sql进行比较 ，得出String字符串返回的结果 需要调用ComparasionOfSqlUtils
 			result=ComparasionOfSqlUtils.SQLOfComparasion(a1.getSolution(),sqlstring);
 			modelMap.put("message", "success");
@@ -121,7 +121,7 @@ public class SqlController extends BaseController{
 		Map<String,Object> modelMap=new HashMap<>();
 		if(sqlString!=null && !sqlString.equals(""))
 		{
-			Answer answer = answerService.selectByPrimaryKey(Integer.parseInt(id));
+			Answer answer = answerService.selectByPrimaryKey(Long.parseLong(id));
 			String result = ComparasionOfSqlUtils.SQLOfComparasion(answer.getSolution(),sqlString);
 			int status;
 			switch(result) {
@@ -137,9 +137,9 @@ public class SqlController extends BaseController{
 			}
 			User record = (User) session.getAttribute("user");
 			AnswerHistory replace;
-			replace = answerHistoryService.selectByUserIdAndAnswerId(record.getId(),Integer.parseInt(id));
+			replace = answerHistoryService.selectByUserIdAndAnswerId(record.getId(),Long.parseLong(id));
 
-			AnswerHistory answerhistory = new AnswerHistory(null,record.getId(),Integer.parseInt(id),
+			AnswerHistory answerhistory = new AnswerHistory(null,record.getId(),Long.parseLong(id),
 					sqlString,status);
 
 			if(replace == null) {

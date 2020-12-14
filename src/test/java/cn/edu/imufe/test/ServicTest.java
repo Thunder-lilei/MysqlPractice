@@ -2,12 +2,12 @@ package cn.edu.imufe.test;
 
 import java.util.List;
 
+import cn.edu.imufe.po.Answer;
+import cn.edu.imufe.po.AnswerHistory;
+import cn.edu.imufe.po.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.entity.AnswerHistory;
-import cn.edu.imufe.entity.User;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
 import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.*;
@@ -38,12 +38,12 @@ public  class ServicTest extends BaseTest{
 	
 	@Test 
 	public void testSelectByPrimaryKey() {
-		System.out.println(answerService.selectByPrimaryKey(1));
+		System.out.println(answerService.selectByPrimaryKey(1L));
 	}
 	@Test
 	public void randomlist() 
 	{
-		List<Integer> allid = answerService.selectAllId();
+		List<Long> allid = answerService.selectAllId();
 		@SuppressWarnings("unchecked")
 		List<Integer> list = RandomList.createRandomList(allid, 5);
 		for(Integer i:list) 
@@ -64,7 +64,7 @@ public  class ServicTest extends BaseTest{
 	@Test
 	public void addanswerhistory() {
 			String sql = "select * from lilei;";
-			Answer answer = answerService.selectByPrimaryKey(1);
+			Answer answer = answerService.selectByPrimaryKey(1L);
 			String result = ComparasionOfSqlUtils.SQLOfComparasion(answer.getSolution(),sql);
 			Integer status = STATUS_0;
 			switch(result) {
@@ -80,10 +80,10 @@ public  class ServicTest extends BaseTest{
 			}
 			AnswerHistory answerhistory = new AnswerHistory();
 			AnswerHistory replace = new AnswerHistory();
-			replace = answerHistoryService.selectByUserIdAndAnswerId(6,1);
+			replace = answerHistoryService.selectByUserIdAndAnswerId(6L,1L);
 			
-			answerhistory.setUserId(6);
-			answerhistory.setAnswerId(1);
+			answerhistory.setUserId(6L);
+			answerhistory.setAnswerId(1L);
 			answerhistory.setUserAnswers(sql);
 			answerhistory.setQuestionStatus(status);
 			
@@ -104,7 +104,7 @@ public  class ServicTest extends BaseTest{
 	
 	@Test
 	public void getAnswerHistory() {
-		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6);
+		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6L);
 		for(AnswerHistoryPojo a : list) {
 			System.out.println(a.getAnswerId());
 			System.out.println(a.getTitle());

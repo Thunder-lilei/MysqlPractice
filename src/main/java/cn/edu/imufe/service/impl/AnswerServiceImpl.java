@@ -2,25 +2,25 @@ package cn.edu.imufe.service.impl;
 
 import java.util.List;
 
+import cn.edu.imufe.dao.AnswerMapper;
+import cn.edu.imufe.po.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.edu.imufe.dao.AnswerDao;
-import cn.edu.imufe.entity.Answer;
 import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
 	@Autowired
-	AnswerDao answerdao;
+	AnswerMapper answerdao;
 
 	@Override
-	public Answer selectByPrimaryKey(Integer id) {
+	public Answer selectByPrimaryKey(Long id) {
 		return answerdao.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public List<Integer> selectAllId() {
+	public List<Long> selectAllId() {
 		// TODO Auto-generated method stub
 		return answerdao.selectAllId();
 	}
@@ -32,7 +32,7 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public int deleteByPrimaryKey(Integer id) {
+	public int deleteByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
 		return answerdao.deleteByPrimaryKey(id);
 	}

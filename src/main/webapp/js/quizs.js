@@ -54,7 +54,7 @@ if (getCookie("rlist") != "") {
 
 function randomquizs() {
 	clearAllCookie();
-	$.get('/answer/getRandomQuizs', function(data) {
+	$.post('/answer/getRandomQuizs', function(data) {
 		let message = '';
 		let randomList = getCookie("rlist");
 		$.each(data, function(index, item) {

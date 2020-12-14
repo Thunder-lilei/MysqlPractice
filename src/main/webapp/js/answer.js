@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	let id = GetQueryString("id");
-	$.getJSON('/answer/getTitle', {
+	$.post('/answer/getTitle', {
 		id: id
 	}, function(data) {
 		let message = '';
@@ -45,7 +45,7 @@ function sql_format() {
 
 function preview() {
 	reset();
-	$.getJSON('/sql/preview', {
+	$.post('/sql/preview', {
 		sql: $("#inputsql").val()
 	}, function(data) {
 		let message = '';
@@ -83,7 +83,7 @@ function preview() {
 function compare() {
 	reset();
 	let id = GetQueryString("id");
-	$.getJSON('/sql/compareSqlAddHistory', {
+	$.post('/sql/compareSqlAddHistory', {
 		sqlString: $("#inputsql").val(),
 		id: id
 	}, function(data) {

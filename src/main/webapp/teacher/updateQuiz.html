@@ -231,7 +231,7 @@
 			$(document).ready(function() {
 				
 				let id = GetQueryString("id");
-				$.getJSON('/answer/getTitle', {
+				$.post('/answer/getTitle', {
 					id: id
 				}, function(data) {
 					let message = '';
@@ -275,7 +275,7 @@
 			//运行按钮函数
 			function preview() {
 				reset();
-				$.getJSON('/sql/preview', {
+				$.post('/sql/preview', {
 					sql: $("#inputsql").val()
 				}, function(data) {
 					let message = '';

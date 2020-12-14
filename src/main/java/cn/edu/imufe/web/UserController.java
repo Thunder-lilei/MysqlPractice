@@ -132,7 +132,7 @@ public class UserController extends BaseController {
 	 * @return org.springframework.web.servlet.ModelAndView
 	 **/
 	@ResponseBody
-	@RequestMapping(value="/logout",method=RequestMethod.POST)
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	private ModelAndView logout(){
 		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
 		//已登录

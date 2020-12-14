@@ -5,13 +5,13 @@ import java.util.List;
 import cn.edu.imufe.entity.*;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
 public interface AnswerHistoryService {
-	int insert(Answerhistory record);
+	int insert(AnswerHistory record);
 	
-	Answerhistory selectByPrimaryKey(Integer id);
+	AnswerHistory selectByPrimaryKey(Integer id);
 	
-	Answerhistory selectByUserIdAndAnswerId(Integer UserId,Integer AnswerId);
+	AnswerHistory selectByUserIdAndAnswerId(Integer UserId, Integer AnswerId);
 	
-	int updateByPrimaryKey(Answerhistory record);
+	int updateByPrimaryKey(AnswerHistory record);
 	
 	List<AnswerHistoryPojo> selectUserAnswerHistory(Integer id);
 }

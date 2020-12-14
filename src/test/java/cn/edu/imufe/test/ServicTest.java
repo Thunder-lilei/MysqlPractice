@@ -1,14 +1,12 @@
 package cn.edu.imufe.test;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.imufe.entity.Answer;
-import cn.edu.imufe.entity.Answerhistory;
+import cn.edu.imufe.entity.AnswerHistory;
 import cn.edu.imufe.entity.User;
 import cn.edu.imufe.pojo.AnswerHistoryPojo;
 import cn.edu.imufe.pojo.AnswerPojo;
@@ -80,8 +78,8 @@ public  class ServicTest extends BaseTest{
 					status = STATUS_2;
 					
 			}
-			Answerhistory answerhistory = new Answerhistory();
-			Answerhistory replace = new Answerhistory();
+			AnswerHistory answerhistory = new AnswerHistory();
+			AnswerHistory replace = new AnswerHistory();
 			replace = answerHistoryService.selectByUserIdAndAnswerId(6,1);
 			
 			answerhistory.setUserId(6);

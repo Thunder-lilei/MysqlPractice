@@ -3,33 +3,33 @@ package cn.edu.imufe.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import cn.edu.imufe.entity.Answerhistory;
-import cn.edu.imufe.entity.AnswerhistoryExample;
+import cn.edu.imufe.entity.AnswerHistory;
+import cn.edu.imufe.entity.AnswerHistoryExample;
 
 public interface AnswerhistoryDao {
-    int countByExample(AnswerhistoryExample example);
+    int countByExample(AnswerHistoryExample example);
 
-    int deleteByExample(AnswerhistoryExample example);
+    int deleteByExample(AnswerHistoryExample example);
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Answerhistory record);
+    int insert(AnswerHistory record);
 
-    int insertSelective(Answerhistory record);
+    int insertSelective(AnswerHistory record);
 
-    List<Answerhistory> selectByExample(AnswerhistoryExample example);
+    List<AnswerHistory> selectByExample(AnswerHistoryExample example);
 
-    Answerhistory selectByPrimaryKey(Integer id);
+    AnswerHistory selectByPrimaryKey(Integer id);
     
-    Answerhistory selectByUserIdAndAnswerId(@Param("userId")Integer userId,@Param("answerId")Integer answerId);
+    AnswerHistory selectByUserIdAndAnswerId(@Param("userId")Integer userId, @Param("answerId")Integer answerId);
     
-    List<Answerhistory> selectUserAnswerHistory(@Param("id")Integer id);
+    List<AnswerHistory> selectUserAnswerHistory(@Param("id")Integer id);
 
-    int updateByExampleSelective(@Param("record") Answerhistory record, @Param("example") AnswerhistoryExample example);
+    int updateByExampleSelective(@Param("record") AnswerHistory record, @Param("example") AnswerHistoryExample example);
 
-    int updateByExample(@Param("record") Answerhistory record, @Param("example") AnswerhistoryExample example);
+    int updateByExample(@Param("record") AnswerHistory record, @Param("example") AnswerHistoryExample example);
 
-    int updateByPrimaryKeySelective(Answerhistory record);
+    int updateByPrimaryKeySelective(AnswerHistory record);
 
-    int updateByPrimaryKey(Answerhistory record);
+    int updateByPrimaryKey(AnswerHistory record);
 }

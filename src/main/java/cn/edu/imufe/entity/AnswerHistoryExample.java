@@ -3,14 +3,14 @@ package cn.edu.imufe.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerhistoryExample {
+public class AnswerHistoryExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public AnswerhistoryExample() {
+    public AnswerHistoryExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

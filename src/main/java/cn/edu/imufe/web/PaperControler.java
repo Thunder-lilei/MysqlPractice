@@ -1,19 +1,19 @@
 package cn.edu.imufe.web;
 
-import cn.edu.imufe.constant.PageUrlConstant;
+import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.Paper;
 import cn.edu.imufe.po.PaperAnswer;
+import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.service.PaperAnswerService;
 import cn.edu.imufe.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +30,12 @@ import java.util.Map;
 public class PaperControler extends BaseController {
     private final PaperService paperService;
     private final PaperAnswerService paperAnswerService;
+    private final AnswerService answerService;
     @Autowired
-    public PaperControler(PaperService paperService, PaperAnswerService paperAnswerService) {
+    public PaperControler(PaperService paperService, PaperAnswerService paperAnswerService, AnswerService answerService) {
         this.paperService = paperService;
         this.paperAnswerService = paperAnswerService;
+        this.answerService = answerService;
     }
     /*
      * @Author 李雷
@@ -77,7 +79,7 @@ public class PaperControler extends BaseController {
      * @Description
      * 获取试卷信息
      * 获取试卷ID
-     * 返回试卷信息和试卷包含的题目id
+     * 返回试卷信息和试卷包含的题目信息
      * @CreateDate 21:24 2020/12/15
      * @UpdateDate 21:24 2020/12/15
      * @Param [paperId]
@@ -89,11 +91,13 @@ public class PaperControler extends BaseController {
         Map<String,Object> modelMap=new HashMap<>();
         Paper paper = paperService.getPaperByPaperId(paperId);
         List<Long> answerIdList = paperAnswerService.getAnswerIdByPaperId(paperId);
+        List<Answer> answerList = new ArrayList<>();
+        answerIdList.forEach(temp->answerList.add(answerService.selectByPrimaryKey(temp)));
         if (paper == null || answerIdList == null) {
             modelMap.put("message","获取试卷信息失败！");
         }
         modelMap.put("paper",paper);
-        modelMap.put("answerIdList",answerIdList);
+        modelMap.put("answerList",answerList);
         return modelMap;
     }
     /*

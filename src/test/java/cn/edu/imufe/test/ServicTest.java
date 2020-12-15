@@ -129,4 +129,9 @@ public  class ServicTest extends BaseTest{
 		Paper paper = paperService.getPaperByPaperName("测试试卷");
 		System.out.println(paper);
 	}
+	@Test
+	public void getAnswerIdByPaperId() {
+		List<Long> paperAnswerList = paperAnswerService.getAnswerIdByPaperId(1L);
+		paperAnswerList.forEach(temp-> System.out.println(temp));
+	}
 }

@@ -2,6 +2,8 @@ package cn.edu.imufe.service;
 
 import cn.edu.imufe.po.PaperAnswer;
 
+import java.util.List;
+
 /**
  * <h3>MysqlPractice</h3>
  * <p>试卷 题 中间表 接口</p>
@@ -11,4 +13,6 @@ import cn.edu.imufe.po.PaperAnswer;
  **/
 public interface PaperAnswerService {
     Integer addPaperAnswer(PaperAnswer paperAnswer);
+
+    List<Long> getAnswerIdByPaperId(Long paperId);
 }

@@ -6,6 +6,8 @@ import cn.edu.imufe.service.PaperAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <h3>MysqlPractice</h3>
  * <p>试卷 题 中间表 接口实现类</p>
@@ -24,5 +26,10 @@ public class PaperAnswerServiceImpl implements PaperAnswerService {
     @Override
     public Integer addPaperAnswer(PaperAnswer paperAnswer) {
         return paperAnswerMapper.insertSelective(paperAnswer);
+    }
+
+    @Override
+    public List<Long> getAnswerIdByPaperId(Long paperId) {
+        return paperAnswerMapper.selectAnswerIdByPaperId(paperId);
     }
 }

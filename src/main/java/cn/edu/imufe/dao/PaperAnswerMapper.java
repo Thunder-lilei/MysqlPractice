@@ -20,6 +20,8 @@ public interface PaperAnswerMapper {
 
     PaperAnswer selectByPrimaryKey(Long id);
 
+    List<Long> selectAnswerIdByPaperId(Long paperId);
+
     int updateByExampleSelective(@Param("record") PaperAnswer record, @Param("example") PaperAnswerExample example);
 
     int updateByExample(@Param("record") PaperAnswer record, @Param("example") PaperAnswerExample example);

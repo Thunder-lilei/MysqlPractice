@@ -31,4 +31,9 @@ public class PaperServiceImpl implements PaperService {
     public Paper getPaperByPaperName(String paperName) {
         return paperMapper.selectByPaperName(paperName);
     }
+
+    @Override
+    public Paper getPaperByPaperId(Long paperId) {
+        return paperMapper.selectByPrimaryKey(paperId);
+    }
 }

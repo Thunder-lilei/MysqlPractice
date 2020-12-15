@@ -11,7 +11,7 @@ public class PaperAnswer {
 
     private Date createTime;
 
-    private Date udpateTime;
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -45,11 +45,11 @@ public class PaperAnswer {
         this.createTime = createTime;
     }
 
-    public Date getUdpateTime() {
-        return udpateTime;
+    public Date getupdateTime() {
+        return updateTime;
     }
 
-    public void setUdpateTime(Date udpateTime) {
-        this.udpateTime = udpateTime;
+    public void setupdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

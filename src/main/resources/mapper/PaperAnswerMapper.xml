@@ -6,7 +6,7 @@
     <result column="paper_id" jdbcType="BIGINT" property="paperId" />
     <result column="answer_id" jdbcType="BIGINT" property="answerId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="udpate_time" jdbcType="TIMESTAMP" property="udpateTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, paper_id, answer_id, create_time, udpate_time
+    id, paper_id, answer_id, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="cn.edu.imufe.po.PaperAnswerExample" resultMap="BaseResultMap">
     select
@@ -89,6 +89,12 @@
     from tbl_paper_answer
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectAnswerIdByPaperId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select answer_id
+    <include refid="Base_Column_List" />
+    from tbl_paper_answer
+    where paper_id = #{paperId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_paper_answer
     where id = #{id,jdbcType=BIGINT}
@@ -101,9 +107,9 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.imufe.po.PaperAnswer">
     insert into tbl_paper_answer (id, paper_id, answer_id, 
-      create_time, udpate_time)
+      create_time, update_time)
     values (#{id,jdbcType=BIGINT}, #{paperId,jdbcType=BIGINT}, #{answerId,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{udpateTime,jdbcType=TIMESTAMP})
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.imufe.po.PaperAnswer">
     insert into tbl_paper_answer
@@ -120,8 +126,8 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="udpateTime != null">
-        udpate_time,
+      <if test="updateTime != null">
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -137,8 +143,8 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="udpateTime != null">
-        #{udpateTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -163,8 +169,8 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.udpateTime != null">
-        udpate_time = #{record.udpateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -177,7 +183,7 @@
       paper_id = #{record.paperId,jdbcType=BIGINT},
       answer_id = #{record.answerId,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      udpate_time = #{record.udpateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,8 +200,8 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="udpateTime != null">
-        udpate_time = #{udpateTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -205,7 +211,7 @@
     set paper_id = #{paperId,jdbcType=BIGINT},
       answer_id = #{answerId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      udpate_time = #{udpateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

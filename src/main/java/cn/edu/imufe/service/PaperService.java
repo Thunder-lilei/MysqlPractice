@@ -13,4 +13,6 @@ public interface PaperService {
     Integer addPaper(Paper paper);
 
     Paper getPaperByPaperName(String paperName);
+
+    Paper getPaperByPaperId(Long paperId);
 }

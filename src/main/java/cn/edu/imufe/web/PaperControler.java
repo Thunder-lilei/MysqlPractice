@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +38,7 @@ public class PaperControler extends BaseController {
     /*
      * @Author 李雷
      * @Description
+     * 生成试卷
      * 获取试卷名称 班级Id 选择的题目Id
      * 返回message信息
      * @CreateDate 21:03 2020/12/15
@@ -68,6 +70,31 @@ public class PaperControler extends BaseController {
             }
         }
         modelMap.put("message","成功生成试卷:"+paperName);
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 获取试卷信息
+     * 获取试卷ID
+     * 返回试卷信息和试卷包含的题目id
+     * @CreateDate 21:24 2020/12/15
+     * @UpdateDate 21:24 2020/12/15
+     * @Param [paperId]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value="/getPaper",method= RequestMethod.POST)
+    private Map<String,Object> getPaper(@RequestParam Long paperId){
+        Map<String,Object> modelMap=new HashMap<>();
+        Paper paper = paperService.getPaperByPaperId(paperId);
+        List<Long> answerIdList = paperAnswerService.getAnswerIdByPaperId(paperId);
+        if (paper == null || answerIdList == null) {
+            modelMap.put("message","获取试卷信息失败！");
+            return modelMap;
+        }
+        modelMap.put("paper",paper);
+        modelMap.put("answerIdList",answerIdList);
         return modelMap;
     }
 }

@@ -11,42 +11,45 @@ import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
+	private final AnswerMapper answerDao;
 	@Autowired
-	AnswerMapper answerdao;
+	public AnswerServiceImpl(AnswerMapper answerDao) {
+		this.answerDao = answerDao;
+	}
 
 	@Override
 	public Answer selectByPrimaryKey(Long id) {
-		return answerdao.selectByPrimaryKey(id);
+		return answerDao.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public List<Long> selectAllId() {
 		// TODO Auto-generated method stub
-		return answerdao.selectAllId();
+		return answerDao.selectAllId();
 	}
 
 	@Override
 	public int insertSelective(Answer record) {
 		// TODO Auto-generated method stub
-		return answerdao.insertSelective(record);
+		return answerDao.insertSelective(record);
 	}
 
 	@Override
 	public int deleteByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return answerdao.deleteByPrimaryKey(id);
+		return answerDao.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Answer record) {
 		// TODO Auto-generated method stub
-		return answerdao.updateByPrimaryKeySelective(record);
+		return answerDao.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public List<AnswerPojo> selectAllIdWithTitle() {
 		// TODO Auto-generated method stub
-		return answerdao.selectAllIdWithTitle();
+		return answerDao.selectAllIdWithTitle();
 	}
 
 }

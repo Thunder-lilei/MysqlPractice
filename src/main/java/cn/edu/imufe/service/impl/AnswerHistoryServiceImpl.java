@@ -15,10 +15,13 @@ import cn.edu.imufe.pojo.AnswerHistoryPojo;
 import cn.edu.imufe.service.AnswerHistoryService;
 @Service
 public class AnswerHistoryServiceImpl implements AnswerHistoryService {
+	private final AnswerHistoryMapper answerHistoryDao;
+	private final AnswerMapper answerDao;
 	@Autowired
-	AnswerHistoryMapper answerHistoryDao;
-	@Autowired
-	AnswerMapper answerDao;
+	public AnswerHistoryServiceImpl(AnswerHistoryMapper answerHistoryDao, AnswerMapper answerDao) {
+		this.answerHistoryDao = answerHistoryDao;
+		this.answerDao = answerDao;
+	}
 
 	@Override
 	public int insert(AnswerHistory record) {
@@ -49,7 +52,7 @@ public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 	public List<AnswerHistoryPojo> selectUserAnswerHistory(Long id) {
 		// TODO Auto-generated method stub
 		List<AnswerHistory> answerHistoryList = answerHistoryDao.selectUserAnswerHistory(id);
-		List<AnswerHistoryPojo> answerHistoryPojoList = new ArrayList<AnswerHistoryPojo>();
+		List<AnswerHistoryPojo> answerHistoryPojoList = new ArrayList<>();
 		for (AnswerHistory answerHistory : answerHistoryList) {
 			AnswerHistoryPojo answerHistoryPojo = new AnswerHistoryPojo();
 			Answer answer = answerDao.selectByPrimaryKey(answerHistory.getAnswerId());

@@ -39,7 +39,12 @@
 			<a href="teacher/createTest.html">出卷</a>
 
 		</div>
-
+	<form method="post" action="/paper/addPaper">
+		<input type="text" name="paperName" placeholder="paperName">
+		<input type="text" name="classId" placeholder="classId">
+		<input type="text" name="answerId" placeholder="answerId">
+		<input type="submit" value="提交">
+	</form>
 	</body>
 	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>

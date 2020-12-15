@@ -17,10 +17,13 @@ import cn.edu.imufe.service.UserRoleService;
  */
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
+	private final UserRoleMapper userRoleDao;
+	private final RoleMapper roleDao;
 	@Autowired
-	private UserRoleMapper userRoleDao;
-	@Autowired
-	private RoleMapper roleDao;
+	public UserRoleServiceImpl(UserRoleMapper userRoleDao, RoleMapper roleDao) {
+		this.userRoleDao = userRoleDao;
+		this.roleDao = roleDao;
+	}
 
 	@Override
 	public UserRole selectByUserId(Long id) {

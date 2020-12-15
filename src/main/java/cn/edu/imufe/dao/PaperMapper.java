@@ -20,6 +20,8 @@ public interface PaperMapper {
 
     Paper selectByPrimaryKey(Long id);
 
+    Paper selectByPaperName(String paperName);
+
     int updateByExampleSelective(@Param("record") Paper record, @Param("example") PaperExample example);
 
     int updateByExample(@Param("record") Paper record, @Param("example") PaperExample example);

@@ -4,7 +4,8 @@
   <resultMap id="BaseResultMap" type="cn.edu.imufe.po.Paper">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="paper_name" jdbcType="VARCHAR" property="paperName" />
-    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="class_id" jdbcType="BIGINT" property="classId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, paper_name, class_id, create_time, update_time
+    id, paper_name, class_id, status, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="cn.edu.imufe.po.PaperExample" resultMap="BaseResultMap">
     select
@@ -84,10 +85,16 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tbl_paper
     where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPaperName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_paper
+    where paper_name = #{paperName,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_paper
@@ -100,10 +107,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.imufe.po.Paper">
-    insert into tbl_paper (id, paper_name, class_id, 
-      create_time, update_time)
-    values (#{id,jdbcType=BIGINT}, #{paperName,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into tbl_paper (id, paper_name, class_id,
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{paperName,jdbcType=VARCHAR}, #{classId,jdbcType=BIGINT},
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.imufe.po.Paper">
     insert into tbl_paper
@@ -116,6 +125,9 @@
       </if>
       <if test="classId != null">
         class_id,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="createTime != null">
         create_time,
@@ -132,7 +144,10 @@
         #{paperName,jdbcType=VARCHAR},
       </if>
       <if test="classId != null">
-        #{classId,jdbcType=INTEGER},
+        #{classId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -158,7 +173,10 @@
         paper_name = #{record.paperName,jdbcType=VARCHAR},
       </if>
       <if test="record.classId != null">
-        class_id = #{record.classId,jdbcType=INTEGER},
+        class_id = #{record.classId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -174,10 +192,11 @@
   <update id="updateByExample" parameterType="map">
     update tbl_paper
     set id = #{record.id,jdbcType=BIGINT},
-      paper_name = #{record.paperName,jdbcType=VARCHAR},
-      class_id = #{record.classId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    paper_name = #{record.paperName,jdbcType=VARCHAR},
+    class_id = #{record.classId,jdbcType=BIGINT},
+    status = #{record.status,jdbcType=INTEGER},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -189,7 +208,10 @@
         paper_name = #{paperName,jdbcType=VARCHAR},
       </if>
       <if test="classId != null">
-        class_id = #{classId,jdbcType=INTEGER},
+        class_id = #{classId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -203,7 +225,8 @@
   <update id="updateByPrimaryKey" parameterType="cn.edu.imufe.po.Paper">
     update tbl_paper
     set paper_name = #{paperName,jdbcType=VARCHAR},
-      class_id = #{classId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

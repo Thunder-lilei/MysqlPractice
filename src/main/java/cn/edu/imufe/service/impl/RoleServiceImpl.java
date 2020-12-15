@@ -9,8 +9,11 @@ import cn.edu.imufe.service.RoleService;
 
 @Service
 public class RoleServiceImpl implements RoleService {
+	private final RoleMapper roleDao;
 	@Autowired
-	private RoleMapper roleDao;
+	public RoleServiceImpl(RoleMapper roleDao) {
+		this.roleDao = roleDao;
+	}
 
 	@Override
 	public Role selectByPrimaryKey(Long id) {

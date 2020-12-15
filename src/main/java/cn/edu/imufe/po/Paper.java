@@ -7,7 +7,9 @@ public class Paper {
 
     private String paperName;
 
-    private Integer classId;
+    private Long classId;
+
+    private Integer status;
 
     private Date createTime;
 
@@ -29,12 +31,20 @@ public class Paper {
         this.paperName = paperName == null ? null : paperName.trim();
     }
 
-    public Integer getClassId() {
+    public Long getClassId() {
         return classId;
     }
 
-    public void setClassId(Integer classId) {
+    public void setClassId(Long classId) {
         this.classId = classId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Date getCreateTime() {

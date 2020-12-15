@@ -8,19 +8,22 @@ import org.springframework.stereotype.Service;
 import cn.edu.imufe.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
+	private final UserMapper userDao;
 	@Autowired
-	private UserMapper userdao;
+	public UserServiceImpl(UserMapper userdao) {
+		this.userDao = userdao;
+	}
 
 	@Override
 	public User selectByUsername(String username) {
 		// TODO Auto-generated method stub
-		return userdao.selectByUsername(username);
+		return userDao.selectByUsername(username);
 	}
 
 	@Override
 	public int updatePasswordByUsernameSelective(User record) {
 		// TODO Auto-generated method stub
-		return userdao.updatePasswordByUsernameSelective(record);
+		return userDao.updatePasswordByUsernameSelective(record);
 	}
 
 }

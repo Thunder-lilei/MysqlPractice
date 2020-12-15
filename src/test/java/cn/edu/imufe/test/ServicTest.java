@@ -2,9 +2,7 @@ package cn.edu.imufe.test;
 
 import java.util.List;
 
-import cn.edu.imufe.po.Answer;
-import cn.edu.imufe.po.AnswerHistory;
-import cn.edu.imufe.po.User;
+import cn.edu.imufe.po.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,26 +14,27 @@ import cn.edu.imufe.util.RandomList;
 
 public  class ServicTest extends BaseTest{
 	@Autowired
-	private UserService userService;
+	UserService userService;
 	@Autowired
-	private RoleService roleService;
+	RoleService roleService;
 	@Autowired
-	private UserRoleService userRoleService;
+	UserRoleService userRoleService;
 	@Autowired
-	private AnswerService answerService;
+	AnswerService answerService;
 	@Autowired
-	private AnswerHistoryService answerHistoryService;
-	
-	private static final String RESULT = "result";
-	private static final String MESSAGE = "message";
-	private static final String MESSAGE_SUCCESS = "success";
-	private static final String MESSAGE_NOANSWER = "请填写答案！";
+	AnswerHistoryService answerHistoryService;
+	@Autowired
+	PaperService paperService;
+	@Autowired
+	PaperAnswerService paperAnswerService;
+
 	private static final String RESULT_MESSAGE_SAME = "Same";
 	private static final String RESULT_MESSAGE_DIFFERENT = "Different";
 	private static final Integer STATUS_0 = 0;
 	private static final Integer STATUS_1 = 1;
 	private static final Integer STATUS_2 = 2;
-	
+
+
 	@Test 
 	public void testSelectByPrimaryKey() {
 		System.out.println(answerService.selectByPrimaryKey(1L));
@@ -110,5 +109,24 @@ public  class ServicTest extends BaseTest{
 			System.out.println(a.getTitle());
 			System.out.println(a.getStatus());
 		}
+	}
+	@Test
+	public void addPaper() {
+		Paper paper = new Paper();
+		paper.setClassId(2L);
+		paper.setPaperName("测试试卷");
+		System.out.println(paperService.addPaper(paper));
+	}
+	@Test
+	public void addPaperAnswer() {
+		PaperAnswer paperAnswer = new PaperAnswer();
+		paperAnswer.setPaperId(1L);
+		paperAnswer.setAnswerId(1L);
+		System.out.println(paperAnswerService.addPaperAnswer(paperAnswer));
+	}
+	@Test
+	public void getPaperByPaperName() {
+		Paper paper = paperService.getPaperByPaperName("测试试卷");
+		System.out.println(paper);
 	}
 }

@@ -2,6 +2,8 @@ package cn.edu.imufe.service;
 
 import cn.edu.imufe.po.Paper;
 
+import java.util.List;
+
 /**
  * <h3>MysqlPractice</h3>
  * <p>试卷类接口</p>
@@ -15,4 +17,6 @@ public interface PaperService {
     Paper getPaperByPaperName(String paperName);
 
     Paper getPaperByPaperId(Long paperId);
+
+    List<Paper> getAllPaper();
 }

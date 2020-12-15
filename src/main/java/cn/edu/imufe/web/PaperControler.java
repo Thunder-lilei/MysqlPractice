@@ -91,10 +91,29 @@ public class PaperControler extends BaseController {
         List<Long> answerIdList = paperAnswerService.getAnswerIdByPaperId(paperId);
         if (paper == null || answerIdList == null) {
             modelMap.put("message","获取试卷信息失败！");
-            return modelMap;
         }
         modelMap.put("paper",paper);
         modelMap.put("answerIdList",answerIdList);
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 获取所有试卷
+     * @CreateDate 21:32 2020/12/15
+     * @UpdateDate 21:32 2020/12/15
+     * @Param []
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value="/getAllPaper",method= RequestMethod.POST)
+    private Map<String,Object> getAllPaper(){
+        Map<String,Object> modelMap=new HashMap<>();
+        List<Paper> paperList = paperService.getAllPaper();
+        if (paperList == null) {
+            modelMap.put("message","暂时没有试卷！");
+        }
+        modelMap.put("paperList",paperList);
         return modelMap;
     }
 }

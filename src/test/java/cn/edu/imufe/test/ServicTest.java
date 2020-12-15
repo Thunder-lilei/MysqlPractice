@@ -134,4 +134,9 @@ public  class ServicTest extends BaseTest{
 		List<Long> paperAnswerList = paperAnswerService.getAnswerIdByPaperId(1L);
 		paperAnswerList.forEach(temp-> System.out.println(temp));
 	}
+	@Test
+	public void getAllPaper() {
+		List<Paper> papers = paperService.getAllPaper();
+		papers.forEach(temp-> System.out.println(temp.getPaperName()));
+	}
 }

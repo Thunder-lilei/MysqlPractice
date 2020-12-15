@@ -96,6 +96,11 @@
     from tbl_paper
     where paper_name = #{paperName,jdbcType=VARCHAR}
   </select>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_paper
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_paper
     where id = #{id,jdbcType=BIGINT}

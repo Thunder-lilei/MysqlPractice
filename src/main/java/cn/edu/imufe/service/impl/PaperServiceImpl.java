@@ -6,6 +6,8 @@ import cn.edu.imufe.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <h3>MysqlPractice</h3>
  * <p>试卷类接口实现类</p>
@@ -35,5 +37,10 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public Paper getPaperByPaperId(Long paperId) {
         return paperMapper.selectByPrimaryKey(paperId);
+    }
+
+    @Override
+    public List<Paper> getAllPaper() {
+        return paperMapper.getAll();
     }
 }

@@ -235,73 +235,73 @@ public class RoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andRoleDescIsNull() {
+            addCriterion("role_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andRoleDescIsNotNull() {
+            addCriterion("role_desc is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andRoleDescEqualTo(String value) {
+            addCriterion("role_desc =", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andRoleDescNotEqualTo(String value) {
+            addCriterion("role_desc <>", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andRoleDescGreaterThan(String value) {
+            addCriterion("role_desc >", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andRoleDescGreaterThanOrEqualTo(String value) {
+            addCriterion("role_desc >=", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andRoleDescLessThan(String value) {
+            addCriterion("role_desc <", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andRoleDescLessThanOrEqualTo(String value) {
+            addCriterion("role_desc <=", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andRoleDescLike(String value) {
+            addCriterion("role_desc like", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andRoleDescNotLike(String value) {
+            addCriterion("role_desc not like", value, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andRoleDescIn(List<String> values) {
+            addCriterion("role_desc in", values, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andRoleDescNotIn(List<String> values) {
+            addCriterion("role_desc not in", values, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andRoleDescBetween(String value1, String value2) {
+            addCriterion("role_desc between", value1, value2, "roleDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andRoleDescNotBetween(String value1, String value2) {
+            addCriterion("role_desc not between", value1, value2, "roleDesc");
             return (Criteria) this;
         }
 

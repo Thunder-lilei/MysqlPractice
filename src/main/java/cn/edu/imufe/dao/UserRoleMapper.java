@@ -20,7 +20,7 @@ public interface UserRoleMapper {
 
     UserRole selectByPrimaryKey(Long id);
 
-    UserRole selectByUserId(Long id);
+    UserRole selectByUserId(Long userId);
 
     int updateByExampleSelective(@Param("record") UserRole record, @Param("example") UserRoleExample example);
 

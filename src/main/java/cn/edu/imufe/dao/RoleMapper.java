@@ -1,8 +1,9 @@
 package cn.edu.imufe.dao;
 
+import java.util.List;
+
 import cn.edu.imufe.po.Role;
 import cn.edu.imufe.po.RoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {

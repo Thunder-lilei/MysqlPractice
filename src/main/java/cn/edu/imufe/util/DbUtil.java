@@ -28,7 +28,7 @@ public class DbUtil {
 	
 	public Connection getConnection(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://106.54.84.18:3306/MysqlPractice?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/MysqlPractice?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true", "root", "1234");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

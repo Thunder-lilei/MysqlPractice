@@ -7,7 +7,7 @@ public class Role {
 
     private String name;
 
-    private String desc;
+    private String roleDesc;
 
     private Date createTime;
 
@@ -29,12 +29,12 @@ public class Role {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getRoleDesc() {
+        return roleDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setRoleDesc(String roleDesc) {
+        this.roleDesc = roleDesc == null ? null : roleDesc.trim();
     }
 
     public Date getCreateTime() {

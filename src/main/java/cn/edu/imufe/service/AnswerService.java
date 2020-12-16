@@ -5,6 +5,8 @@ import cn.edu.imufe.po.*;
 import cn.edu.imufe.pojo.AnswerPojo;
 public interface AnswerService {
 	Answer selectByPrimaryKey(Long id);
+
+	Answer selectByQuestion(String question);
 	
 	List<Long> selectAllId();
 	

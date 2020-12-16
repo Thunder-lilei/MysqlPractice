@@ -22,6 +22,8 @@ public interface AnswerMapper {
 
     Answer selectByPrimaryKey(Long id);
 
+    Answer selectByQuestion(String question);
+
     List<Long> selectAllId();
 
     List<AnswerPojo> selectAllIdWithTitle();

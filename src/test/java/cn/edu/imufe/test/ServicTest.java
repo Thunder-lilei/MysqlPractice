@@ -161,4 +161,8 @@ public  class ServicTest extends BaseTest{
 		answer = answerService.getAnswerByQuestionWithoutId(answer);
 		System.out.println(answer);
 	}
+	@Test
+	public void selectAnswerByQuestion() {
+		System.out.println(answerService.selectByQuestion("查询全体学生的详细记录"));
+	}
 }

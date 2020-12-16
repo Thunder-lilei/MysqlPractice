@@ -89,6 +89,12 @@
     from tbl_answer
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByQuestion" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_answer
+    where question = #{question,jdbcType=VARCHAR}
+  </select>
   <select id="getAnswerByQuestionWithoutId" parameterType="cn.edu.imufe.po.Answer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

@@ -23,12 +23,27 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
+	public Answer selectByQuestion(String question) {
+		return answerDao.selectByQuestion(question);
+	}
+
+	@Override
 	public List<Long> selectAllId() {
 		return answerDao.selectAllId();
 	}
 
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 不允许重名
+	 * @CreateDate 15:29 2020/12/16
+	 * @UpdateDate 15:29 2020/12/16
+	 * @Param [record]
+	 * @return int
+	 **/
 	@Override
 	public int insertSelective(Answer record) {
+		if (selectByQuestion(record.getQuestion()) != null) {return 0;}
 		return answerDao.insertSelective(record);
 	}
 

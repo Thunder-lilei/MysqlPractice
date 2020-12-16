@@ -24,32 +24,33 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public List<Long> selectAllId() {
-		// TODO Auto-generated method stub
 		return answerDao.selectAllId();
 	}
 
 	@Override
 	public int insertSelective(Answer record) {
-		// TODO Auto-generated method stub
 		return answerDao.insertSelective(record);
 	}
 
 	@Override
 	public int deleteByPrimaryKey(Long id) {
-		// TODO Auto-generated method stub
 		return answerDao.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Answer record) {
-		// TODO Auto-generated method stub
+		if (getAnswerByQuestionWithoutId(record) != null) {return 0;}
 		return answerDao.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public List<AnswerPojo> selectAllIdWithTitle() {
-		// TODO Auto-generated method stub
 		return answerDao.selectAllIdWithTitle();
+	}
+
+	@Override
+	public Answer getAnswerByQuestionWithoutId(Answer answer) {
+		return answerDao.getAnswerByQuestionWithoutId(answer);
 	}
 
 }

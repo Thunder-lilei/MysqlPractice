@@ -176,20 +176,17 @@ public class AnswerController extends BaseController {
 	/*
 	 * @Author 李雷
 	 * @Description
-	 * 修改题目
-	 * @CreateDate
-	 * @UpdateDate 14:27 2020/12/10
-	 * @Param [id, question, solution]
+	 * 修改试题
+	 * 不允许重名
+	 * @CreateDate 14:27 2020/12/10
+	 * @UpdateDate 13:53 2020/12/16
+	 * @Param [answer]
 	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
 	@ResponseBody
 	@RequestMapping(value="/updateQuiz",method=RequestMethod.POST)
-	private Map<String,Object> updateQuiz(@RequestParam Long id,@RequestParam String question,@RequestParam String solution){
+	private Map<String,Object> updateQuiz(Answer answer){
 		Map<String,Object> modelMap=new HashMap<>();
-		Answer answer = new Answer();
-		answer.setId(id);
-		answer.setQuestion(question);
-		answer.setSolution(solution);
 		Integer index = answerService.updateByPrimaryKeySelective(answer);
 		if(index.equals(1)) 
 		{

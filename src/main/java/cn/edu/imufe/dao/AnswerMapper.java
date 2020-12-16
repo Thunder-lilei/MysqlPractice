@@ -26,6 +26,8 @@ public interface AnswerMapper {
 
     List<AnswerPojo> selectAllIdWithTitle();
 
+    Answer getAnswerByQuestionWithoutId(Answer answer);
+
     int updateByExampleSelective(@Param("record") Answer record, @Param("example") AnswerExample example);
 
     int updateByExample(@Param("record") Answer record, @Param("example") AnswerExample example);

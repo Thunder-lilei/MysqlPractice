@@ -153,4 +153,12 @@ public  class ServicTest extends BaseTest{
 //		System.out.println(paperService.deletePaperById(3L));
 		System.out.println(paperAnswerService.deletePaperAnswerByPaperId(3L));
 	}
+	@Test
+	public void getAnswerByQuestionWithoutId() {
+		Answer answer  = new Answer();
+		answer.setQuestion("查询全体学生的详细记录");
+		answer.setId(1L);
+		answer = answerService.getAnswerByQuestionWithoutId(answer);
+		System.out.println(answer);
+	}
 }

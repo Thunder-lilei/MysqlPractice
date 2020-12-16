@@ -9,6 +9,8 @@ public interface AnswerService {
 	List<Long> selectAllId();
 	
 	List<AnswerPojo> selectAllIdWithTitle();
+
+	Answer getAnswerByQuestionWithoutId(Answer answer);
 	
 	int insertSelective(Answer record);
 	

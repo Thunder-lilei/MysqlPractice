@@ -3,6 +3,8 @@ package cn.edu.imufe.dao;
 import cn.edu.imufe.po.User;
 import cn.edu.imufe.po.UserExample;
 import java.util.List;
+
+import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -23,6 +25,8 @@ public interface UserMapper {
     User selectByUsername(String username);
 
     User selectByUsernameWithoutId(User user);
+
+    List<UserBaseInfoPojo> getAllUserBaseInfo();
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

@@ -1,10 +1,13 @@
 package cn.edu.imufe.test;
 
 import cn.edu.imufe.po.User;
+import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import cn.edu.imufe.service.UserRoleService;
 import cn.edu.imufe.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * <h3>MysqlPractice</h3>
@@ -34,6 +37,11 @@ public class UserTest extends BaseTest{
     public void selectByUsernameWithoutId() {
         User user = userService.selectByUsername("lilei");
         System.out.println(userService.selectByUsernameWithoutId(user));
+    }
+    @Test
+    public void getAllUserBaseInfo() {
+        List<UserBaseInfoPojo> userBaseInfoPojos = userService.getAllUserBaseInfo();
+        userBaseInfoPojos.forEach(temp-> System.out.println(temp.getId()+" "+temp.getNickname()));
     }
 
 }

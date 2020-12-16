@@ -3,6 +3,7 @@ package cn.edu.imufe.web;
 import cn.edu.imufe.po.Role;
 import cn.edu.imufe.po.User;
 import cn.edu.imufe.po.UserRole;
+import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import cn.edu.imufe.util.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import cn.edu.imufe.service.UserService;
 import cn.edu.imufe.util.UserUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -197,6 +199,27 @@ public class UserController extends BaseController {
 		}
 		userRoleService.addUserRole(user.getId(),roleId);
 		modelMap.put(MESSAGE,"更新成功！");
+		return modelMap;
+	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 获取所有用户的ID和昵称
+	 * @CreateDate 16:45 2020/12/16
+	 * @UpdateDate 16:45 2020/12/16
+	 * @Param []
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/getAllUserBaseInfo",method=RequestMethod.POST)
+	private Map<String,Object> getAllUserBaseInfo(){
+		Map<String,Object> modelMap = new HashMap<>();
+		List<UserBaseInfoPojo> userBaseInfoPojoList = userService.getAllUserBaseInfo();
+		modelMap.put("userBaseInfoList", userBaseInfoPojoList);
+		if (!userBaseInfoPojoList.isEmpty()) {
+			return modelMap;
+		}
+		modelMap.put(MESSAGE,"暂时没有用户！");
 		return modelMap;
 	}
 	

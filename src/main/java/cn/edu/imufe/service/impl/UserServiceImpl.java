@@ -2,11 +2,15 @@ package cn.edu.imufe.service.impl;
 
 import cn.edu.imufe.dao.UserMapper;
 import cn.edu.imufe.po.User;
+import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import cn.edu.imufe.util.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.edu.imufe.service.UserService;
+
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 	private final UserMapper userDao;
@@ -24,6 +28,11 @@ public class UserServiceImpl implements UserService {
 	public Boolean selectByUsernameWithoutId(User user) {
 		if (userDao.selectByUsernameWithoutId(user) != null) {return true;}
 		return false;
+	}
+
+	@Override
+	public List<UserBaseInfoPojo> getAllUserBaseInfo() {
+		return userDao.getAllUserBaseInfo();
 	}
 
 	@Override

@@ -102,6 +102,9 @@
     from tbl_user
     where username = #{username,jdbcType=VARCHAR} and id != #{id,jdbcType=BIGINT}
   </select>
+  <select id="getAllUserBaseInfo" resultType="cn.edu.imufe.pojo.UserBaseInfoPojo">
+    select id,nickname from tbl_user
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_user
     where id = #{id,jdbcType=BIGINT}

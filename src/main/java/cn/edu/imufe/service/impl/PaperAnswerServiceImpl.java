@@ -32,4 +32,9 @@ public class PaperAnswerServiceImpl implements PaperAnswerService {
     public List<Long> getAnswerIdByPaperId(Long paperId) {
         return paperAnswerMapper.selectAnswerIdByPaperId(paperId);
     }
+
+    @Override
+    public Integer deletePaperAnswerByPaperId(Long paperId) {
+        return paperAnswerMapper.deletePaperAnswerByPaperId(paperId);
+    }
 }

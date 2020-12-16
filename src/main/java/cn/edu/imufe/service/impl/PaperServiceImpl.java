@@ -43,4 +43,9 @@ public class PaperServiceImpl implements PaperService {
     public List<Paper> getAllPaper() {
         return paperMapper.getAll();
     }
+
+    @Override
+    public Integer deletePaperById(Long id) {
+        return paperMapper.deleteByPrimaryKey(id);
+    }
 }

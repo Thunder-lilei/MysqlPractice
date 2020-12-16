@@ -139,4 +139,9 @@ public  class ServicTest extends BaseTest{
 		List<Paper> papers = paperService.getAllPaper();
 		papers.forEach(temp-> System.out.println(temp.getPaperName()));
 	}
+	@Test
+	public void deletePaper() {
+//		System.out.println(paperService.deletePaperById(3L));
+		System.out.println(paperAnswerService.deletePaperAnswerByPaperId(3L));
+	}
 }

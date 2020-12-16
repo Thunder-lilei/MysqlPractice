@@ -15,4 +15,6 @@ public interface PaperAnswerService {
     Integer addPaperAnswer(PaperAnswer paperAnswer);
 
     List<Long> getAnswerIdByPaperId(Long paperId);
+
+    Integer deletePaperAnswerByPaperId(Long paperId);
 }

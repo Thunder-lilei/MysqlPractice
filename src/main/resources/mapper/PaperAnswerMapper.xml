@@ -99,6 +99,10 @@
     delete from tbl_paper_answer
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deletePaperAnswerByPaperId" parameterType="java.lang.Long">
+    delete from tbl_paper_answer
+    where paper_id = #{paperId,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.edu.imufe.po.PaperAnswerExample">
     delete from tbl_paper_answer
     <if test="_parameter != null">

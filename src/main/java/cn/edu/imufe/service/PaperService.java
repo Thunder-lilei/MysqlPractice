@@ -19,4 +19,6 @@ public interface PaperService {
     Paper getPaperByPaperId(Long paperId);
 
     List<Paper> getAllPaper();
+
+    Integer deletePaperById(Long Id);
 }

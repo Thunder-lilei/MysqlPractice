@@ -120,4 +120,26 @@ public class PaperControler extends BaseController {
         modelMap.put("paperList",paperList);
         return modelMap;
     }
+    /*
+     * @Author 李雷
+     * @Description
+     * 删除试卷
+     * 同时删除试卷与试题的对应关系
+     * @CreateDate 9:02 2020/12/16
+     * @UpdateDate 9:02 2020/12/16
+     * @Param [paperId]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value="/deletePaper",method= RequestMethod.POST)
+    private Map<String,Object> deletePaper(@RequestParam Long paperId){
+        Map<String,Object> modelMap=new HashMap<>();
+        if (!paperService.deletePaperById(paperId).equals(0) && !paperAnswerService.deletePaperAnswerByPaperId(paperId).equals(0)) {
+            modelMap.put("message","删除成功！");
+            return modelMap;
+        }
+        modelMap.put("message","删除失败！");
+        return modelMap;
+    }
+
 }

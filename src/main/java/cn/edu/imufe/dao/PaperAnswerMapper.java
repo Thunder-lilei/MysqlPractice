@@ -12,6 +12,8 @@ public interface PaperAnswerMapper {
 
     int deleteByPrimaryKey(Long id);
 
+    Integer deletePaperAnswerByPaperId(Long paperId);
+
     int insert(PaperAnswer record);
 
     int insertSelective(PaperAnswer record);

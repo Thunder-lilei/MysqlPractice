@@ -19,6 +19,9 @@ import cn.edu.imufe.service.UserRoleService;
 import cn.edu.imufe.service.UserService;
 import cn.edu.imufe.util.UserUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author lilei
  * 2020年11月25日下午5:07:35
@@ -147,6 +150,32 @@ public class UserController extends BaseController {
 			mv = new ModelAndView(PageUrlConstant.LOGIN);
 		}
 		return mv;
+	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 添加用户且为用户授权
+	 * 用户不能重名 不能重复授权
+	 * @CreateDate 15:52 2020/12/16
+	 * @UpdateDate 15:52 2020/12/16
+	 * @Param [user, roleId]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/addUser",method=RequestMethod.POST)
+	private Map<String,Object> addUser(User user,@RequestParam Long roleId){
+		Map<String,Object> modelMap = new HashMap<>();
+		if (userService.addUser(user).equals(0)) {
+			modelMap.put(MESSAGE,"用户名重复！");
+			return modelMap;
+		}
+		user = userService.selectByUsername(user.getUsername());
+		if (userRoleService.addUserRole(user.getId(),roleId).equals(0)) {
+			modelMap.put(MESSAGE,"用户添加成功！但已有该权限！");
+			return modelMap;
+		}
+		modelMap.put(MESSAGE,"用户添加成功！");
+		return modelMap;
 	}
 	
 }

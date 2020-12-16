@@ -27,13 +27,34 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	public UserRole selectByUserId(Long id) {
-		// TODO Auto-generated method stub
 		return userRoleDao.selectByUserId(id);
 	}
 
 	@Override
 	public String getRole(Long id) {
 		return roleDao.selectByPrimaryKey(userRoleDao.selectByUserId(id).getRoleId()).getName();
+	}
+
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 用户授权
+	 * 不能重复添加
+	 * @CreateDate 15:46 2020/12/16
+	 * @UpdateDate 15:46 2020/12/16
+	 * @Param [userId, roleId]
+	 * @return java.lang.Integer
+	 **/
+	@Override
+	public Integer addUserRole(Long userId, Long roleId) {
+		UserRole userRole = userRoleDao.selectByUserId(userId);
+		if (userRole != null && userRole.getRoleId().equals(roleId)) {
+			return 0;
+		}
+		userRole = new UserRole();
+		userRole.setUserId(userId);
+		userRole.setRoleId(roleId);
+		return userRoleDao.insertSelective(userRole);
 	}
 
 }

@@ -6,4 +6,6 @@ public interface UserService {
 	User selectByUsername(String username);
 	
 	int updatePasswordByUsernameSelective(User record);
+
+	Integer addUser(User user);
 }

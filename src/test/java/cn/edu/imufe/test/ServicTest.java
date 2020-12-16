@@ -110,59 +110,6 @@ public  class ServicTest extends BaseTest{
 			System.out.println(a.getStatus());
 		}
 	}
-	@Test
-	public void addPaper() {
-		Paper paper = new Paper();
-		paper.setClassId(2L);
-		paper.setPaperName("测试试卷");
-		System.out.println(paperService.addPaper(paper));
-	}
-	@Test
-	public void addPaperAnswer() {
-		System.out.println(paperAnswerService.addPaperAnswer(1L,1L));
-	}
-	@Test
-	public void getPaperByPaperName() {
-		Paper paper = paperService.getPaperByPaperName("测试试卷");
-		System.out.println(paper);
-	}
-	@Test
-	public void getPaperByPaperNameWithoutId() {
-		Paper paper = new Paper();
-		paper.setId(1L);
-		paper.setPaperName("测试试卷");
-		paper = paperService.getPaperByPaperNameWithoutId(paper);
-		System.out.println(paper);
-	}
-	@Test
-	public void getAnswerIdByPaperId() {
-		List<Long> paperAnswerList = paperAnswerService.getAnswerIdByPaperId(1L);
-		paperAnswerList.forEach(temp-> System.out.println(temp));
-	}
-	@Test
-	public void getResultByPaperIdAndAnswerId() {
-		System.out.println(paperAnswerService.getResultByPaperIdAndAnswerId(1L,1L));
-	}
-	@Test
-	public void getAllPaper() {
-		List<Paper> papers = paperService.getAllPaper();
-		papers.forEach(temp-> System.out.println(temp.getPaperName()));
-	}
-	@Test
-	public void deletePaper() {
-//		System.out.println(paperService.deletePaperById(3L));
-		System.out.println(paperAnswerService.deletePaperAnswerByPaperId(3L));
-	}
-	@Test
-	public void getAnswerByQuestionWithoutId() {
-		Answer answer  = new Answer();
-		answer.setQuestion("查询全体学生的详细记录");
-		answer.setId(1L);
-		answer = answerService.getAnswerByQuestionWithoutId(answer);
-		System.out.println(answer);
-	}
-	@Test
-	public void selectAnswerByQuestion() {
-		System.out.println(answerService.selectByQuestion("查询全体学生的详细记录"));
-	}
+
+
 }

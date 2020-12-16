@@ -115,7 +115,7 @@ public class SqlController extends BaseController{
 	 * @Param [sqlString, id]
 	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
-	@RequestMapping(value="compareSqlAddHistory",method = RequestMethod.POST)
+	@RequestMapping(value="/compareSqlAddHistory",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> compareSqlAddHistory(@RequestParam String sqlString,@RequestParam String id) {
 		Map<String,Object> modelMap=new HashMap<>();

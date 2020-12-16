@@ -22,6 +22,8 @@ public interface PaperMapper {
 
     Paper selectByPaperName(String paperName);
 
+    Paper getPaperByPaperNameWithoutId(Paper paper);
+
     List<Paper> getAll();
 
     int updateByExampleSelective(@Param("record") Paper record, @Param("example") PaperExample example);

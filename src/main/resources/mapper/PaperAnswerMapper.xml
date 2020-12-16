@@ -95,6 +95,12 @@
     from tbl_paper_answer
     where paper_id = #{paperId,jdbcType=BIGINT}
   </select>
+  <select id="selectByPaperIdAndAnswerId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_paper_answer
+    where paper_id = #{paperId,jdbcType=BIGINT} and answer_id = #{answerId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_paper_answer
     where id = #{id,jdbcType=BIGINT}
@@ -102,6 +108,10 @@
   <delete id="deletePaperAnswerByPaperId" parameterType="java.lang.Long">
     delete from tbl_paper_answer
     where paper_id = #{paperId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deletePaperAnswerByPaperIdAndAnswerId" parameterType="java.lang.Long">
+    delete from tbl_paper_answer
+    where paper_id = #{paperId,jdbcType=BIGINT} and answer_id = #{answerId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="cn.edu.imufe.po.PaperAnswerExample">
     delete from tbl_paper_answer

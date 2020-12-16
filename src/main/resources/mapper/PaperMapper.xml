@@ -96,6 +96,13 @@
     from tbl_paper
     where paper_name = #{paperName,jdbcType=VARCHAR}
   </select>
+  <select id="getPaperByPaperNameWithoutId" parameterType="cn.edu.imufe.po.Paper" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_paper
+    where paper_name = #{paperName,jdbcType=VARCHAR}
+    and id != #{id,jdbcType=BIGINT}
+  </select>
   <select id="getAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

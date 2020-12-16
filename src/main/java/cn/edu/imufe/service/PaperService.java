@@ -16,9 +16,13 @@ public interface PaperService {
 
     Paper getPaperByPaperName(String paperName);
 
+    Paper getPaperByPaperNameWithoutId(Paper paper);
+
     Paper getPaperByPaperId(Long paperId);
 
     List<Paper> getAllPaper();
 
     Integer deletePaperById(Long Id);
+
+    Integer updatePaper(Paper paper);
 }

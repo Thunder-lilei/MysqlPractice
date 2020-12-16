@@ -23,6 +23,15 @@ public class PaperServiceImpl implements PaperService {
         this.paperMapper = paperMapper;
     }
 
+    /*
+     * @Author 李雷
+     * @Description
+     * 添加试卷 不允许重名
+     * @CreateDate 9:45 2020/12/16
+     * @UpdateDate 9:45 2020/12/16
+     * @Param [paper]
+     * @return java.lang.Integer
+     **/
     @Override
     public Integer addPaper(Paper paper) {
         if (getPaperByPaperName(paper.getPaperName()) != null) {return 0;}
@@ -32,6 +41,11 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public Paper getPaperByPaperName(String paperName) {
         return paperMapper.selectByPaperName(paperName);
+    }
+
+    @Override
+    public Paper getPaperByPaperNameWithoutId(Paper paper) {
+        return paperMapper.getPaperByPaperNameWithoutId(paper);
     }
 
     @Override
@@ -47,5 +61,20 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public Integer deletePaperById(Long id) {
         return paperMapper.deleteByPrimaryKey(id);
+    }
+
+    /*
+     * @Author 李雷
+     * @Description
+     * 更新试卷信息 不允许重名
+     * @CreateDate 9:44 2020/12/16
+     * @UpdateDate 9:44 2020/12/16
+     * @Param [paper]
+     * @return java.lang.Integer
+     **/
+    @Override
+    public Integer updatePaper(Paper paper) {
+        if (getPaperByPaperNameWithoutId(paper) != null) {return 0;}
+        return paperMapper.updateByPrimaryKeySelective(paper);
     }
 }

@@ -12,9 +12,13 @@ import java.util.List;
  * @date : 2020-12-15 20:18
  **/
 public interface PaperAnswerService {
-    Integer addPaperAnswer(PaperAnswer paperAnswer);
+    Integer addPaperAnswer(Long paperId,Long answerId);
 
     List<Long> getAnswerIdByPaperId(Long paperId);
 
+    Boolean getResultByPaperIdAndAnswerId(Long paperId,Long answerId);
+
     Integer deletePaperAnswerByPaperId(Long paperId);
+
+    Integer deletePaperAnswerByPaperIdAndAnswerId(Long paperId,Long answerId);
 }

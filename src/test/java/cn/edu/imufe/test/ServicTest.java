@@ -119,10 +119,7 @@ public  class ServicTest extends BaseTest{
 	}
 	@Test
 	public void addPaperAnswer() {
-		PaperAnswer paperAnswer = new PaperAnswer();
-		paperAnswer.setPaperId(1L);
-		paperAnswer.setAnswerId(1L);
-		System.out.println(paperAnswerService.addPaperAnswer(paperAnswer));
+		System.out.println(paperAnswerService.addPaperAnswer(1L,1L));
 	}
 	@Test
 	public void getPaperByPaperName() {
@@ -130,9 +127,21 @@ public  class ServicTest extends BaseTest{
 		System.out.println(paper);
 	}
 	@Test
+	public void getPaperByPaperNameWithoutId() {
+		Paper paper = new Paper();
+		paper.setId(1L);
+		paper.setPaperName("测试试卷");
+		paper = paperService.getPaperByPaperNameWithoutId(paper);
+		System.out.println(paper);
+	}
+	@Test
 	public void getAnswerIdByPaperId() {
 		List<Long> paperAnswerList = paperAnswerService.getAnswerIdByPaperId(1L);
 		paperAnswerList.forEach(temp-> System.out.println(temp));
+	}
+	@Test
+	public void getResultByPaperIdAndAnswerId() {
+		System.out.println(paperAnswerService.getResultByPaperIdAndAnswerId(1L,1L));
 	}
 	@Test
 	public void getAllPaper() {

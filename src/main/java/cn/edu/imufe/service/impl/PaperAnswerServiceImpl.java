@@ -23,8 +23,22 @@ public class PaperAnswerServiceImpl implements PaperAnswerService {
         this.paperAnswerMapper = paperAnswerMapper;
     }
 
+    /*
+     * @Author 李雷
+     * @Description
+     * 试卷添加试题
+     * 不能重复添加
+     * @CreateDate 10:35 2020/12/16
+     * @UpdateDate 10:35 2020/12/16
+     * @Param [paperId, answerId]
+     * @return java.lang.Integer
+     **/
     @Override
-    public Integer addPaperAnswer(PaperAnswer paperAnswer) {
+    public Integer addPaperAnswer(Long paperId, Long answerId) {
+        if (getResultByPaperIdAndAnswerId(paperId,answerId)) {return 0;}
+        PaperAnswer paperAnswer = new PaperAnswer();
+        paperAnswer.setPaperId(paperId);
+        paperAnswer.setAnswerId(answerId);
         return paperAnswerMapper.insertSelective(paperAnswer);
     }
 
@@ -34,7 +48,18 @@ public class PaperAnswerServiceImpl implements PaperAnswerService {
     }
 
     @Override
+    public Boolean getResultByPaperIdAndAnswerId(Long paperId, Long answerId) {
+        if (paperAnswerMapper.selectByPaperIdAndAnswerId(paperId,answerId) != null) {return true;}
+        return false;
+    }
+
+    @Override
     public Integer deletePaperAnswerByPaperId(Long paperId) {
         return paperAnswerMapper.deletePaperAnswerByPaperId(paperId);
+    }
+
+    @Override
+    public Integer deletePaperAnswerByPaperIdAndAnswerId(Long paperId, Long answerId) {
+        return paperAnswerMapper.deletePaperAnswerByPaperIdAndAnswerId(paperId,answerId);
     }
 }

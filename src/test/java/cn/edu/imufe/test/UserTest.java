@@ -43,5 +43,9 @@ public class UserTest extends BaseTest{
         List<UserBaseInfoPojo> userBaseInfoPojos = userService.getAllUserBaseInfo();
         userBaseInfoPojos.forEach(temp-> System.out.println(temp.getId()+" "+temp.getNickname()));
     }
+    @Test
+    public void getUserById() {
+        System.out.println(userService.getUserById(1L));
+    }
 
 }

@@ -222,5 +222,26 @@ public class UserController extends BaseController {
 		modelMap.put(MESSAGE,"暂时没有用户！");
 		return modelMap;
 	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 获取用户信息
+	 * @CreateDate 16:52 2020/12/16
+	 * @UpdateDate 16:52 2020/12/16
+	 * @Param [id]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/getUserById",method=RequestMethod.POST)
+	private Map<String,Object> getUserById(@RequestParam Long id){
+		Map<String,Object> modelMap = new HashMap<>();
+		User user = userService.getUserById(id);
+		modelMap.put("user", user);
+		if (user != null) {
+			return modelMap;
+		}
+		modelMap.put(MESSAGE,"用户信息查询失败！");
+		return modelMap;
+	}
 	
 }

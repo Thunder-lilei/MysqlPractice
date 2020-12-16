@@ -17,4 +17,6 @@ public interface UserService {
 	Integer addUser(User user);
 
 	Integer updateUser(User user);
+
+	User getUserById(Long id);
 }

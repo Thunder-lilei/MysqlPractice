@@ -11,13 +11,19 @@ import cn.edu.imufe.service.UserService;
 public class UserServiceImpl implements UserService {
 	private final UserMapper userDao;
 	@Autowired
-	public UserServiceImpl(UserMapper userdao) {
-		this.userDao = userdao;
+	public UserServiceImpl(UserMapper userDao) {
+		this.userDao = userDao;
 	}
 
 	@Override
 	public User selectByUsername(String username) {
 		return userDao.selectByUsername(username);
+	}
+
+	@Override
+	public Boolean selectByUsernameWithoutId(User user) {
+		if (userDao.selectByUsernameWithoutId(user) != null) {return true;}
+		return false;
 	}
 
 	@Override
@@ -41,6 +47,26 @@ public class UserServiceImpl implements UserService {
 		if (selectByUsername(user.getUsername()) != null) {return 0;}
 		user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
 		return userDao.insertSelective(user);
+	}
+
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 更新用户信息
+	 * 不能重名 更换密码重新加密
+	 * @CreateDate 16:27 2020/12/16
+	 * @UpdateDate 16:27 2020/12/16
+	 * @Param [user]
+	 * @return java.lang.Integer
+	 **/
+	@Override
+	public Integer updateUser(User user) {
+		if (selectByUsernameWithoutId(user)) {return 0;}
+		User passwordUser = selectByUsername(user.getUsername());
+		if (!user.getPassword().equals(passwordUser.getPassword())) {
+			user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
+		}
+		return userDao.updateByPrimaryKeySelective(user);
 	}
 
 }

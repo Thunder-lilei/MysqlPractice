@@ -6,7 +6,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="user_desc" jdbcType="VARCHAR" property="user_desc" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, nickname, password, desc, status
+    id, username, nickname, password, user_desc, status
   </sql>
   <select id="selectByExample" parameterType="cn.edu.imufe.po.UserExample" resultMap="BaseResultMap">
     select
@@ -91,7 +91,16 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
-     select * from tbl_user where username = #{username,jdbcType=VARCHAR}
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUsernameWithoutId" resultMap="BaseResultMap" parameterType="cn.edu.imufe.po.User" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user
+    where username = #{username,jdbcType=VARCHAR} and id != #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_user
@@ -105,10 +114,10 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.imufe.po.User">
     insert into tbl_user (id, username, nickname, 
-      password, desc, status
+      password, user_desc, status
       )
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      #{password,jdbcType=VARCHAR}, #{user_desc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.imufe.po.User">
@@ -126,8 +135,8 @@
       <if test="password != null">
         password,
       </if>
-      <if test="desc != null">
-        desc,
+      <if test="user_desc != null">
+        user_desc,
       </if>
       <if test="status != null">
         status,
@@ -146,8 +155,8 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="user_desc != null">
+        #{user_desc,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -175,8 +184,8 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.desc != null">
-        desc = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.user_desc != null">
+        user_desc = #{record.user_desc,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -192,7 +201,7 @@
       username = #{record.username,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      user_desc = #{record.user_desc,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -210,8 +219,8 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="user_desc != null">
+        user_desc = #{user_desc,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -224,7 +233,7 @@
     set username = #{username,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      user_desc = #{user_desc,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

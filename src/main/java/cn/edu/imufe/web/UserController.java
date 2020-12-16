@@ -177,5 +177,27 @@ public class UserController extends BaseController {
 		modelMap.put(MESSAGE,"用户添加成功！");
 		return modelMap;
 	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 更新用户信息
+	 * 不能重名
+	 * @CreateDate 16:24 2020/12/16
+	 * @UpdateDate 16:24 2020/12/16
+	 * @Param [user, roleId]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
+	private Map<String,Object> updateUser(User user,@RequestParam Long roleId){
+		Map<String,Object> modelMap = new HashMap<>();
+		if (userService.updateUser(user).equals(0)) {
+			modelMap.put(MESSAGE,"更新失败！尝试更换用户名！");
+			return modelMap;
+		}
+		userRoleService.addUserRole(user.getId(),roleId);
+		modelMap.put(MESSAGE,"更新成功！");
+		return modelMap;
+	}
 	
 }

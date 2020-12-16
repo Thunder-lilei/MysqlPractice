@@ -9,7 +9,7 @@ public class User {
 
     private String password;
 
-    private String desc;
+    private String user_desc;
 
     private Integer status;
 
@@ -45,12 +45,12 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getuser_desc() {
+        return user_desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setuser_desc(String user_desc) {
+        this.user_desc = user_desc == null ? null : user_desc.trim();
     }
 
     public Integer getStatus() {

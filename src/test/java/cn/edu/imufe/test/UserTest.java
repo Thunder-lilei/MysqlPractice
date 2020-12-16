@@ -30,5 +30,10 @@ public class UserTest extends BaseTest{
     public void addUserRole() {
         System.out.println(userRoleService.addUserRole(7L,1L));
     }
+    @Test
+    public void selectByUsernameWithoutId() {
+        User user = userService.selectByUsername("lilei");
+        System.out.println(userService.selectByUsernameWithoutId(user));
+    }
 
 }

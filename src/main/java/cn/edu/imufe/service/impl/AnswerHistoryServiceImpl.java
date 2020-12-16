@@ -44,7 +44,7 @@ public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 	@Override
 	public int updateByPrimaryKey(AnswerHistory record) {
 		// TODO Auto-generated method stub
-		return answerHistoryDao.updateByPrimaryKey(record);
+		return answerHistoryDao.updateByPrimaryKeySelective(record);
 	}
 
 	@SuppressWarnings("null")

@@ -1,6 +1,8 @@
 package cn.edu.imufe.test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.edu.imufe.po.*;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import cn.edu.imufe.pojo.AnswerPojo;
 import cn.edu.imufe.service.*;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
 import cn.edu.imufe.util.RandomList;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public  class ServicTest extends BaseTest{
 	@Autowired
@@ -108,6 +111,46 @@ public  class ServicTest extends BaseTest{
 			System.out.println(a.getAnswerId());
 			System.out.println(a.getTitle());
 			System.out.println(a.getStatus());
+		}
+	}
+	@Test
+	public void compareSqlAddHistory() {
+		Map<String,Object> modelMap=new HashMap<>();
+		String sqlString = "select * from tbl_student;";
+		String id = "1";
+		if(sqlString!=null && !sqlString.equals(""))
+		{
+			Answer answer = answerService.selectByPrimaryKey(Long.parseLong(id));
+			String result = ComparasionOfSqlUtils.SQLOfComparasion(answer.getSolution(),sqlString);
+			int status;
+			switch(result) {
+				case "Same":
+					status = 1;
+					break;
+				case "Different":
+					status = 0;
+					break;
+				default:
+					status = 2;
+
+			}
+			AnswerHistory replace;
+			replace = answerHistoryService.selectByUserIdAndAnswerId(6L,Long.parseLong(id));
+
+			AnswerHistory answerhistory = new AnswerHistory(null,6L,Long.parseLong(id),
+					sqlString,status);
+
+			if(replace == null) {
+				answerHistoryService.insert(answerhistory);
+			}else {
+				answerhistory.setId(replace.getId());
+				answerHistoryService.updateByPrimaryKey(answerhistory);
+			}
+
+			System.out.println("success");
+		}else
+		{
+			System.out.println("请填写答案！");
 		}
 	}
 

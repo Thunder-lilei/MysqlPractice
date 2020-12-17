@@ -35,4 +35,8 @@ public class ClassTest extends BaseTest{
         c.setClassName("17软件工程2班");
         System.out.println(classService.selectByClassNameWithoutId(c));
     }
+    @Test
+    public void getClassById() {
+        System.out.println(classService.getClass(1L));
+    }
 }

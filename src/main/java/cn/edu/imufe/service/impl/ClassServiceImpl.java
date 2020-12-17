@@ -41,6 +41,11 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public Class getClass(Long id) {
+        return classMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public Integer addClass(Class c) {
         if (selectByClassName(c.getClassName()) != null) {return 0;}
         return classMapper.insertSelective(c);

@@ -111,4 +111,16 @@ public class ClassController extends BaseController{
         modelMap.put("message","删除成功！");
         return modelMap;
     }
+    @ResponseBody
+    @RequestMapping(value = "/getClass", method = RequestMethod.POST)
+    public Map<String,Object> getClass(@RequestParam Long id) {
+        Map<String,Object> modelMap=new HashMap<>();
+        Class c = classService.getClass(id);
+        modelMap.put("class",c);
+        if (c != null) {
+            return modelMap;
+        }
+        modelMap.put("message","查询失败！");
+        return modelMap;
+    }
 }

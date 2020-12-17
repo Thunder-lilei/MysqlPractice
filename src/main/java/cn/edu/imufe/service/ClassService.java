@@ -20,6 +20,8 @@ public interface ClassService {
 
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
+    Class getClass(Long id);
+
     Integer addClass(Class c);
 
     Integer updateClass(Class c);

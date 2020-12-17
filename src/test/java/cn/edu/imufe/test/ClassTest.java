@@ -1,5 +1,6 @@
 package cn.edu.imufe.test;
 
+import cn.edu.imufe.po.Class;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.junit.Test;
@@ -21,5 +22,17 @@ public class ClassTest extends BaseTest{
     public void getAllClassBaseInfo() {
         List<ClassBaseInfoPojo> baseInfoPojoList = classService.getAllClassBaseInfo();
         baseInfoPojoList.forEach(temp-> System.out.println(temp.getClassName()));
+    }
+    @Test
+    public void addClass() {
+        Class c = new Class();
+        c.setClassName("17计算机科学与技术2班");
+        System.out.println(classService.addClass(c));
+    }
+    @Test
+    public void selectByClassNameWithoutId() {
+        Class c = new Class();
+        c.setClassName("17软件工程2班");
+        System.out.println(classService.selectByClassNameWithoutId(c));
     }
 }

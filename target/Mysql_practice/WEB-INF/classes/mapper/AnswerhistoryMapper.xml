@@ -92,11 +92,15 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectByUserIdAndAnswerId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select * from tbl_answer_history
+    select
+    <include refid="Base_Column_List" />
+    from tbl_answer_history
     where user_id = #{userId,jdbcType=BIGINT} and answer_id = #{answerId,jdbcType=BIGINT}
   </select>
   <select id="selectUserAnswerHistory" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select * from tbl_answer_history
+    select
+    <include refid="Base_Column_List" />
+    from tbl_answer_history
     where user_id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

@@ -1,5 +1,6 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.po.Class;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,27 @@ public class ClassController extends BaseController{
             modelMap.put("message","暂时没有班级！");
         }
         modelMap.put("ClassBaseInfoList",baseInfoPojoList);
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 增加班级
+     * 不允许重名
+     * @CreateDate 9:28 2020/12/17
+     * @UpdateDate 2020-12-17 09:33:06
+     * @Param [c]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/addClass", method = RequestMethod.POST)
+    public Map<String,Object> addClass(Class c) {
+        Map<String,Object> modelMap=new HashMap<>();
+        if (classService.addClass(c).equals(0)) {
+            modelMap.put("message","请尝试更换班级名！");
+            return modelMap;
+        }
+        modelMap.put("message","添加成功！");
         return modelMap;
     }
 }

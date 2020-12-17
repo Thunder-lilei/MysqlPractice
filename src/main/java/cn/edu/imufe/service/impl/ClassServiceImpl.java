@@ -1,6 +1,7 @@
 package cn.edu.imufe.service.impl;
 
 import cn.edu.imufe.dao.ClassMapper;
+import cn.edu.imufe.po.Class;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,24 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public Class selectByClassName(String className) {
+        return classMapper.selectByClassName(className);
+    }
+
+    @Override
+    public Boolean selectByClassNameWithoutId(Class c) {
+        if (classMapper.selectByClassNameWithoutId(c) != null) {return true;}
+        return false;
+    }
+
+    @Override
     public List<ClassBaseInfoPojo> getAllClassBaseInfo() {
         return classMapper.getAllClassBaseInfo();
+    }
+
+    @Override
+    public Integer addClass(Class c) {
+        if (selectByClassName(c.getClassName()) != null) {return 0;}
+        return classMapper.insertSelective(c);
     }
 }

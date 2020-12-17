@@ -22,6 +22,10 @@ public interface ClassMapper {
 
     Class selectByPrimaryKey(Long id);
 
+    Class selectByClassNameWithoutId(Class c);
+
+    Class selectByClassName(String className);
+
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
     int updateByExampleSelective(@Param("record") Class record, @Param("example") ClassExample example);

@@ -88,6 +88,18 @@
     from tbl_class
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByClassName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_class
+    where class_name = #{className,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByClassNameWithoutId" parameterType="cn.edu.imufe.po.Class" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_class
+    where id != #{id,jdbcType=BIGINT} and class_name = #{className,jdbcType=VARCHAR}
+  </select>
   <select id="getAllClassBaseInfo" resultType="cn.edu.imufe.pojo.ClassBaseInfoPojo">
     select
     <include refid="Base_Column_List" />

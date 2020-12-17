@@ -141,7 +141,7 @@
 			let alllist;
 			let pagesize = 5;
 			$(document).ready(function() {
-				$.get('/answerhistory/getUserAnswerHistory', function(data) {
+				$.post('/answerHistory/getUserAnswerHistory', function(data) {
 					for (let i in data) {
 						if(data[i] instanceof Array){
 							alllist = data[i]

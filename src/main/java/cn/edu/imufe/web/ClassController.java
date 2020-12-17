@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -67,6 +68,47 @@ public class ClassController extends BaseController{
             return modelMap;
         }
         modelMap.put("message","添加成功！");
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 更新班级信息
+     * 需要班级id
+     * @CreateDate 9:39 2020/12/17
+     * @UpdateDate 9:39 2020/12/17
+     * @Param [c]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/updateClass", method = RequestMethod.POST)
+    public Map<String,Object> updateClass(Class c) {
+        Map<String,Object> modelMap=new HashMap<>();
+        if (classService.updateClass(c).equals(0)) {
+            modelMap.put("message","请尝试更换班级名！");
+            return modelMap;
+        }
+        modelMap.put("message","修改完成！");
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 删除班级
+     * @CreateDate 9:39 2020/12/17
+     * @UpdateDate 9:39 2020/12/17
+     * @Param [id]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/deleteClass", method = RequestMethod.POST)
+    public Map<String,Object> deleteClass(@RequestParam Long id) {
+        Map<String,Object> modelMap=new HashMap<>();
+        if (classService.deleteClass(id).equals(0)) {
+            modelMap.put("message","删除失败！");
+            return modelMap;
+        }
+        modelMap.put("message","删除成功！");
         return modelMap;
     }
 }

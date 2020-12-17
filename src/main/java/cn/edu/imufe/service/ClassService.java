@@ -3,6 +3,7 @@ package cn.edu.imufe.service;
 import cn.edu.imufe.po.Class;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 /**
@@ -20,4 +21,8 @@ public interface ClassService {
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
     Integer addClass(Class c);
+
+    Integer updateClass(Class c);
+
+    Integer deleteClass(Long id);
 }

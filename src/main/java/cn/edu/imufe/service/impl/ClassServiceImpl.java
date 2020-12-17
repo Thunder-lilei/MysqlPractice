@@ -45,4 +45,15 @@ public class ClassServiceImpl implements ClassService {
         if (selectByClassName(c.getClassName()) != null) {return 0;}
         return classMapper.insertSelective(c);
     }
+
+    @Override
+    public Integer updateClass(Class c) {
+        if (selectByClassNameWithoutId(c)) {return 0;}
+        return classMapper.updateByPrimaryKeySelective(c);
+    }
+
+    @Override
+    public Integer deleteClass(Long id) {
+        return classMapper.deleteByPrimaryKey(id);
+    }
 }

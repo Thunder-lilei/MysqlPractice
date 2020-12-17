@@ -84,10 +84,12 @@ public class UserController extends BaseController {
 				return mv;
 			}else
 			{
+				mv = new ModelAndView(PageUrlConstant.LOGIN);
 				mv.addObject(MESSAGE, "错误的密码");
 			}
 		}else
 		{
+			mv = new ModelAndView(PageUrlConstant.LOGIN);
 			mv.addObject(MESSAGE, "错误的账号");
 		}
 		return mv;

@@ -1,6 +1,6 @@
 package cn.edu.imufe.web;
 
-import cn.edu.imufe.po.Class;
+import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +61,7 @@ public class ClassController extends BaseController{
      **/
     @ResponseBody
     @RequestMapping(value = "/addClass", method = RequestMethod.POST)
-    public Map<String,Object> addClass(Class c) {
+    public Map<String,Object> addClass(TblClass c) {
         Map<String,Object> modelMap=new HashMap<>();
         if (classService.addClass(c).equals(0)) {
             modelMap.put("message","请尝试更换班级名！");
@@ -82,7 +82,7 @@ public class ClassController extends BaseController{
      **/
     @ResponseBody
     @RequestMapping(value = "/updateClass", method = RequestMethod.POST)
-    public Map<String,Object> updateClass(Class c) {
+    public Map<String,Object> updateClass(TblClass c) {
         Map<String,Object> modelMap=new HashMap<>();
         if (classService.updateClass(c).equals(0)) {
             modelMap.put("message","请尝试更换班级名！");
@@ -115,7 +115,7 @@ public class ClassController extends BaseController{
     @RequestMapping(value = "/getClass", method = RequestMethod.POST)
     public Map<String,Object> getClass(@RequestParam Long id) {
         Map<String,Object> modelMap=new HashMap<>();
-        Class c = classService.getClass(id);
+        TblClass c = classService.getClass(id);
         modelMap.put("class",c);
         if (c != null) {
             return modelMap;

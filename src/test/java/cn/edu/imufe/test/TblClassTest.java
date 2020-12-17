@@ -1,6 +1,6 @@
 package cn.edu.imufe.test;
 
-import cn.edu.imufe.po.Class;
+import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author : 李雷
  * @date : 2020-12-17 09:02
  **/
-public class ClassTest extends BaseTest{
+public class TblClassTest extends BaseTest{
     @Autowired
     ClassService classService;
     @Test
@@ -25,13 +25,13 @@ public class ClassTest extends BaseTest{
     }
     @Test
     public void addClass() {
-        Class c = new Class();
+        TblClass c = new TblClass();
         c.setClassName("17计算机科学与技术2班");
         System.out.println(classService.addClass(c));
     }
     @Test
     public void selectByClassNameWithoutId() {
-        Class c = new Class();
+        TblClass c = new TblClass();
         c.setClassName("17软件工程2班");
         System.out.println(classService.selectByClassNameWithoutId(c));
     }

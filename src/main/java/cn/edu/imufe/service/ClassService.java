@@ -1,9 +1,8 @@
 package cn.edu.imufe.service;
 
-import cn.edu.imufe.po.Class;
+import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 
-import javax.print.DocFlavor;
 import java.util.List;
 
 /**
@@ -14,17 +13,17 @@ import java.util.List;
  * @date : 2020-12-17 08:58
  **/
 public interface ClassService {
-    Class selectByClassName(String className);
+    TblClass selectByClassName(String className);
 
-    Boolean selectByClassNameWithoutId(Class c);
+    Boolean selectByClassNameWithoutId(TblClass c);
 
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
-    Class getClass(Long id);
+    TblClass getClass(Long id);
 
-    Integer addClass(Class c);
+    Integer addClass(TblClass c);
 
-    Integer updateClass(Class c);
+    Integer updateClass(TblClass c);
 
     Integer deleteClass(Long id);
 }

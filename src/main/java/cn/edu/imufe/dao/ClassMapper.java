@@ -1,38 +1,38 @@
 package cn.edu.imufe.dao;
 
-import cn.edu.imufe.po.Class;
-import cn.edu.imufe.po.ClassExample;
+import cn.edu.imufe.po.TblClass;
+import cn.edu.imufe.po.TblClassExample;
 import java.util.List;
 
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClassMapper {
-    long countByExample(ClassExample example);
+    long countByExample(TblClassExample example);
 
-    int deleteByExample(ClassExample example);
+    int deleteByExample(TblClassExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(Class record);
+    int insert(TblClass record);
 
-    int insertSelective(Class record);
+    int insertSelective(TblClass record);
 
-    List<Class> selectByExample(ClassExample example);
+    List<TblClass> selectByExample(TblClassExample example);
 
-    Class selectByPrimaryKey(Long id);
+    TblClass selectByPrimaryKey(Long id);
 
-    Class selectByClassNameWithoutId(Class c);
+    TblClass selectByClassNameWithoutId(TblClass c);
 
-    Class selectByClassName(String className);
+    TblClass selectByClassName(String className);
 
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
-    int updateByExampleSelective(@Param("record") Class record, @Param("example") ClassExample example);
+    int updateByExampleSelective(@Param("record") TblClass record, @Param("example") TblClassExample example);
 
-    int updateByExample(@Param("record") Class record, @Param("example") ClassExample example);
+    int updateByExample(@Param("record") TblClass record, @Param("example") TblClassExample example);
 
-    int updateByPrimaryKeySelective(Class record);
+    int updateByPrimaryKeySelective(TblClass record);
 
-    int updateByPrimaryKey(Class record);
+    int updateByPrimaryKey(TblClass record);
 }

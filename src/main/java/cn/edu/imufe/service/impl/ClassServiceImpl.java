@@ -1,7 +1,7 @@
 package cn.edu.imufe.service.impl;
 
 import cn.edu.imufe.dao.ClassMapper;
-import cn.edu.imufe.po.Class;
+import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,12 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public Class selectByClassName(String className) {
+    public TblClass selectByClassName(String className) {
         return classMapper.selectByClassName(className);
     }
 
     @Override
-    public Boolean selectByClassNameWithoutId(Class c) {
+    public Boolean selectByClassNameWithoutId(TblClass c) {
         if (classMapper.selectByClassNameWithoutId(c) != null) {return true;}
         return false;
     }
@@ -41,18 +41,18 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public Class getClass(Long id) {
+    public TblClass getClass(Long id) {
         return classMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Integer addClass(Class c) {
+    public Integer addClass(TblClass c) {
         if (selectByClassName(c.getClassName()) != null) {return 0;}
         return classMapper.insertSelective(c);
     }
 
     @Override
-    public Integer updateClass(Class c) {
+    public Integer updateClass(TblClass c) {
         if (selectByClassNameWithoutId(c)) {return 0;}
         return classMapper.updateByPrimaryKeySelective(c);
     }

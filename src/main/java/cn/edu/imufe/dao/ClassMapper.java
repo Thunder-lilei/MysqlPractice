@@ -3,6 +3,8 @@ package cn.edu.imufe.dao;
 import cn.edu.imufe.po.Class;
 import cn.edu.imufe.po.ClassExample;
 import java.util.List;
+
+import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClassMapper {
@@ -19,6 +21,8 @@ public interface ClassMapper {
     List<Class> selectByExample(ClassExample example);
 
     Class selectByPrimaryKey(Long id);
+
+    List<ClassBaseInfoPojo> getAllClassBaseInfo();
 
     int updateByExampleSelective(@Param("record") Class record, @Param("example") ClassExample example);
 

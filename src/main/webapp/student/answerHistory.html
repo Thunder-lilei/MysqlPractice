@@ -188,16 +188,17 @@
 					let newtddo = $("<td></td>");
 					let newspan = $("<span></span>");
 					
+					console.log(alllist[i].status);
 					switch (alllist[i].status.toString()) {
 						case "1":
 							newspan.attr("class", "badge badge-success");
 							newspan.html("正确"); 
 							break;
-						case "2":
+						case "0":
 							newspan.attr("class", "badge badge-danger");
 							newspan.html("错误"); 
 							break;
-						case "3":
+						case "2":
 						    newspan.attr("class", "badge badge-warning");
 							newspan.html("语句有误"); 
 							break;

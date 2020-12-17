@@ -17,23 +17,66 @@
   </head>
  
   <body class="text-center">
+  	
+  	
+		<!--密码错误后触发模态框-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			         	<span aria-hidden="true">&times;</span>
+			        </button>
+			    </div>
+			    <div class="modal-footer">
+                    
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" id="sureDelete">确认删除</button>
+	            </div>
+		    </div>
+		  </div>
+		</div>
+		<!--===========-->
 
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
  
     <div class="container">
       <form class="form-signin" method="post" action="/user/toLogin">
-        <img class="mb-4" src="images/logo.png" alt="" width="180" height="72">
+        <img class="mb-4" src="images/logo.png" alt="" width="180" height="72"/>
         <h2 class="form-signin-heading font-weight-bold">登录</h2>
         <label for="inputEmail" class="sr-only">用户名</label>
         <input type="text" id="inputEmail" name="username" class="form-control" placeholder="用户名" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
-        
-        <button class="btn btn-lg btn-primary btn-block" id="check" type="submit">登录</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" id="check">登录</button>
       </form>
  
     </div> 
   </body>
+  <script type="text/javascript" src="../js/jquery.min.js" ></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          let message = GetQueryString("message");
+          if (message != null) {alert(message);}
+      })
+  		// $("#check").on('click',function (e) {
+  		//         let message;
+			// 	e.preventDefault();
+	  		// 	$.post('/user/toLogin',{
+	  		// 			username: $("#inputEmail").val(),
+	  		// 			password: $("#inputPassword").val()
+	  		// 	},function (data) {
+          //           alert(data.message)
+	  		// })
+  		// })
+      function GetQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) return decodeURI(r[2]);
+          return null;
+      }
+  </script>
 </html>
 

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>修改试卷</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
+		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
+		<style type="text/css">
+			/* 修改bootstrap中选择框的默认样式 */
+			.form-check-input {
+			    position: inherit; 
+			    margin: 0;
+			}
+	        
+	        /*设置右侧表格样式*/
+	        #quizstable {
+	        	width: 100%;
+	        }
+			
+			tbody#quizstbody {
+				display: block;
+		        height: 525px;
+		        overflow-y: auto;
+			}
+			
+			#quizstable thead th {
+	            table-layout: fixed;
+	            display: inline-block;
+	        }
+	        
+	        #quizstable thead tr th:last-child {
+	        	width: calc(100% - 200px);
+	        }
+	        
+	        #quizstable thead tr th:first-child,#quizstbody tr td:first-child {
+	        	width: 100px;
+	        }
+	        
+	        #quizstable thead tr th:nth-child(2),#quizstbody tr td:nth-child(2) {
+	        	width: 100px;
+	        }
+		</style>
+	</head>
+	<body>
+		
+		<!--提交后触发模态框-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			         	<span aria-hidden="true">&times;</span>
+			        </button>
+			    </div>
+		    </div>
+		  </div>
+		</div>
+		<!--===========-->
+		
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom:30px">
+			<a class="navbar-brand" href="/teacher/teacherIndex.html">SQL在线测试</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="/teacher/teacherIndex.html">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">功能</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">功能</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-5">
+					<div class="card">
+						<div class="card-header bg-info text-white">
+							试卷
+						</div>
+						<div class="card-body">
+							<!--<form class="form-horizontal">-->
+								<div class="control-group">
+									<label for="inputEmail">试卷名称:</label>
+									<div class="controls">
+										<textarea name="paperName" style="width: 100%; height: 50px ;overflow: auto;word-break: break-all; resize: none;" id="inputEmail"></textarea>
+									</div>
+								</div>
+								<div class="control-group">
+									<label>选择班级:</label>
+									<!--
+                                    	此处需要做成select选择框
+                                    	因为逻辑尚未理清
+                                    	所以先做个样式
+                                    -->
+									<div class="input-group mb-3">
+									  <div class="input-group-prepend">
+									    	<label class="input-group-text" for="inputGroupSelect01">班级</label>
+									  </div>
+									  <select class="custom-select" id="inputGroupSelect01" name="classId">
+										    <option value="1" selected>软工</option>
+										    <option value="2">计科</option>
+										    <option value="3">网工</option>
+									  </select>
+									</div>
+								</div>
+								<div class="control-group" style="min-height: 380px;">
+									<!--
+                                    	此处table想要做成两处联动
+                                    	但是需要经理过目，所以暂时搁置
+                                    -->
+									<table class="table">
+										<thead>
+											<tr>
+												<th>
+													题号
+												</th>
+												<th>
+													题目
+												</th>
+												<!--<th>
+													操作
+												</th>-->
+											
+											</tr>
+										</thead>
+										<tbody id="addtbody">
+										<!-- <tr>
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											<td>
+												Default
+											</td>
+										</tr>
+										<tr>
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											<td>
+												Approved
+											</td>
+										</tr>
+										<tr>
+											<td>
+												2
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												02/04/2012
+											</td>
+											<td>
+												Declined
+											</td>
+										</tr>
+										<tr>
+											<td>
+												3
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												03/04/2012
+											</td>
+											<td>
+												Pending
+											</td>
+										</tr>
+										<tr>
+											<td>
+												4
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												04/04/2012
+											</td>
+											<td>
+												Call in to confirm
+											</td>
+										</tr> -->
+									</tbody>
+								</table>
+								</div>
+								<div class="control-group">
+									<!--<button type="button" class="btn btn-primary" onclick="preview()">运行</button>-->
+									<button type="submit" class="btn btn-success" onclick="updatePaper()">改卷</button>
+								</div>
+						</div>
+						<!--</form>-->
+					</div>
+		
+				</div>
+	
+			<div class="col-7">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						请选择要添加的题目
+					</div>
+					<div class="card-body">
+						<table class="table" id="quizstable">
+							<thead>
+								<tr>
+									<th>
+										请选择
+									</th>
+									<th>
+										题号
+									</th>
+									<th>
+										题目
+									</th>
+								
+								</tr>
+							</thead>
+							<tbody id="quizstbody">
+								<!-- <tr>
+									<td>
+										1
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										01/04/2012
+									</td>
+									<td>
+										Default
+									</td>
+								</tr>
+								<tr>
+									<td>
+										1
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										01/04/2012
+									</td>
+									<td>
+										Approved
+									</td>
+								</tr>
+								<tr>
+									<td>
+										2
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										02/04/2012
+									</td>
+									<td>
+										Declined
+									</td>
+								</tr>
+								<tr>
+									<td>
+										3
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										03/04/2012
+									</td>
+									<td>
+										Pending
+									</td>
+								</tr>
+								<tr>
+									<td>
+										4
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										04/04/2012
+									</td>
+									<td>
+										Call in to confirm
+									</td>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.js"></script>
+		<script src="../js/inputCache.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			let alllist = [];
+			//创建一个添加试卷时的试题集合
+			let addPaperAnswerList = new Set();
+			
+			//页面加载时需要将对应的题加入对应input框
+			$(document).ready(function() {
+				
+				let paperId = GetQueryString("paperId");
+				$.post('/paper/getPaper',{paperId},function (data) {
+					for (let i in data) {
+						if (data[i] instanceof Array) {
+							$.each(data[i], function(index,item) {
+								
+							});
+						}else{
+							$("#inputEmail").val(data[i].paperName);
+							$("#inputGroupSelect01").val(data[i].classId)
+						}
+					}
+				})
+				
+				$.post('/answer/getQuizs',function(data) {
+					for (let i in data) {
+						if (data[i] instanceof Array) {
+							alllist = data[i]
+							break
+						}
+					}
+					
+					$.each(alllist,function (index,item) {
+	
+						let newtr = $('<tr id="'+ item.id +'"></tr>');
+						
+						
+						let newinput = $('<input type="checkbox" class="form-check-input" value='+ item.id +'>')
+						let newtddo = $('<td></td>');
+						//为input框添加点击事件
+						newinput.on('click',function (e) {
+							//判断是否选中
+							if(this.checked) {
+								//将id加入集合中
+								addPaperAnswerList.add(this.value)
+							} else {
+								//将集合中的对应id删除
+								addPaperAnswerList.delete(this.value)
+							}
+							
+							console.log(addPaperAnswerList)
+						})
+						
+						newtddo.append(newinput);
+						newtr.append(newtddo);
+						
+						let newtdid = $("<td></td>");
+						newtdid.html(item.id);
+						newtr.append(newtdid);
+	
+						let newtitle = $("<td></td>");
+						newtitle.html(item.question);
+						newtr.append(newtitle);
+						
+						$("#quizstbody").append(newtr);
+	
+					})
+					
+				});
+			
+			})
+			
+			//创建获取当前页面id的函数
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return decodeURI(r[2]);
+				return null;
+			}
+			
+			/*function reset() {
+				$("#error").text("");
+				let tbody = $("#tbody");
+				let tbodychildren = tbody.children();
+				tbodychildren.filter("tr").remove();
+			}*/
+			
+			//改卷按钮函数
+			function updatePaper() {
+				
+				$.post('',{
+					paperName: $("#inputEmail").val(),
+					classId: $("#inputGroupSelect01").val(),
+					answerId: [...addPaperAnswerList].toString()
+				},function (data) {
+					if(data.message != undefined) {
+						$('#exampleModalLabel').html(data.message);
+						$('#exampleModal').modal('show');
+					} else{
+						$('#exampleModalLabel').html("出卷失败！请稍后重试");
+						$('#exampleModal').modal('show');
+					}
+				})
+			}
+		</script>
+	</body>
+</html>

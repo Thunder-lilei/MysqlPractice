@@ -138,7 +138,7 @@
 			let alllist;
 			let pagesize = 5;
 			$(document).ready(function() {
-				$.get('/answer/getQuizs', function(data) {
+				$.post('/answer/getQuizs', function(data) {
 					for (let i in data) {
 						if (data[i] instanceof Array) {
 							alllist = data[i]

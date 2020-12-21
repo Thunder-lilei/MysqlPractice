@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>试卷列表</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="../css/bootstrap-grid.min.css" type="text/css" />
+		<link rel="stylesheet" href="../css/bootstrap-reboot.min.css" type="text/css" />
+	</head>
+	<body>
+		
+		<!--删除后触发模态框-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			         	<span aria-hidden="true">&times;</span>
+			        </button>
+			    </div>
+			    <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" id="sureDelete">确认删除</button>
+	            </div>
+		    </div>
+		  </div>
+		</div>
+		<!--===========-->
+
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom:30px">
+			<a class="navbar-brand" href="/teacher/teacherIndex.html">SQL在线测试</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="/teacher/teacherIndex.html">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">功能</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">功能</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container-fluid">
+
+			<div class="row">
+
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header bg-gradient-light">
+							测试列表
+						</div>
+						<div class="card-body">
+							<div> <a class="btn btn-primary" style="color: #fff;" href="/teacher/addPaper.html">新增</a></div>
+							<br>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+
+										<th>
+											编号
+										</th>
+										
+										<th>
+											试卷名称
+										</th>
+										
+										<th>
+											班级
+										</th>
+										
+										<th>
+											出卷日期
+										</th>
+										
+										<th>
+											考试日期
+										</th>
+										
+										<th>
+											操作
+										</th>
+
+										<th>
+											状态
+										</th>
+									</tr>
+								</thead>
+								<tbody id="papertbody">
+									<!--<tr>
+										<td>
+											1
+										</td>
+										
+										<td>
+											17级计算机科学一班
+										</td>
+										<td>
+											2018/09/01
+										</td>
+										<td>
+											----/--/--
+										</td>
+										<td>
+												<a href="#">修改</a>
+											<a href="#">成绩</a>
+										</td>
+										<td>
+											<h5><span class="badge badge-success">正常</span></h5>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											2
+										</td>
+										<td>
+											17级计算机科学二班
+										</td>
+										<td>
+											2018/09/01
+										</td>
+										<td>
+											----/--/--
+										</td>
+										<td>
+											<a href="#">修改</a>
+										<a href="#">成绩</a>
+										</td>
+										<td class="text-success">
+											<h5><span class="badge badge-success">正常</span></h5>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											3
+										</td>
+										<td>
+											16级软件工程一班
+										</td>
+										<td>
+											2018/09/01
+										</td>
+										<td>
+											2019/03/05
+										</td>
+										<td>
+											<a href="#">修改</a>
+											<a href="#">成绩</a>
+										</td>
+										<td>
+											<h5><span class="badge badge-primary">已考完</span></h5>
+										</td>
+									</tr>
+									<tr class="warning">
+										<td>
+											4
+										</td>
+										<td>
+											17级计算机科学蒙一班
+										</td>
+										<td>
+											2018/09/01
+										</td>
+										<td>
+											----/--/--
+										</td>
+										<td>
+												<a href="#">修改</a>
+											<a href="#">成绩</a>
+										</td>
+										<td>
+											<h5><span class="badge badge-success">正常</span></h5>
+										</td>
+									</tr>
+									<tr class="info">
+										<td>
+											5
+										</td>
+										<td>
+											16级电子商务1班
+										</td>
+										<td>
+											2018/09/01
+										</td>
+										<td>
+											----/--/--
+										</td>
+										<td>
+											<a href="#">修改</a>
+										<a href="#">成绩</a>
+										</td>
+										<td>
+											<h5><span class="badge badge-success">正常</span></h5>
+										</td>
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input type="button" class="btn btn-circle" value="上一页" id="lastBtn" />
+					<input type="button" class="btn btn-circle" value="回首页" onclick="javascript:window.location.href='./'" />
+					<input type="button" class="btn btn-circle" value="下一页" id="nextBtn" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/date-formatter.js" ></script>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../js/bootstrap.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
+		<script>
+			// 定义分页记录
+			let page = 0;
+			let alllist;
+			let pagesize = 5;
+			$(document).ready(function() {
+				$.post('/paper/getAllPaper', function(data) {
+					
+					if(data.message != undefined) {
+						$('#exampleModalLabel').html(data.message);
+						$('#exampleModal').modal('show');
+					}
+					
+					for (let i in data) {
+						if (data[i] instanceof Array) {
+							alllist = data[i]
+							break
+						}
+					}
+
+					let papertbodychildren = $("#papertbody").children();
+					papertbodychildren.filter("tr").remove();
+					
+					//如果list列表的长度小于pagesize，则将pagesize重新复制为list的长度
+					if(pagesize>=alllist.length){
+						pagesize = alllist.length
+					}
+					
+					nowPage(page, page + pagesize, alllist)
+
+				});
+
+			})
+
+			// 定义显示函数
+			function nowPage(page, number, alllist) {
+				console.log(page, number);
+
+				for (let i = page; i < number; i++) {
+
+					let newtr = $("<tr id=tr"+ alllist[i].id +"></tr>");
+					let newtdid = $("<td></td>");
+					newtdid.html(alllist[i].id);
+					newtr.append(newtdid);
+
+					let newtitle = $("<td></td>");
+					let newgetPapera = $("<a></a>");
+					newgetPapera.attr("href","paper.html?paperId=" + alllist[i].id);
+					newgetPapera.html(alllist[i].paperName);
+					newtitle.append(newgetPapera);
+					newtr.append(newtitle);
+					
+					let newclassname = $("<td></td>");
+					newclassname.html(alllist[i].classId);
+					newtr.append(newclassname);
+					
+					let newcreate = $("<td></td>");
+					newcreate.html(dateFormatter(alllist[i].createTime));
+					newtr.append(newcreate);
+					
+					let newupdate = $("<td></td>");
+					newupdate.html(dateFormatter(alllist[i].updateTime));
+					newtr.append(newupdate);
+
+					let newtddo = $("<td></td>");
+					
+					let newa = $("<a>修改</a>");
+					newa.attr("href","updatePaper.html?paperId=" + alllist[i].id);
+					
+					let newspan = $("<span> - </span>");
+					
+					let newda = $("<a href='#'>删除</a>");
+//					newda.attr("onclick","deleteQuestion("+alllist[i].id+")")
+					
+					//定义删除试卷函数
+					newda.on('click',{id: alllist[i].id},function (e) {
+						e.preventDefault();
+						//模态框显示
+						$('.modal-footer').show();
+						$('#exampleModalLabel').html("是否确认删除");
+						$('#exampleModal').modal('show');
+						
+						$('#sureDelete').on('click',{id: e.data.id},function (e) {
+							$('.modal-footer').hide();
+							$.post('/paper/deletePaper',{
+								paperId: e.data.id
+							},function (data) {
+								if(data.message == '删除成功！') {
+									$('#exampleModalLabel').html("删除成功！");
+									$('#exampleModal').modal('show');
+									$("#tr"+e.data.id).remove();
+									//删除完成后，需要将后续一个元素往前移
+									//需要判断此时是否为最后一个元素
+									if(e.data.id < alllist.length-1) {
+										//将后续元素前移
+			//							$("#quizstbody").append($("#tr"+e.data.id+1))
+									}
+								} else{
+									$('#exampleModalLabel').html("删除失败！请稍后重试");
+									$('#exampleModal').modal('show');
+								}
+							})
+						})
+						
+					})
+					
+					newtddo.append(newa);
+					newtddo.append(newspan);
+					newtddo.append(newda)
+					newtr.append(newtddo);
+					
+					//在此处添加试卷状态
+					let newstatustr = $("<tr></tr>");
+					let newstatustd = $("<td></td>");
+					newstatustr.append(newstatustd);
+					
+					$("#papertbody").append(newtr);
+
+				}
+			}
+			
+			// 定义下一页按钮点击事件
+			nextBtn.onclick = function() {
+
+				page += pagesize
+
+				//判断是否为最后一页
+				if (page == alllist.length || page == alllist.length + pagesize) {
+					alert('当前为最后一页')
+					page = alllist.length - pagesize
+					return
+				}
+
+				// 先清空当前页面的所有表格节点
+				let papertbodychildren = $("#papertbody").children();
+				papertbodychildren.filter("tr").remove();
+
+				//当前情况为加载最后一页(page小于列表长度并且列表长度-page小于5)
+				if (page <= alllist.length && alllist.length - page <= pagesize && (alllist.length - page) / pagesize < 1) {
+					nowPage(page, alllist.length, alllist)
+					page = alllist.length
+					return
+				}
+				// 将下一页内容渲染到页面上
+				nowPage(page, page + pagesize, alllist)
+
+
+			}
+
+			//定义上一页按钮事件
+			lastBtn.onclick = function() {
+
+				// 在上一页事件中，page需要为5的倍数
+				page = page - (page % pagesize)
+
+				page -= pagesize
+
+				// 判断是否为第一页
+				if (page == -pagesize) {
+					alert('当前为第一页')
+					page += pagesize
+					return
+				}
+				// 先清空当前页面的所有表格节点
+				let papertbodychildren = $("#papertbody").children();
+				papertbodychildren.filter("tr").remove();
+				
+				// 将上一页内容渲染到页面上
+				nowPage(page, page + pagesize, alllist)
+
+			}
+		</script>
+	</body>
+</html>
+

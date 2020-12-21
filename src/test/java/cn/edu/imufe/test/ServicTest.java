@@ -38,31 +38,31 @@ public  class ServicTest extends BaseTest{
 	private static final Integer STATUS_2 = 2;
 
 
-	@Test 
+	@Test
 	public void testSelectByPrimaryKey() {
 		System.out.println(answerService.selectByPrimaryKey(1L));
 	}
 	@Test
-	public void randomlist() 
+	public void randomlist()
 	{
 		List<Long> allid = answerService.selectAllId();
 		@SuppressWarnings("unchecked")
 		List<Integer> list = RandomList.createRandomList(allid, 5);
-		for(Integer i:list) 
+		for(Integer i:list)
 		{
 			System.out.println(i);
 		}
 	}
-	@Test
-	public void alllist() 
-	{
-		List<AnswerPojo> allidwithtitle = answerService.selectAllIdWithTitle();
-		for(AnswerPojo i:allidwithtitle) 
-		{
-			System.out.println(i.getId());
-			System.out.println(i.getQuestion());
-		}
-	}
+//	@Test
+//	public void alllist()
+//	{
+//		List<AnswerPojo> allidwithtitle = answerService.selectAllAnswerBaseInfo();
+//		for(AnswerPojo i:allidwithtitle)
+//		{
+//			System.out.println(i.getId());
+//			System.out.println(i.getQuestion());
+//		}
+//	}
 	@Test
 	public void addanswerhistory() {
 			String sql = "select * from lilei;";
@@ -78,17 +78,17 @@ public  class ServicTest extends BaseTest{
 					break;
 				default:
 					status = STATUS_2;
-					
+
 			}
 			AnswerHistory answerhistory = new AnswerHistory();
 			AnswerHistory replace = new AnswerHistory();
 			replace = answerHistoryService.selectByUserIdAndAnswerId(6L,1L);
-			
+
 			answerhistory.setUserId(6L);
 			answerhistory.setAnswerId(1L);
 			answerhistory.setUserAnswers(sql);
 			answerhistory.setQuestionStatus(status);
-			
+
 			if(replace == null) {
 				answerHistoryService.insert(answerhistory);
 			}else {
@@ -103,7 +103,7 @@ public  class ServicTest extends BaseTest{
 		System.out.println("RoleId"+userRoleService.selectByUserId(auser.getId()).getRoleId());
 		System.out.println("RoleName"+roleService.selectByPrimaryKey(userRoleService.selectByUserId(auser.getId()).getRoleId()).getName());
 	}
-	
+
 	@Test
 	public void getAnswerHistory() {
 		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6L);

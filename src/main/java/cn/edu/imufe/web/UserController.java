@@ -57,7 +57,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/toLogin",method=RequestMethod.POST)
 	private ModelAndView toLogin(@RequestParam String username,@RequestParam String password){
-		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
+		ModelAndView mv = new ModelAndView();
 		User user = userService.selectByUsername(username);
 		if(user!=null)
 		{

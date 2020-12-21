@@ -6,79 +6,84 @@
 </head>
 <body>
 <form method="post" action="/paper/addPaper">
-    <input type="text" name="paperName" placeholder="paperName">
-    <input type="text" name="classId" placeholder="classId">
-    <input type="text" name="answerId" placeholder="answerId">
-    <input type="submit" value="addPaper">
+    <input type="text" name="paperName" placeholder="paperName" required>
+    <input type="text" name="classId" placeholder="classId" required>
+    <input type="text" name="answerId" placeholder="answerId" required>
+    <input type="submit" value="addPaper" required>
 </form>
 <form method="post" action="/paper/getPaper">
-    <input type="text" name="paperId" placeholder="paperId">
-    <input type="submit" value="getPaper">
+    <input type="text" name="paperId" placeholder="paperId" required>
+    <input type="submit" value="getPaper" required>
 </form>
 <form method="post" action="/paper/getAllPaper">
-    <input type="submit" value="getAllPaper">
+    <input type="submit" value="getAllPaper" required>
 </form>
 <form method="post" action="/paper/deletePaper">
-    <input type="text" name="paperId" placeholder="paperId">
-    <input type="submit" value="deletePaper">
+    <input type="text" name="paperId" placeholder="paperId" required>
+    <input type="submit" value="deletePaper" required>
 </form>
 <form method="post" action="/paper/updatePaper">
-    <input type="text" name="id" placeholder="id">
-    <input type="text" name="paperName" placeholder="paperName">
-    <input type="text" name="classId" placeholder="classId">
-    <input type="submit" value="updatePaper">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="text" name="paperName" placeholder="paperName" required>
+    <input type="text" name="classId" placeholder="classId" required>
+    <input type="submit" value="updatePaper" required>
 </form>
 <form method="post" action="/paper/addPaperAnswer">
-    <input type="text" name="paperId" placeholder="paperId">
-    <input type="text" name="answerId" placeholder="answerId">
-    <input type="submit" value="addPaperAnswer">
+    <input type="text" name="paperId" placeholder="paperId" required>
+    <input type="text" name="answerId" placeholder="answerId" required>
+    <input type="submit" value="addPaperAnswer" required>
 </form>
 <form method="post" action="/paper/deletePaperAnswer">
-    <input type="text" name="paperId" placeholder="paperId">
-    <input type="text" name="answerId" placeholder="answerId">
-    <input type="submit" value="deletePaperAnswer">
+    <input type="text" name="paperId" placeholder="paperId" required>
+    <input type="text" name="answerId" placeholder="answerId" required>
+    <input type="submit" value="deletePaperAnswer" required>
 </form>
 <form method="post" action="/user/addUser">
-    <input type="text" name="username" placeholder="username">
-    <input type="text" name="nickname" placeholder="nickname">
-    <input type="password" name="password" placeholder="password">
-    <input type="text" name="roleId" placeholder="roleId">
-    <input type="submit" value="addUser">
+    <input type="text" name="username" placeholder="username" required>
+    <input type="text" name="nickname" placeholder="nickname" required>
+    <input type="password" name="password" placeholder="password" required>
+    <input type="text" name="roleId" placeholder="roleId" required>
+    <input type="submit" value="addUser" required>
 </form>
 <form method="post" action="/user/updateUser">
-    <input type="text" name="id" placeholder="id">
-    <input type="text" name="username" placeholder="username">
-    <input type="text" name="nickname" placeholder="nickname">
-    <input type="password" name="password" placeholder="password">
-    <input type="text" name="roleId" placeholder="roleId">
-    <input type="submit" value="updateUser">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="text" name="username" placeholder="username" required>
+    <input type="text" name="nickname" placeholder="nickname" required>
+    <input type="password" name="password" placeholder="password" required>
+    <input type="text" name="roleId" placeholder="roleId" required>
+    <input type="submit" value="updateUser" required>
 </form>
 <form method="post" action="/user/getAllUserBaseInfo">
-    <input type="submit" value="getAllUserBaseInfo">
+    <input type="submit" value="getAllUserBaseInfo" required>
 </form>
 <form method="post" action="/user/getUserById">
-    <input type="text" name="id" placeholder="id">
-    <input type="submit" value="getUserById">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="submit" value="getUserById" required>
 </form>
 <form method="post" action="/class/getAllClassBaseInfo">
-    <input type="submit" value="getAllClassBaseInfo">
+    <input type="submit" value="getAllClassBaseInfo" required>
 </form>
 <form method="post" action="/class/addClass">
-    <input type="text" name="className" placeholder="className">
-    <input type="submit" value="addClass">
+    <input type="text" name="className" placeholder="className" required>
+    <input type="submit" value="addClass" required>
 </form>
 <form method="post" action="/class/updateClass">
-    <input type="text" name="id" placeholder="id">
-    <input type="text" name="className" placeholder="className">
-    <input type="submit" value="updateClass">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="text" name="className" placeholder="className" required>
+    <input type="submit" value="updateClass" required>
 </form>
 <form method="post" action="/class/deleteClass">
-    <input type="text" name="id" placeholder="id">
-    <input type="submit" value="deleteClass">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="submit" value="deleteClass" required>
 </form>
 <form method="post" action="/class/getClass">
-    <input type="text" name="id" placeholder="id">
-    <input type="submit" value="getClass">
+    <input type="text" name="id" placeholder="id" required>
+    <input type="submit" value="getClass" required>
+</form>
+<form method="post" action="/answer/getQuizByPage">
+    <input type="text" name="pageNow" placeholder="pageNow" required>
+    <input type="text" name="pageSize" placeholder="pageSize" required>
+    <input type="submit" value="getQuizByPage" required>
 </form>
 </body>
 </html>

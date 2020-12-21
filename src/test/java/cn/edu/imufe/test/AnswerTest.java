@@ -2,6 +2,8 @@ package cn.edu.imufe.test;
 
 import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.service.*;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,5 +48,12 @@ public class AnswerTest extends BaseTest{
     public void getAnswerIdByPaperId() {
         List<Long> paperAnswerList = paperAnswerService.getAnswerIdByPaperId(1L);
         paperAnswerList.forEach(temp-> System.out.println(temp));
+    }
+    @Test
+    public void findPage() {
+        PageInfo<Answer> answerPageInfo = (PageInfo<Answer>) answerService.getAllAnswerBaseInfo(1,10);
+        List<Answer> answerList = answerPageInfo.getList();
+        answerList.forEach(temp-> System.out.println(temp.getQuestion()));
+        System.out.println("结果："+answerPageInfo.toString());
     }
 }

@@ -26,7 +26,7 @@ public interface AnswerMapper {
 
     List<Long> selectAllId();
 
-    List<AnswerPojo> selectAllIdWithTitle();
+    List<AnswerPojo> getAllAnswerBaseInfo();
 
     Answer getAnswerByQuestionWithoutId(Answer answer);
 

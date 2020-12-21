@@ -4,6 +4,8 @@ import java.util.List;
 
 import cn.edu.imufe.dao.AnswerMapper;
 import cn.edu.imufe.po.Answer;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,11 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public List<Long> selectAllId() {
 		return answerDao.selectAllId();
+	}
+
+	@Override
+	public List<AnswerPojo> getAllAnswerBaseInfo() {
+		return answerDao.getAllAnswerBaseInfo();
 	}
 
 	/*
@@ -59,13 +66,15 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<AnswerPojo> selectAllIdWithTitle() {
-		return answerDao.selectAllIdWithTitle();
+	public Answer getAnswerByQuestionWithoutId(Answer answer) {
+		return answerDao.getAnswerByQuestionWithoutId(answer);
 	}
 
 	@Override
-	public Answer getAnswerByQuestionWithoutId(Answer answer) {
-		return answerDao.getAnswerByQuestionWithoutId(answer);
+	public PageInfo<?> getAllAnswerBaseInfo(int page, int pageSize) {
+		PageHelper.startPage(page,pageSize);
+		List<AnswerPojo> answerList = getAllAnswerBaseInfo();
+		return new PageInfo<>(answerList);
 	}
 
 }

@@ -84,7 +84,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tbl_answer
     where id = #{id,jdbcType=BIGINT}
@@ -104,8 +104,10 @@
   <select id="selectAllId" parameterType="java.lang.Long" resultType="java.lang.Integer">
     select id from tbl_answer
   </select>
-  <select id="selectAllIdWithTitle" resultType="cn.edu.imufe.pojo.AnswerPojo">
-    select id,question from tbl_answer
+  <select id="getAllAnswerBaseInfo" resultType="cn.edu.imufe.pojo.AnswerPojo">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_answer
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tbl_answer
@@ -118,9 +120,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.imufe.po.Answer">
-    insert into tbl_answer (id, question, solution, 
+    insert into tbl_answer (id, question, solution,
       create_time, update_time)
-    values (#{id,jdbcType=BIGINT}, #{question,jdbcType=VARCHAR}, #{solution,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{question,jdbcType=VARCHAR}, #{solution,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.imufe.po.Answer">

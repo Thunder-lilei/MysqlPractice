@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.edu.imufe.po.Answer;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class AnswerController extends BaseController {
 
 	private final String MESSAGE = "message";
 	private final String MESSAGE_SUCCESS = "success";
-	
+
 	/*
 	 * @Author 李雷
 	 * @Description
@@ -54,15 +55,15 @@ public class AnswerController extends BaseController {
 			{
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 				modelMap.put("answer", answer);
-			}else  
+			}else
 			{
 				modelMap.put(MESSAGE, "查询为空");
 			}
-		}else 
+		}else
 		{
 			modelMap.put(MESSAGE, "请选择题目");
 		}
-		
+
 		return modelMap;
 	}
 	/*
@@ -94,7 +95,7 @@ public class AnswerController extends BaseController {
 				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 				modelMap.put("randomList", randomlist);
 			}
-		}else  
+		}else
 		{
 			modelMap.put(MESSAGE, "题库不足");
 		}
@@ -113,12 +114,36 @@ public class AnswerController extends BaseController {
 	@RequestMapping(value="/getQuizs",method=RequestMethod.POST)
 	private Map<String,Object> getQuizs(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<AnswerPojo> answerPojoList = answerService.selectAllIdWithTitle();
+		List<AnswerPojo> answerPojoList = answerService.getAllAnswerBaseInfo();
 		if(answerPojoList!=null)
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
 			modelMap.put("allList", answerPojoList);
-		}else  
+		}else
+		{
+			modelMap.put(MESSAGE, "题库不足");
+		}
+		return modelMap;
+	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 分页查询题库
+	 * @CreateDate 15:09 2020/12/21
+	 * @UpdateDate 15:09 2020/12/21
+	 * @Param [pageNow, pageSize]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/getQuizByPage",method=RequestMethod.POST)
+	private Map<String,Object> getQuizByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
+		Map<String,Object> modelMap=new HashMap<>();
+		PageInfo<Answer> pageInfo = (PageInfo<Answer>) answerService.getAllAnswerBaseInfo(pageNow,pageSize);
+		if(pageInfo!=null)
+		{
+			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put("pageInfo", pageInfo);
+		}else
 		{
 			modelMap.put(MESSAGE, "题库不足");
 		}
@@ -141,10 +166,10 @@ public class AnswerController extends BaseController {
 		answer.setSolution(solution);
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerService.insertSelective(answer);
-		if(index.equals(1)) 
+		if(index.equals(1))
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-		}else 
+		}else
 		{
 			modelMap.put(MESSAGE, "插入失败");
 		}
@@ -164,10 +189,10 @@ public class AnswerController extends BaseController {
 	private Map<String,Object> deleteQuiz(@RequestParam Long id){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerService.deleteByPrimaryKey(id);
-		if(index.equals(1)) 
+		if(index.equals(1))
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-		}else 
+		}else
 		{
 			modelMap.put(MESSAGE, "删除失败");
 		}
@@ -188,10 +213,10 @@ public class AnswerController extends BaseController {
 	private Map<String,Object> updateQuiz(Answer answer){
 		Map<String,Object> modelMap=new HashMap<>();
 		Integer index = answerService.updateByPrimaryKeySelective(answer);
-		if(index.equals(1)) 
+		if(index.equals(1))
 		{
 			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-		}else 
+		}else
 		{
 			modelMap.put(MESSAGE, "修改失败");
 		}

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.edu.imufe.constant.MessageConstant;
 import cn.edu.imufe.po.Answer;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.edu.imufe.pojo.AnswerPojo;
+import cn.edu.imufe.pojo.AnswerBaseInfoPojo;
 import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.util.RandomList;
 
@@ -31,9 +32,6 @@ public class AnswerController extends BaseController {
 	public AnswerController(AnswerService answerservice) {
 		this.answerService = answerservice;
 	}
-
-	private final String MESSAGE = "message";
-	private final String MESSAGE_SUCCESS = "success";
 
 	/*
 	 * @Author 李雷
@@ -53,15 +51,15 @@ public class AnswerController extends BaseController {
 			Answer answer = answerService.selectByPrimaryKey(Long.parseLong(id));
 			if(answer!=null)
 			{
-				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+				modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 				modelMap.put("answer", answer);
 			}else
 			{
-				modelMap.put(MESSAGE, "查询为空");
+				modelMap.put(MessageConstant.MESSAGE, "查询为空");
 			}
 		}else
 		{
-			modelMap.put(MESSAGE, "请选择题目");
+			modelMap.put(MessageConstant.MESSAGE, "请选择题目");
 		}
 
 		return modelMap;
@@ -89,15 +87,15 @@ public class AnswerController extends BaseController {
 			//获取随机题目id allid为题库中全部id Random为随机抽取的数量
 			if(!randomSize.equals(randomlist.size()))
 			{
-				modelMap.put(MESSAGE, "随机题目数量不足");
+				modelMap.put(MessageConstant.MESSAGE, "随机题目数量不足");
 			}else
 			{
-				modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+				modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 				modelMap.put("randomList", randomlist);
 			}
 		}else
 		{
-			modelMap.put(MESSAGE, "题库不足");
+			modelMap.put(MessageConstant.MESSAGE, "题库不足");
 		}
 		return modelMap;
 	}
@@ -111,17 +109,17 @@ public class AnswerController extends BaseController {
 	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
 	@ResponseBody
-	@RequestMapping(value="/getQuizs",method=RequestMethod.POST)
-	private Map<String,Object> getQuizs(){
+	@RequestMapping(value="/getAllQuizBaseInfo",method=RequestMethod.POST)
+	private Map<String,Object> getAllQuizBaseInfo(){
 		Map<String,Object> modelMap=new HashMap<>();
-		List<AnswerPojo> answerPojoList = answerService.getAllAnswerBaseInfo();
-		if(answerPojoList!=null)
+		List<AnswerBaseInfoPojo> answerBaseInfoPojoList = answerService.getAllAnswerBaseInfo();
+		if(answerBaseInfoPojoList !=null)
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
-			modelMap.put("allList", answerPojoList);
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
+			modelMap.put("allList", answerBaseInfoPojoList);
 		}else
 		{
-			modelMap.put(MESSAGE, "题库不足");
+			modelMap.put(MessageConstant.MESSAGE, "题库不足");
 		}
 		return modelMap;
 	}
@@ -135,17 +133,17 @@ public class AnswerController extends BaseController {
 	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
 	@ResponseBody
-	@RequestMapping(value="/getQuizByPage",method=RequestMethod.POST)
-	private Map<String,Object> getQuizByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
+	@RequestMapping(value="/getAllQuizBaseInfoByPage",method=RequestMethod.POST)
+	private Map<String,Object> getAllQuizBaseInfoByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
 		Map<String,Object> modelMap=new HashMap<>();
 		PageInfo<Answer> pageInfo = (PageInfo<Answer>) answerService.getAllAnswerBaseInfo(pageNow,pageSize);
-		if(pageInfo!=null)
+		if(pageInfo != null)
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 			modelMap.put("pageInfo", pageInfo);
 		}else
 		{
-			modelMap.put(MESSAGE, "题库不足");
+			modelMap.put(MessageConstant.MESSAGE, "题库不足");
 		}
 		return modelMap;
 	}
@@ -168,10 +166,10 @@ public class AnswerController extends BaseController {
 		Integer index = answerService.insertSelective(answer);
 		if(index.equals(1))
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 		}else
 		{
-			modelMap.put(MESSAGE, "插入失败");
+			modelMap.put(MessageConstant.MESSAGE, "插入失败");
 		}
 		return modelMap;
 	}
@@ -191,10 +189,10 @@ public class AnswerController extends BaseController {
 		Integer index = answerService.deleteByPrimaryKey(id);
 		if(index.equals(1))
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 		}else
 		{
-			modelMap.put(MESSAGE, "删除失败");
+			modelMap.put(MessageConstant.MESSAGE, "删除失败");
 		}
 		return modelMap;
 	}
@@ -215,10 +213,10 @@ public class AnswerController extends BaseController {
 		Integer index = answerService.updateByPrimaryKeySelective(answer);
 		if(index.equals(1))
 		{
-			modelMap.put(MESSAGE, MESSAGE_SUCCESS);
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 		}else
 		{
-			modelMap.put(MESSAGE, "修改失败");
+			modelMap.put(MessageConstant.MESSAGE, "修改失败");
 		}
 		return modelMap;
 	}

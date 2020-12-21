@@ -8,10 +8,12 @@ import cn.edu.imufe.dao.AnswerHistoryMapper;
 import cn.edu.imufe.dao.AnswerMapper;
 import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.AnswerHistory;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.edu.imufe.pojo.AnswerHistoryPojo;
+import cn.edu.imufe.pojo.UserAnswerHistoryPojo;
 import cn.edu.imufe.service.AnswerHistoryService;
 @Service
 public class AnswerHistoryServiceImpl implements AnswerHistoryService {
@@ -47,21 +49,35 @@ public class AnswerHistoryServiceImpl implements AnswerHistoryService {
 		return answerHistoryDao.updateByPrimaryKeySelective(record);
 	}
 
-	@SuppressWarnings("null")
 	@Override
-	public List<AnswerHistoryPojo> selectUserAnswerHistory(Long id) {
-		// TODO Auto-generated method stub
+	public List<UserAnswerHistoryPojo> selectUserAnswerHistory(Long id) {
 		List<AnswerHistory> answerHistoryList = answerHistoryDao.selectUserAnswerHistory(id);
-		List<AnswerHistoryPojo> answerHistoryPojoList = new ArrayList<>();
+		List<UserAnswerHistoryPojo> userAnswerHistoryPojoList = new ArrayList<>();
 		for (AnswerHistory answerHistory : answerHistoryList) {
-			AnswerHistoryPojo answerHistoryPojo = new AnswerHistoryPojo();
+			UserAnswerHistoryPojo userAnswerHistoryPojo = new UserAnswerHistoryPojo();
 			Answer answer = answerDao.selectByPrimaryKey(answerHistory.getAnswerId());
-			answerHistoryPojo.setAnswerId(answer.getId());
-			answerHistoryPojo.setTitle(answer.getQuestion());
-			answerHistoryPojo.setStatus(answerHistory.getQuestionStatus());
-			answerHistoryPojoList.add(answerHistoryPojo);
+			userAnswerHistoryPojo.setAnswerId(answer.getId());
+			userAnswerHistoryPojo.setTitle(answer.getQuestion());
+			userAnswerHistoryPojo.setStatus(answerHistory.getQuestionStatus());
+			userAnswerHistoryPojoList.add(userAnswerHistoryPojo);
 		}
-		return answerHistoryPojoList;
+		return userAnswerHistoryPojoList;
+	}
+
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 分页查询用户答题历史
+	 * @CreateDate 16:07 2020/12/21
+	 * @UpdateDate 16:07 2020/12/21
+	 * @Param [id, page, pageSize]
+	 * @return com.github.pagehelper.PageInfo<?>
+	 **/
+	@Override
+	public PageInfo<?> selectUserAnswerHistoryByPage(Long id,int page, int pageSize) {
+		PageHelper.startPage(page,pageSize);
+		List<UserAnswerHistoryPojo> userAnswerHistoryPojos = selectUserAnswerHistory(id);
+		return new PageInfo<>(userAnswerHistoryPojos);
 	}
 
 

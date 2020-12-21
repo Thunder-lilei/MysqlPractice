@@ -104,7 +104,7 @@
   <select id="selectAllId" parameterType="java.lang.Long" resultType="java.lang.Integer">
     select id from tbl_answer
   </select>
-  <select id="getAllAnswerBaseInfo" resultType="cn.edu.imufe.pojo.AnswerPojo">
+  <select id="getAllAnswerBaseInfo" resultType="cn.edu.imufe.pojo.AnswerBaseInfoPojo">
     select
     <include refid="Base_Column_List" />
     from tbl_answer

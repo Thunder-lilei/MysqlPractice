@@ -4,7 +4,7 @@ import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.AnswerExample;
 import java.util.List;
 
-import cn.edu.imufe.pojo.AnswerPojo;
+import cn.edu.imufe.pojo.AnswerBaseInfoPojo;
 import org.apache.ibatis.annotations.Param;
 
 public interface AnswerMapper {
@@ -26,7 +26,7 @@ public interface AnswerMapper {
 
     List<Long> selectAllId();
 
-    List<AnswerPojo> getAllAnswerBaseInfo();
+    List<AnswerBaseInfoPojo> getAllAnswerBaseInfo();
 
     Answer getAnswerByQuestionWithoutId(Answer answer);
 

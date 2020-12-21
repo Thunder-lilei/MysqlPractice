@@ -2,6 +2,7 @@ package cn.edu.imufe.service;
 
 import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface ClassService {
     Boolean selectByClassNameWithoutId(TblClass c);
 
     List<ClassBaseInfoPojo> getAllClassBaseInfo();
+
+    PageInfo<?> getAllClassBaseInfo(int page, int pageSize);
 
     TblClass getClass(Long id);
 

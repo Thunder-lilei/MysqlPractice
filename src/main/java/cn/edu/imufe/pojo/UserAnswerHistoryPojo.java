@@ -1,6 +1,6 @@
 package cn.edu.imufe.pojo;
 
-public class AnswerHistoryPojo {
+public class UserAnswerHistoryPojo {
 	private Long answerId;
 	private String title;
 	private Integer status;
@@ -22,5 +22,5 @@ public class AnswerHistoryPojo {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
+
 }

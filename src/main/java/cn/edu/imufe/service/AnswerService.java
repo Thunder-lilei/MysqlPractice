@@ -2,7 +2,7 @@ package cn.edu.imufe.service;
 import java.util.List;
 
 import cn.edu.imufe.po.*;
-import cn.edu.imufe.pojo.AnswerPojo;
+import cn.edu.imufe.pojo.AnswerBaseInfoPojo;
 import com.github.pagehelper.PageInfo;
 
 public interface AnswerService {
@@ -12,7 +12,7 @@ public interface AnswerService {
 
 	List<Long> selectAllId();
 
-	List<AnswerPojo> getAllAnswerBaseInfo();
+	List<AnswerBaseInfoPojo> getAllAnswerBaseInfo();
 
 	Answer getAnswerByQuestionWithoutId(Answer answer);
 

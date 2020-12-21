@@ -4,6 +4,8 @@ import cn.edu.imufe.dao.ClassMapper;
 import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,22 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public List<ClassBaseInfoPojo> getAllClassBaseInfo() {
         return classMapper.getAllClassBaseInfo();
+    }
+
+    /*
+     * @Author 李雷
+     * @Description
+     * 利用PageHelper插件实现班级基本信息分页查询
+     * @CreateDate 15:41 2020/12/21
+     * @UpdateDate 15:41 2020/12/21
+     * @Param [page, pageSize]
+     * @return com.github.pagehelper.PageInfo<?>
+     **/
+    @Override
+    public PageInfo<?> getAllClassBaseInfo(int page, int pageSize) {
+        PageHelper.startPage(page,pageSize);
+        List<ClassBaseInfoPojo> classBaseInfoPojoList = getAllClassBaseInfo();
+        return new PageInfo<>(classBaseInfoPojoList);
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.edu.imufe.pojo.AnswerPojo;
+import cn.edu.imufe.pojo.AnswerBaseInfoPojo;
 import cn.edu.imufe.service.AnswerService;
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -35,7 +35,7 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<AnswerPojo> getAllAnswerBaseInfo() {
+	public List<AnswerBaseInfoPojo> getAllAnswerBaseInfo() {
 		return answerDao.getAllAnswerBaseInfo();
 	}
 
@@ -70,10 +70,19 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerDao.getAnswerByQuestionWithoutId(answer);
 	}
 
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 利用PageHelper插件实现问题基本信息分页查询
+	 * @CreateDate 15:20 2020/12/21
+	 * @UpdateDate 15:20 2020/12/21
+	 * @Param [page, pageSize]
+	 * @return com.github.pagehelper.PageInfo<?>
+	 **/
 	@Override
 	public PageInfo<?> getAllAnswerBaseInfo(int page, int pageSize) {
 		PageHelper.startPage(page,pageSize);
-		List<AnswerPojo> answerList = getAllAnswerBaseInfo();
+		List<AnswerBaseInfoPojo> answerList = getAllAnswerBaseInfo();
 		return new PageInfo<>(answerList);
 	}
 

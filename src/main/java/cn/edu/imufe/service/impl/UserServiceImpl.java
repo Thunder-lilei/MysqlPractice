@@ -1,9 +1,12 @@
 package cn.edu.imufe.service.impl;
 
 import cn.edu.imufe.dao.UserMapper;
+import cn.edu.imufe.po.Paper;
 import cn.edu.imufe.po.User;
 import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import cn.edu.imufe.util.BCrypt;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserBaseInfoPojo> getAllUserBaseInfo() {
 		return userDao.getAllUserBaseInfo();
+	}
+
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 利用PageHelper插件实现用户基本信息分页查询
+	 * @CreateDate 15:42 2020/12/21
+	 * @UpdateDate 15:42 2020/12/21
+	 * @Param [page, pageSize]
+	 * @return com.github.pagehelper.PageInfo<?>
+	 **/
+	@Override
+	public PageInfo<?> getAllUserBaseInfo(int page, int pageSize) {
+		PageHelper.startPage(page,pageSize);
+		List<UserBaseInfoPojo> classBaseInfoPojoList = getAllUserBaseInfo();
+		return new PageInfo<>(classBaseInfoPojoList);
 	}
 
 	@Override

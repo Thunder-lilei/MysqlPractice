@@ -1,10 +1,13 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.constant.MessageConstant;
 import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.Paper;
+import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.AnswerService;
 import cn.edu.imufe.service.PaperAnswerService;
 import cn.edu.imufe.service.PaperService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,13 +36,12 @@ public class PaperControler extends BaseController {
         this.paperAnswerService = paperAnswerService;
         this.answerService = answerService;
     }
-    private final String MESSAGE = "message";
     /*
      * @Author 李雷
      * @Description
      * 生成试卷
      * 获取试卷名称 班级Id 选择的题目Id
-     * 返回message信息
+     * 返回MessageConstant.MESSAGE信息
      * @CreateDate 21:03 2020/12/15
      * @UpdateDate 21:03 2020/12/15
      * @Param [paperName, classId, answerId]
@@ -53,19 +55,19 @@ public class PaperControler extends BaseController {
         paper.setPaperName(paperName);
         paper.setClassId(classId);
         if (paperService.addPaper(paper).equals(0)) {
-            modelMap.put(MESSAGE,"请检查填写的试卷信息是否重名！");
+            modelMap.put(MessageConstant.MESSAGE,"请检查填写的试卷信息是否重名！");
             return modelMap;
         }
         paper = paperService.getPaperByPaperName(paperName);
         if (answerId == null) {
-            modelMap.put(MESSAGE,"请选择至少一道题目！");
+            modelMap.put(MessageConstant.MESSAGE,"请选择至少一道题目！");
             return modelMap;
         }else {
             for(Long l : answerId) {
                 paperAnswerService.addPaperAnswer(paper.getId(),l);
             }
         }
-        modelMap.put(MESSAGE,"成功生成试卷:"+paperName);
+        modelMap.put(MessageConstant.MESSAGE,"成功生成试卷:"+paperName);
         return modelMap;
     }
     /*
@@ -88,7 +90,7 @@ public class PaperControler extends BaseController {
         List<Answer> answerList = new ArrayList<>();
         answerIdList.forEach(temp->answerList.add(answerService.selectByPrimaryKey(temp)));
         if (paper == null) {
-            modelMap.put(MESSAGE,"获取试卷信息失败！");
+            modelMap.put(MessageConstant.MESSAGE,"获取试卷信息失败！");
         }
         modelMap.put("paper",paper);
         modelMap.put("answerList",answerList);
@@ -109,9 +111,33 @@ public class PaperControler extends BaseController {
         Map<String,Object> modelMap=new HashMap<>();
         List<Paper> paperList = paperService.getAllPaper();
         if (paperList == null) {
-            modelMap.put(MESSAGE,"暂时没有试卷！");
+            modelMap.put(MessageConstant.MESSAGE,"暂时没有试卷！");
         }
         modelMap.put("paperList",paperList);
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 分页查询试卷
+     * @CreateDate 15:46 2020/12/21
+     * @UpdateDate 15:46 2020/12/21
+     * @Param [pageNow, pageSize]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value="/getAllPaperByPage",method=RequestMethod.POST)
+    private Map<String,Object> getAllPaperByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
+        Map<String,Object> modelMap=new HashMap<>();
+        PageInfo<Paper> pageInfo = (PageInfo<Paper>) paperService.getAllPaper(pageNow,pageSize);
+        if(pageInfo != null)
+        {
+            modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
+            modelMap.put("pageInfo", pageInfo);
+        }else
+        {
+            modelMap.put(MessageConstant.MESSAGE, "试卷不足");
+        }
         return modelMap;
     }
     /*
@@ -129,10 +155,10 @@ public class PaperControler extends BaseController {
     private Map<String,Object> deletePaper(@RequestParam Long paperId){
         Map<String,Object> modelMap=new HashMap<>();
         if (!paperService.deletePaperById(paperId).equals(0) && !paperAnswerService.deletePaperAnswerByPaperId(paperId).equals(0)) {
-            modelMap.put(MESSAGE,"删除成功！");
+            modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
             return modelMap;
         }
-        modelMap.put(MESSAGE,"删除失败！");
+        modelMap.put(MessageConstant.MESSAGE,"删除失败！");
         return modelMap;
     }
     /*
@@ -149,10 +175,10 @@ public class PaperControler extends BaseController {
     private Map<String,Object> updatePaper(Paper paper){
         Map<String,Object> modelMap=new HashMap<>();
         if (paperService.updatePaper(paper).equals(0)) {
-            modelMap.put(MESSAGE,"请尝试更换试卷名！");
+            modelMap.put(MessageConstant.MESSAGE,"请尝试更换试卷名！");
             return modelMap;
         }
-        modelMap.put(MESSAGE,"更新成功！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
     /*
@@ -169,10 +195,10 @@ public class PaperControler extends BaseController {
     private Map<String,Object> addPaperAnswer(@RequestParam Long paperId, @RequestParam Long answerId){
         Map<String,Object> modelMap=new HashMap<>();
         if (paperAnswerService.addPaperAnswer(paperId,answerId).equals(0)) {
-            modelMap.put(MESSAGE,"重复添加！");
+            modelMap.put(MessageConstant.MESSAGE,"重复添加！");
             return modelMap;
         }
-        modelMap.put(MESSAGE,"添加成功！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
     /*
@@ -189,10 +215,10 @@ public class PaperControler extends BaseController {
     private Map<String,Object> deletePaperAnswer(@RequestParam Long paperId, @RequestParam Long answerId){
         Map<String,Object> modelMap=new HashMap<>();
         if (paperAnswerService.deletePaperAnswerByPaperIdAndAnswerId(paperId,answerId).equals(0)) {
-            modelMap.put(MESSAGE,"移除失败");
+            modelMap.put(MessageConstant.MESSAGE,"移除失败");
             return modelMap;
         }
-        modelMap.put(MESSAGE,"移除成功！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
 

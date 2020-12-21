@@ -2,7 +2,10 @@ package cn.edu.imufe.service.impl;
 
 import cn.edu.imufe.dao.PaperMapper;
 import cn.edu.imufe.po.Paper;
+import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.PaperService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +59,22 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public List<Paper> getAllPaper() {
         return paperMapper.getAll();
+    }
+
+    /*
+     * @Author 李雷
+     * @Description
+     * 利用PageHelper插件实现试卷分页查询
+     * @CreateDate 15:42 2020/12/21
+     * @UpdateDate 15:42 2020/12/21
+     * @Param [page, pageSize]
+     * @return com.github.pagehelper.PageInfo<?>
+     **/
+    @Override
+    public PageInfo<?> getAllPaper(int page, int pageSize) {
+        PageHelper.startPage(page,pageSize);
+        List<Paper> classBaseInfoPojoList = getAllPaper();
+        return new PageInfo<>(classBaseInfoPojoList);
     }
 
     @Override

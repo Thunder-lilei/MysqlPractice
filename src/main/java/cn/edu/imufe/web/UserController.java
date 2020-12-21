@@ -1,10 +1,12 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.constant.MessageConstant;
 import cn.edu.imufe.po.Role;
 import cn.edu.imufe.po.User;
 import cn.edu.imufe.po.UserRole;
 import cn.edu.imufe.pojo.UserBaseInfoPojo;
 import cn.edu.imufe.util.BCrypt;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.edu.imufe.constant.PageUrlConstant;
-import cn.edu.imufe.constant.UserConstant;
+import cn.edu.imufe.constant.RoleConstant;
 import cn.edu.imufe.service.RoleService;
 import cn.edu.imufe.service.UserRoleService;
 import cn.edu.imufe.service.UserService;
@@ -42,9 +44,6 @@ public class UserController extends BaseController {
 	this.roleService = roleService;
 	}
 
-	private final String MESSAGE = "message";
-	private final String MESSAGE_SUCCESS = "success"	;
-	
 	/*
 	 * @Author 李雷
 	 * @Description
@@ -65,32 +64,32 @@ public class UserController extends BaseController {
 			{
 				session.setAttribute(userRoleService.getRole(user.getId()), user);
 				session.setAttribute("user", user);
-				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
+				mv.addObject(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 				UserRole userRole = userRoleService.selectByUserId(user.getId());
 				Role role = roleService.selectByPrimaryKey(userRole.getRoleId());
 				System.out.println(role.getName());
 				switch(role.getName()) {
-					case UserConstant.ADMIN:
-					case UserConstant.TEACHER:
+					case RoleConstant.ADMIN:
+					case RoleConstant.TEACHER:
 						mv = new ModelAndView(PageUrlConstant.TEACHER_ADMIN_INDEX);
 						break;
-					case UserConstant.STUDENT:
+					case RoleConstant.STUDENT:
 						mv = new ModelAndView(PageUrlConstant.STUDENT_INDEX);
 						break;
 					default:
-						mv.addObject(MESSAGE, "错误的用户角色");
+						mv.addObject(MessageConstant.MESSAGE, "错误的用户角色");
 						break;
 				}
 				return mv;
 			}else
 			{
 				mv = new ModelAndView(PageUrlConstant.LOGIN);
-				mv.addObject(MESSAGE, "错误的密码");
+				mv.addObject(MessageConstant.MESSAGE, "错误的密码");
 			}
 		}else
 		{
 			mv = new ModelAndView(PageUrlConstant.LOGIN);
-			mv.addObject(MESSAGE, "错误的账号");
+			mv.addObject(MessageConstant.MESSAGE, "错误的账号");
 		}
 		return mv;
 	}
@@ -112,17 +111,17 @@ public class UserController extends BaseController {
 		{
 			user.setPassword(newPassword);
 			Integer result = userService.updatePasswordByUsernameSelective(user);
-			if(result.equals(1)) 
+			if(result.equals(1))
 			{
-				mv.addObject(MESSAGE, MESSAGE_SUCCESS);
+				mv.addObject(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 				return mv;
-			}else 
+			}else
 			{
-				mv.addObject(MESSAGE, "修改失败");
+				mv.addObject(MessageConstant.MESSAGE, "修改失败");
 			}
-		}else 
+		}else
 		{
-			mv.addObject(MESSAGE, "错误的用户名");
+			mv.addObject(MessageConstant.MESSAGE, "错误的用户名");
 		}
 		return mv;
 	}
@@ -140,17 +139,17 @@ public class UserController extends BaseController {
 	private ModelAndView logout(){
 		ModelAndView mv = new ModelAndView(PageUrlConstant.INDEX);
 		//已登录
-		if(UserUtil.IfLogin(session)) 
+		if(UserUtil.IfLogin(session))
 		{
 			User record = (User)session.getAttribute("user");
 			session.setAttribute(roleService.selectByPrimaryKey(userRoleService.selectByUserId(record.getId()).getRoleId()).getName(), null);
 			//清空session
 			session.invalidate();
-			mv.addObject(MESSAGE, MESSAGE_SUCCESS);
+			mv.addObject(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 			return mv;
 		}else
 		{
-			mv.addObject(MESSAGE, "未登录");
+			mv.addObject(MessageConstant.MESSAGE, "未登录");
 			mv = new ModelAndView(PageUrlConstant.LOGIN);
 		}
 		return mv;
@@ -170,15 +169,15 @@ public class UserController extends BaseController {
 	private Map<String,Object> addUser(User user,@RequestParam Long roleId){
 		Map<String,Object> modelMap = new HashMap<>();
 		if (userService.addUser(user).equals(0)) {
-			modelMap.put(MESSAGE,"用户名重复！");
+			modelMap.put(MessageConstant.MESSAGE,"用户名重复！");
 			return modelMap;
 		}
 		user = userService.selectByUsername(user.getUsername());
 		if (userRoleService.addUserRole(user.getId(),roleId).equals(0)) {
-			modelMap.put(MESSAGE,"用户添加成功！但已有该权限！");
+			modelMap.put(MessageConstant.MESSAGE,"用户添加成功！但已有该权限！");
 			return modelMap;
 		}
-		modelMap.put(MESSAGE,"用户添加成功！");
+		modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
 		return modelMap;
 	}
 	/*
@@ -196,11 +195,11 @@ public class UserController extends BaseController {
 	private Map<String,Object> updateUser(User user,@RequestParam Long roleId){
 		Map<String,Object> modelMap = new HashMap<>();
 		if (userService.updateUser(user).equals(0)) {
-			modelMap.put(MESSAGE,"更新失败！尝试更换用户名！");
+			modelMap.put(MessageConstant.MESSAGE,"更新失败！尝试更换用户名！");
 			return modelMap;
 		}
 		userRoleService.addUserRole(user.getId(),roleId);
-		modelMap.put(MESSAGE,"更新成功！");
+		modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
 		return modelMap;
 	}
 	/*
@@ -221,7 +220,31 @@ public class UserController extends BaseController {
 		if (!userBaseInfoPojoList.isEmpty()) {
 			return modelMap;
 		}
-		modelMap.put(MESSAGE,"暂时没有用户！");
+		modelMap.put(MessageConstant.MESSAGE,"暂时没有用户！");
+		return modelMap;
+	}
+	/*
+	 * @Author 李雷
+	 * @Description
+	 * 分页查询用户基本信息
+	 * @CreateDate 15:46 2020/12/21
+	 * @UpdateDate 15:46 2020/12/21
+	 * @Param [pageNow, pageSize]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@ResponseBody
+	@RequestMapping(value="/getAllUserBaseInfoByPage",method=RequestMethod.POST)
+	private Map<String,Object> getAllUserBaseInfoByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
+		Map<String,Object> modelMap=new HashMap<>();
+		PageInfo<UserBaseInfoPojo> pageInfo = (PageInfo<UserBaseInfoPojo>) userService.getAllUserBaseInfo(pageNow,pageSize);
+		if(pageInfo != null)
+		{
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
+			modelMap.put("pageInfo", pageInfo);
+		}else
+		{
+			modelMap.put(MessageConstant.MESSAGE, "用户不足");
+		}
 		return modelMap;
 	}
 	/*
@@ -242,8 +265,8 @@ public class UserController extends BaseController {
 		if (user != null) {
 			return modelMap;
 		}
-		modelMap.put(MESSAGE,"用户信息查询失败！");
+		modelMap.put(MessageConstant.MESSAGE,"用户信息查询失败！");
 		return modelMap;
 	}
-	
+
 }

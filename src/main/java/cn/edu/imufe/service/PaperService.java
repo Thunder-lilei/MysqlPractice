@@ -1,6 +1,7 @@
 package cn.edu.imufe.service;
 
 import cn.edu.imufe.po.Paper;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface PaperService {
     Paper getPaperByPaperId(Long paperId);
 
     List<Paper> getAllPaper();
+
+    PageInfo<?> getAllPaper(int page, int pageSize);
 
     Integer deletePaperById(Long Id);
 

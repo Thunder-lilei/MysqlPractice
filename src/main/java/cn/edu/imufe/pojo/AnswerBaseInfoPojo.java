@@ -1,6 +1,6 @@
 package cn.edu.imufe.pojo;
 
-public class AnswerPojo {
+public class AnswerBaseInfoPojo {
     private Long id;
 
     private String question;

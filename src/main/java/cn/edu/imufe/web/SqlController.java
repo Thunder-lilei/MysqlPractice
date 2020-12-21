@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.edu.imufe.constant.MessageConstant;
 import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.AnswerHistory;
 import cn.edu.imufe.po.User;
@@ -40,8 +41,6 @@ public class SqlController extends BaseController{
 		this.answerService = answerService;
 		this.answerHistoryService = answerHistoryService;
 	}
-	
-	private final String MESSAGE = "message";
 
 	/*
 	 * @Author 李雷
@@ -62,19 +61,19 @@ public class SqlController extends BaseController{
 			ResultSet rs = pstat.executeQuery();
 			ResultSetUtil rsu = new ResultSetUtil(rs);
 			List<ArrayList<Object>> previewlist = rsu.getTableSetByRow();
-			
+
 			if(previewlist!=null)
 			{
-				modelMap.put(MESSAGE, "success");
+				modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
 				modelMap.put("previewlist", previewlist);
-			}else 
+			}else
 			{
-				modelMap.put(MESSAGE, "sql错误！或查询为空！");				
+				modelMap.put(MessageConstant.MESSAGE, "sql错误！或查询为空！");
 			}
 		} catch (SQLException e) {
 			//显示异常到控制台
 			//e.printStackTrace();
-			modelMap.put(MESSAGE, e.getMessage());
+			modelMap.put(MessageConstant.MESSAGE, e.getMessage());
 		}
 		return modelMap;
 	}
@@ -94,12 +93,12 @@ public class SqlController extends BaseController{
 		if(sqlstring!=null && !sqlstring.equals(""))
 		{
 			//从题目列表点进去 会把某道题的id存起来  然后比较函数会把 id+string一起返回给后台
-			//TODO 由返回的id搜到题目和答案  
+			//TODO 由返回的id搜到题目和答案
 			cn.edu.imufe.po.Answer a1=answerService.selectByPrimaryKey(id);
 			//TODO 由上面的答案 与用户sql进行比较 ，得出String字符串返回的结果 需要调用ComparasionOfSqlUtils
 			result=ComparasionOfSqlUtils.SQLOfComparasion(a1.getSolution(),sqlstring);
 			modelMap.put("message", "success");
-		}else 
+		}else
 		{
 			modelMap.put("message", "请填写答案！");
 		}
@@ -133,7 +132,7 @@ public class SqlController extends BaseController{
 					break;
 				default:
 					status = 2;
-					
+
 			}
 			User record = (User) session.getAttribute("user");
 			AnswerHistory replace;
@@ -148,15 +147,15 @@ public class SqlController extends BaseController{
 				answerhistory.setId(replace.getId());
 				answerHistoryService.updateByPrimaryKey(answerhistory);
 			}
-			
+
 			modelMap.put("result", result);
-			modelMap.put(MESSAGE, "success");
-		}else 
+			modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
+		}else
 		{
-			modelMap.put(MESSAGE, "请填写答案！");
+			modelMap.put(MessageConstant.MESSAGE, "请填写答案！");
 		}
 		return modelMap;
 	}
-	
-	
+
+
 }

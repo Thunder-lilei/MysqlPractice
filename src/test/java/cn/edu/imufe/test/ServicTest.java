@@ -8,12 +8,10 @@ import cn.edu.imufe.po.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.edu.imufe.pojo.AnswerHistoryPojo;
-import cn.edu.imufe.pojo.AnswerPojo;
+import cn.edu.imufe.pojo.UserAnswerHistoryPojo;
 import cn.edu.imufe.service.*;
 import cn.edu.imufe.util.ComparasionOfSqlUtils;
 import cn.edu.imufe.util.RandomList;
-import org.springframework.web.bind.annotation.RequestParam;
 
 public  class ServicTest extends BaseTest{
 	@Autowired
@@ -106,8 +104,8 @@ public  class ServicTest extends BaseTest{
 
 	@Test
 	public void getAnswerHistory() {
-		List<AnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6L);
-		for(AnswerHistoryPojo a : list) {
+		List<UserAnswerHistoryPojo> list = answerHistoryService.selectUserAnswerHistory(6L);
+		for(UserAnswerHistoryPojo a : list) {
 			System.out.println(a.getAnswerId());
 			System.out.println(a.getTitle());
 			System.out.println(a.getStatus());

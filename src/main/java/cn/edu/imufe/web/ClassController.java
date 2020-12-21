@@ -1,8 +1,11 @@
 package cn.edu.imufe.web;
 
+import cn.edu.imufe.constant.MessageConstant;
+import cn.edu.imufe.po.Answer;
 import cn.edu.imufe.po.TblClass;
 import cn.edu.imufe.pojo.ClassBaseInfoPojo;
 import cn.edu.imufe.service.ClassService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,7 @@ public class ClassController extends BaseController{
     public ClassController(ClassService classService) {
         this.classService = classService;
     }
+
     /*
      * @Author 李雷
      * @Description
@@ -44,9 +48,33 @@ public class ClassController extends BaseController{
         Map<String,Object> modelMap=new HashMap<>();
         List<ClassBaseInfoPojo> baseInfoPojoList = classService.getAllClassBaseInfo();
         if (baseInfoPojoList == null) {
-            modelMap.put("message","暂时没有班级！");
+            modelMap.put(MessageConstant.MESSAGE,"暂时没有班级！");
         }
         modelMap.put("ClassBaseInfoList",baseInfoPojoList);
+        return modelMap;
+    }
+    /*
+     * @Author 李雷
+     * @Description
+     * 分页查询班级基本信息
+     * @CreateDate 15:46 2020/12/21
+     * @UpdateDate 15:46 2020/12/21
+     * @Param [pageNow, pageSize]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @ResponseBody
+    @RequestMapping(value="/getAllClassBaseInfoByPage",method=RequestMethod.POST)
+    private Map<String,Object> getAllClassBaseInfoByPage(@RequestParam Integer pageNow,@RequestParam Integer pageSize){
+        Map<String,Object> modelMap=new HashMap<>();
+        PageInfo<ClassBaseInfoPojo> pageInfo = (PageInfo<ClassBaseInfoPojo>) classService.getAllClassBaseInfo(pageNow,pageSize);
+        if(pageInfo != null)
+        {
+            modelMap.put(MessageConstant.MESSAGE, MessageConstant.MESSAGE_SUCCESS);
+            modelMap.put("pageInfo", pageInfo);
+        }else
+        {
+            modelMap.put(MessageConstant.MESSAGE, "班级不足");
+        }
         return modelMap;
     }
     /*
@@ -64,10 +92,10 @@ public class ClassController extends BaseController{
     public Map<String,Object> addClass(TblClass c) {
         Map<String,Object> modelMap=new HashMap<>();
         if (classService.addClass(c).equals(0)) {
-            modelMap.put("message","请尝试更换班级名！");
+            modelMap.put(MessageConstant.MESSAGE,"请尝试更换班级名！");
             return modelMap;
         }
-        modelMap.put("message","添加成功！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
     /*
@@ -85,10 +113,10 @@ public class ClassController extends BaseController{
     public Map<String,Object> updateClass(TblClass c) {
         Map<String,Object> modelMap=new HashMap<>();
         if (classService.updateClass(c).equals(0)) {
-            modelMap.put("message","请尝试更换班级名！");
+            modelMap.put(MessageConstant.MESSAGE,"请尝试更换班级名！");
             return modelMap;
         }
-        modelMap.put("message","修改完成！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
     /*
@@ -105,10 +133,10 @@ public class ClassController extends BaseController{
     public Map<String,Object> deleteClass(@RequestParam Long id) {
         Map<String,Object> modelMap=new HashMap<>();
         if (classService.deleteClass(id).equals(0)) {
-            modelMap.put("message","删除失败！");
+            modelMap.put(MessageConstant.MESSAGE,"删除失败！");
             return modelMap;
         }
-        modelMap.put("message","删除成功！");
+        modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
         return modelMap;
     }
     @ResponseBody
@@ -118,9 +146,10 @@ public class ClassController extends BaseController{
         TblClass c = classService.getClass(id);
         modelMap.put("class",c);
         if (c != null) {
+            modelMap.put(MessageConstant.MESSAGE,MessageConstant.MESSAGE_SUCCESS);
             return modelMap;
         }
-        modelMap.put("message","查询失败！");
+        modelMap.put(MessageConstant.MESSAGE,"查询失败！");
         return modelMap;
     }
 }
